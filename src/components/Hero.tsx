@@ -1,6 +1,7 @@
 // src/components/Hero.tsx
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaReact, FaNodeJs, FaCode, FaDatabase } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaReact, FaNodeJs, FaCode, FaDatabase } from 'react-icons/fa';
+import { DiDotnet, DiJqueryLogo } from "react-icons/di";
 import TypewriterText from './shared/TypewriterText';
 import ScrollRevealSection from './shared/ScrollRevealSection';
 import LiquidButton from './shared/LiquidButton';
@@ -9,14 +10,18 @@ import Text3D from './shared/Text3D';
 import MorphingShape from './shared/MorphingShape';
 import FloatingIcons from './shared/FloatingIcons';
 import { Link } from 'react-scroll';
-import { ICVDataInterface } from '../types';
+import { SiDotnet } from 'react-icons/si';
 
 const Hero = () => {
   const floatingIcons = [
     { icon: <FaReact />, x: 10, y: 20, size: 3, delay: 0 },
-    { icon: <FaNodeJs />, x: 85, y: 15, size: 2.5, delay: 0.2 },
-    { icon: <FaCode />, x: 70, y: 70, size: 2, delay: 0.4 },
+    { icon: <SiDotnet  />, x: 85, y: 15, size: 4, delay: 0.2 },
+    { icon: <FaCode />, x: 70, y: 70, size: 4, delay: 0.4 },
     { icon: <FaDatabase />, x: 20, y: 80, size: 2.2, delay: 0.6 },
+    { icon: <DiJqueryLogo />, x: 30, y: 15, size: 4, delay: 0.6 },
+    { icon: <FaNodeJs />, x: 40, y: 10, size: 3, delay: 0.6 },
+
+
   ];
 
 

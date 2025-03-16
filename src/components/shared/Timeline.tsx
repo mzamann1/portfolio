@@ -19,6 +19,20 @@ const TimelineItem = ({
   icon,
   isCurrent = false,
 }: TimelineItemProps) => {
+  // Function to render HTML content safely
+  const renderDescription = () => {
+    if (typeof description === 'string') {
+      // Check if the description contains HTML
+      if (description.trim().startsWith('<')) {
+        return <div dangerouslySetInnerHTML={{ __html: description }} />;
+      }
+      // Plain text description
+      return <p>{description}</p>;
+    }
+    // React node
+    return description;
+  };
+
   return (
     <motion.div
       className="flex gap-4 md:gap-6"
@@ -45,14 +59,7 @@ const TimelineItem = ({
         <h3 className="text-xl font-bold mt-1">{title}</h3>
         {subtitle && <h4 className="text-light-textSecondary dark:text-dark-textSecondary font-medium">{subtitle}</h4>}
         <div className="mt-3 text-light-textSecondary dark:text-dark-textSecondary">
-          {typeof description === 'string' ? description : <div>
-            <p>Developed and maintained multiple client websites and web applications.</p>
-            <ul className="list-disc pl-5 mt-2 space-y-1">
-              <li>Built interactive UIs with React and TypeScript</li>
-              <li>Collaborated with designers to implement pixel-perfect layouts</li>
-              <li>Integrated RESTful APIs and implemented state management</li>
-            </ul>
-          </div>}
+          {renderDescription()}
         </div>
       </div>
     </motion.div>

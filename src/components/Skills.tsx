@@ -5,7 +5,7 @@ import ScrollRevealSection from './shared/ScrollRevealSection';
 import Text3D from './shared/Text3D';
 import TextGlitch from './shared/TextGlitch';
 import GlassCard from './shared/GlassCard';
-import { selectProjects, selectProjectsByTitle, selectSkills } from '../store/selectors/cvSelectors';
+import { selectSkills } from '../store/selectors/cvSelectors';
 import { useAppSelector } from '../store/hooks';
 import { groupSkillsByType } from '../uttilities';
 
@@ -14,7 +14,7 @@ const Skills = () => {
     const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
     const controls = useAnimation();
     const [ref, inView] = useInView({
-        triggerOnce: true,
+        triggerOnce: false,
         threshold: 0.1,
     });
 
@@ -125,10 +125,10 @@ const Skills = () => {
                                     onClick={() => setSelectedSkill(skill.title === selectedSkill ? null : skill.title)}
                                     className={`cursor-pointer ${selectedSkill === skill.title ? 'ring-2 ring-light-accent dark:ring-dark-accent' : ''}`}
                                 >
-                                    <GlassCard className="p-4 h-full flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-glass-hover">
-                                        <div className="relative mb-3">
+                                    <GlassCard className="p-1 h-full flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-glass-hover">
+                                        <div className="relative mb-1 flex justify-center w-full">
                                             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-light-accent/10 to-blue-500/10 dark:from-dark-accent/10 dark:to-blue-400/10 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                            {skill.icon && <span className="text-3xl" style={{ color: skill.color }} >
+                                            {skill.icon && <span className="text-5xl" style={{ color: skill.color }} >
                                                 {skill.icon}
                                             </span>}
                                         </div>
@@ -171,15 +171,15 @@ const Skills = () => {
                                 <div>
                                     <h4 className="font-medium mb-2">Related Projects:</h4>
                                     <div className="flex flex-wrap gap-2">
-                                        
-                                     {selectedSkillDetails?.projects?.map((project) => (
+
+                                        {selectedSkillDetails?.projects?.map((project) => (
                                             <span key={project.title} className="px-3 py-1 bg-light-secondary/50 dark:bg-dark-secondary/50 rounded-full text-sm">
                                                 {project.title}
                                             </span>
 
                                         ))}
-                                     
-                                     
+
+
                                     </div>
                                 </div>
                             </GlassCard>

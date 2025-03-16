@@ -15,7 +15,7 @@ interface HorizontalSkillsScrollProps {
 const HorizontalSkillsScroll = ({
   skills,
   className = '',
-  speed = 25,
+  speed = 40,
   direction = 'left',
   gap = 20,
 }: HorizontalSkillsScrollProps) => {
@@ -64,11 +64,11 @@ const HorizontalSkillsScroll = ({
             key={`${skill.title}-${index}`}
             className="flex items-center justify-center px-6 py-3 rounded-full bg-light-secondary dark:bg-dark-secondary"
             whileHover={{ 
-              scale: 1.05, 
+              scale: 1.12, 
               backgroundColor: skill.color || 'var(--light-accent)',
               color: 'white'
             }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 5}}
           >
             {skill.icon && <span className="mr-2">{skill.icon}</span>}
               <span className="font-medium">{skill.title}</span>
