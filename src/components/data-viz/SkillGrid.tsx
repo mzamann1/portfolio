@@ -8,8 +8,6 @@ import { motion } from 'framer-motion';
 import { SkillItem } from './SkillItem';
 import { ISkill } from '../../types';
 
-
-
 export interface SkillGridProps {
   /** Array of skills to display */
   skills: ISkill[];
@@ -37,7 +35,7 @@ export const SkillGrid = ({
   skills,
   columns = {
     sm: 3,
-    md: 4,
+    md: 5,
     lg: 5,
     xl: 6
   },
@@ -46,9 +44,6 @@ export const SkillGrid = ({
   animated = true,
   onSkillClick
 }: SkillGridProps) => {
-  // Calculate grid columns based on responsive breakpoints
-  const gridCols = `grid-cols-2 sm:grid-cols-${columns.sm} md:grid-cols-${columns.md} lg:grid-cols-${columns.lg} xl:grid-cols-${columns.xl}`;
-
   // Container animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -63,7 +58,7 @@ export const SkillGrid = ({
 
   return (
     <motion.div
-      className={`grid ${gridCols} gap-6 ${className}`}
+      className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 gap-6 ${className}`}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
