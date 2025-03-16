@@ -1,13 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBriefcase, FaGraduationCap, FaAward, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaBriefcase, FaGraduationCap, FaAward } from 'react-icons/fa';
 import Timeline from './shared/Timeline';
 import ScrollRevealSection from './shared/ScrollRevealSection';
 import SplitText from './shared/SplitText';
-import GlassCard from './shared/GlassCard';
 import { useCVData } from './CVDataProvider';
 import { mapWorkExperienceToTimelineItemProps, mapEducationToTimelineItemProps, mapAchievementsToTimelineItemProps } from '../mappers';
-import { useState, useRef, useEffect } from 'react';
-import React from 'react';
+import { useState } from 'react';
 
 // Floating element animation
 interface FloatingElementProps {

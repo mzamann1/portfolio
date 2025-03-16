@@ -285,7 +285,7 @@ const Projects = () => {
                                     'grid-cols-3'
                                 } gap-8`}
                             >
-                                {getVisibleProjects().map(({ project, originalIndex }, index) => (
+                                {getVisibleProjects().map(({ project, originalIndex }, _index) => (
                                     <div
                                         key={`${originalIndex}-${project.title}`}
                                         className="bg-light-secondary dark:bg-dark-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"

@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useAnimationFrame } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useAnimationFrame } from 'framer-motion';
 import { ISkill } from '../../types';
 
 

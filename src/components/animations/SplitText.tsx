@@ -5,7 +5,6 @@
  * with a staggered reveal effect. Great for headings and important text.
  */
 import { motion, Variants } from 'framer-motion';
-import { ReactNode } from 'react';
 
 export interface SplitTextProps {
   /** Text content to be split and animated */

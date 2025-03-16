@@ -1,5 +1,4 @@
-// src/components/MagneticImage.tsx
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface MagneticImageProps {

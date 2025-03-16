@@ -1,5 +1,4 @@
-// src/components/Navbar.tsx
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { useState, useEffect, useRef } from 'react';
 import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiAward, FiMail } from 'react-icons/fi';
@@ -198,7 +197,7 @@ const Navbar = () => {
                             animate="show"
                         >
                             <div className="py-4 px-4 flex flex-col space-y-1">
-                                {navItems.map((item, index) => (
+                                {navItems.map((item, _index) => (
                                     <Link
                                         key={item}
                                         to={item.toLowerCase()}

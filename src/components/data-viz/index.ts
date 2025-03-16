@@ -9,6 +9,5 @@
 
 export { SkillItem } from './SkillItem';
 export { SkillGrid } from './SkillGrid';
-export type { Skill } from './SkillGrid';
 
 // Add more data visualization component exports as they are refactored 

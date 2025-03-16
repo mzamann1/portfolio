@@ -114,7 +114,7 @@ const Contact = () => {
 
         <ScrollRevealSection>
           <div className="mt-12 flex justify-center space-x-6">
-            {socialLinks.map((social, index) => (
+            {socialLinks.map((social, _index) => (
               <motion.a
                 key={social.label}
                 href={social.href}

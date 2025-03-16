@@ -1,7 +1,6 @@
-// src/components/Hero.tsx
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaReact, FaNodeJs, FaCode, FaDatabase } from 'react-icons/fa';
-import { DiDotnet, DiJqueryLogo } from "react-icons/di";
+import { DiJqueryLogo } from "react-icons/di";
 import TypewriterText from './shared/TypewriterText';
 import ScrollRevealSection from './shared/ScrollRevealSection';
 import LiquidButton from './shared/LiquidButton';

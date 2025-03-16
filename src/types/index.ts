@@ -1,5 +1,4 @@
 import { JSX, ReactNode } from "react"
-import { IconType } from "react-icons/lib"
 
 interface ICVDataInterface {
     personalInfo: IPersonalInfo

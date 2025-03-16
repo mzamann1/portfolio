@@ -1,6 +1,5 @@
 // src/components/SplitText.tsx
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
 
 interface SplitTextProps {
     children: string;

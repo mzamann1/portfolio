@@ -1,16 +1,13 @@
-// src/components/About.tsx
-import { motion, useScroll, useTransform, animate, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, animate,  } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
-import { FaCode, FaServer, FaTools, FaLaptopCode, FaUserGraduate, FaAward, FaProjectDiagram } from 'react-icons/fa';
+import { FaLaptopCode, FaUserGraduate, FaAward, FaProjectDiagram, FaServer, FaTools } from 'react-icons/fa';
 import { SiGithub, SiDocker, SiAmazon, SiFigma } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 import ScrollRevealSection from './shared/ScrollRevealSection';
 import ParallaxSection from './shared/ParallexSection';
-import GlassCard from './shared/GlassCard';
 import MorphingShape from './shared/MorphingShape';
 import Text3D from './shared/Text3D';
 import TextGlitch from './shared/TextGlitch';
-import SplitText from './shared/SplitText';
 import TextReveal from './shared/TextReveal';
 import { useAppSelector } from '../store/hooks';
 import { selectPersonalInfo, selectYearsOfExperience } from '../store/selectors/cvSelectors';
@@ -140,7 +137,7 @@ const About = () => {
   const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0, -1]);
 
   // Hover states for cards
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [, setHoveredCard] = useState<number | null>(null);
 
   const skills = [
     {
@@ -264,19 +261,6 @@ const About = () => {
         duration: 0.2
       }
     }
-  };
-
-  // Particle animation variants
-  const particleVariants = {
-    animate: (i: number) => ({
-      y: [0, -20, 0],
-      opacity: [0, 1, 0],
-      transition: {
-        duration: Math.random() * 3 + 2,
-        repeat: Infinity,
-        delay: Math.random() * 5
-      }
-    })
   };
 
   return (
