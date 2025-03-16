@@ -84,8 +84,8 @@ const Navbar = () => {
             <div 
                 className={`mx-auto px-6 rounded-full transition-all duration-500 backdrop-blur-md ${
                     scrolled
-                        ? 'glass-morphism shadow-glass mx-4 sm:mx-8 md:mx-12 lg:mx-auto max-w-7xl border border-white/10 dark:border-white/5'
-                        : 'bg-white/5 dark:bg-black/5 max-w-7xl mx-auto'
+                        ? 'glass-morphism shadow-glass mx-4 sm:mx-8 md:mx-12 lg:mx-auto max-w-[1700px] border border-white/10 dark:border-white/5'
+                        : 'bg-white/5 dark:bg-black/5 max-w-[1700px] mx-auto'
                 }`}
                 onMouseMove={handleMouseMove}
             >
@@ -97,7 +97,7 @@ const Navbar = () => {
                         className="text-2xl font-bold relative overflow-hidden group"
                     >
                         <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-light-accent via-blue-500 to-purple-500 dark:from-dark-accent dark:via-teal-400 dark:to-blue-400">
-                            Muhammad Zaman
+                            Portfolio
                         </span>
                         <motion.div 
                             className="absolute inset-0 bg-light-accent/10 dark:bg-dark-accent/10 rounded-full -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"

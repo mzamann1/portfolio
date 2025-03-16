@@ -9,7 +9,9 @@ import Skills from './components/Skills';
 import Career from './components/Career';
 import Contact from './components/Contact';
 import ThemeToggle from './components/ThemeToggle';
-import CustomCursor from './components/shared/CustomCursor';
+
+// Import refactored components from their new locations
+import { CustomCursor } from './components/interactive';
 import ScrollProgress from './components/shared/ScrollProgress';
 import BackgroundGradientCanvas from './components/shared/BackgroundGradientCanvas';
 import LoadingScreen from './components/shared/LoadingScreen';
