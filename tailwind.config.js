@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
@@ -83,5 +83,21 @@ export default {
               },
         },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
+    ],
+    // Add RTL support
+    future: {
+        hoverOnlyWhenSupported: true,
+    },
+    // Add RTL variants
+    variants: {
+        extend: {
+            margin: ['rtl', 'ltr'],
+            padding: ['rtl', 'ltr'],
+            textAlign: ['rtl', 'ltr'],
+        },
+    },
 }

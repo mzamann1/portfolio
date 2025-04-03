@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaReact, FaNodeJs, FaCode, FaDatabase } from 'react-icons/fa';
 import { DiJqueryLogo } from "react-icons/di";
+import { useTranslation } from 'react-i18next';
 import TypewriterText from './shared/TypewriterText';
 import ScrollRevealSection from './shared/ScrollRevealSection';
 import LiquidButton from './shared/LiquidButton';
@@ -12,6 +13,8 @@ import { Link } from 'react-scroll';
 import { SiDotnet } from 'react-icons/si';
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   const floatingIcons = [
     { icon: <FaReact />, x: 10, y: 20, size: 3, delay: 0 },
     { icon: <SiDotnet  />, x: 85, y: 15, size: 4, delay: 0.2 },
@@ -19,10 +22,7 @@ const Hero = () => {
     { icon: <FaDatabase />, x: 20, y: 80, size: 2.2, delay: 0.6 },
     { icon: <DiJqueryLogo />, x: 30, y: 15, size: 4, delay: 0.6 },
     { icon: <FaNodeJs />, x: 40, y: 10, size: 3, delay: 0.6 },
-
-
   ];
-
 
   const info = {
     name: "Muhammad Zaman",
@@ -31,10 +31,8 @@ const Hero = () => {
       phone: "+923001234567",
       linkedin: "https://www.linkedin.com/in/muhammad-zaman-1234567890/",
       github: "https://github.com/muhammadzaman",
-    },
-    summary: "Highly skilled Full-Stack Developer with over 5 years of experience in developing scalable and robust applications using .NET Core and React. Proficient in designing APIs, database architectures, and implementing modern web technologies. Adept at Agile methodologies, and ensuring code quality through rigorous testing and reviews. Skilled in collaborating with crossfunctional teams to deliver high- impact software solutions.",
-  }
-
+    }
+  };
 
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
@@ -50,20 +48,23 @@ const Hero = () => {
             <motion.h2
               className="text-3xl md:text-6xl font-bold text-light-textSecondary dark:text-dark-textSecondary mt-4"
             >
-              I <TypewriterText
-                texts={['build things for the web.', 'create amazing experiences.', 'develop modern applications.']}
+              {t('hero.greeting')} <TypewriterText
+                texts={[
+                  t('hero.title'),
+                  t('hero.subtitle')
+                ]}
                 className="text-gradient-animated"
               />
             </motion.h2>
             <motion.p
               className="text-light-textSecondary dark:text-dark-textSecondary max-w-xl mt-6"
             >
-              {info.summary}
+              {t('about.bio')}
             </motion.p>
             <div className="mt-8">
               <Link to="projects" smooth={true} duration={500}>
                 <LiquidButton>
-                  View My Work
+                  {t('hero.cta')}
                 </LiquidButton>
               </Link>
             </div>

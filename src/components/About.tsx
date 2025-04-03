@@ -11,6 +11,7 @@ import TextGlitch from './shared/TextGlitch';
 import TextReveal from './shared/TextReveal';
 import { useAppSelector } from '../store/hooks';
 import { selectPersonalInfo, selectYearsOfExperience } from '../store/selectors/cvSelectors';
+import { useTranslation } from 'react-i18next';
 
 // Counter component for animated numbers
 interface CounterProps {
@@ -122,6 +123,7 @@ const FloatingElement = ({ children, delay = 0, duration = 5, className = "" }: 
 };
 
 const About = () => {
+  const { t } = useTranslation();
   const personalInfo = useAppSelector(selectPersonalInfo);
   const yearsOfExperience = useAppSelector(selectYearsOfExperience);
 
@@ -192,7 +194,7 @@ const About = () => {
     { icon: <SiFigma size={28} />, name: "Figma", color: "text-purple-500" }
   ];
 
-  // Card animation variants
+  // Enhanced card animation variants
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({
@@ -217,22 +219,22 @@ const About = () => {
     }
   };
 
-  // Skill card variants
+  // Enhanced skill card variants
   const skillCardVariants = {
-    hidden: { opacity: 0, x: 100 },
+    hidden: { opacity: 0, x: -50 },
     visible: (i: number) => ({
       opacity: 1,
       x: 0,
       transition: {
         delay: i * 0.2,
-        duration: 0.7,
+        duration: 0.8,
         type: "spring",
-        stiffness: 50
+        stiffness: 50,
+        damping: 15
       }
     }),
     hover: {
-      scale: 1.02,
-      y: -2,
+      x: 10,
       transition: {
         duration: 0.3,
         type: "spring",
@@ -241,22 +243,23 @@ const About = () => {
     }
   };
 
-  // Skill item variants with floating effect
+  // Enhanced skill item variants
   const skillItemVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: (i: number) => ({
       opacity: 1,
       scale: 1,
       transition: {
-        delay: 0.1 * i + 0.2,
-        duration: 0.4,
-        type: "spring"
+        delay: i * 0.1,
+        duration: 0.5,
+        type: "spring",
+        stiffness: 200
       }
     }),
     hover: {
       scale: 1.1,
-      y: -2,
-      backgroundColor: "rgba(var(--light-accent-rgb), 0.2)",
+      backgroundColor: "rgba(var(--light-accent-rgb), 0.1)",
+      borderColor: "rgba(var(--light-accent-rgb), 0.3)",
       transition: {
         duration: 0.2
       }
@@ -268,8 +271,8 @@ const About = () => {
       {/* Animated background elements */}
       <AnimatedBackground />
 
-      {/* Morphing shape background */}
-      <MorphingShape className="top-0 left-0 w-full h-full opacity-30" color="var(--light-accent)" duration={12} />
+      {/* Morphing shape background with enhanced opacity */}
+      <MorphingShape className="top-0 left-0 w-full h-full opacity-20" color="var(--light-accent)" duration={12} />
 
       <motion.div
         className="container relative z-10"
@@ -280,20 +283,29 @@ const About = () => {
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, type: "spring", stiffness: 50 }}
+            className="text-center mb-16"
           >
-            <Text3D className="text-4xl md:text-5xl font-bold text-center mb-2">
-              <TextGlitch text="About Me" glitchInterval={5000} />
+            <Text3D className="text-4xl md:text-5xl font-bold mb-2">
+              <TextGlitch text={t('about.title')} glitchInterval={5000} />
             </Text3D>
             <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-light-accent to-blue-500 dark:from-dark-accent dark:to-blue-400 mx-auto mb-16 rounded-full"
+              className="w-24 h-1 bg-gradient-to-r from-light-accent to-blue-500 dark:from-dark-accent dark:to-blue-400 mx-auto mb-8 rounded-full"
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: "6rem", opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             ></motion.div>
+            <motion.p
+              className="text-light-textSecondary dark:text-dark-textSecondary max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
+              {t('about.tagline')}
+            </motion.p>
           </motion.div>
         </ScrollRevealSection>
 
-        {/* Stats Section - Enhanced Glassmorphism with Beautiful Animations */}
+        {/* Stats Section - Enhanced with Glassmorphism */}
         <ScrollRevealSection>
           <div className="mb-24">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -306,13 +318,11 @@ const About = () => {
                   whileInView="visible"
                   whileHover="hover"
                   viewport={{ once: true }}
-                  onHoverStart={() => setHoveredCard(index)}
-                  onHoverEnd={() => setHoveredCard(null)}
                   className="relative group"
                 >
-                  {/* Minimalist card design */}
+                  {/* Enhanced glassmorphism card */}
                   <motion.div
-                    className="relative rounded-xl overflow-hidden backdrop-blur-sm bg-white/5 dark:bg-black/5 border border-white/10 dark:border-white/5 shadow-sm transition-all duration-500 h-full"
+                    className="relative rounded-xl overflow-hidden backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-lg transition-all duration-500 h-full"
                     animate={{
                       y: [0, -5, 0],
                     }}
@@ -323,9 +333,9 @@ const About = () => {
                       delay: index * 0.3
                     }}
                   >
-                    {/* Subtle gradient background that animates on hover */}
+                    {/* Enhanced gradient background */}
                     <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-700"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700"
                       style={{
                         background: `linear-gradient(120deg, var(--light-accent-transparent), var(--blue-transparent))`,
                         backgroundSize: '200% 200%',
@@ -340,39 +350,36 @@ const About = () => {
                       }}
                     />
 
-                    {/* Content container */}
+                    {/* Content container with enhanced spacing */}
                     <div className="relative p-8 z-10 h-full flex flex-col">
-                      <div className="flex items-center mb-6">
-                        {/* Icon with subtle animation */}
-                        <FloatingElement delay={index * 0.2} duration={4}>
-                          <motion.div
-                            className="mr-4 text-light-accent dark:text-dark-accent"
-                            animate={{
-                              scale: [1, 1.05, 1],
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            {stat.icon}
-                          </motion.div>
-                        </FloatingElement>
+                      <motion.div
+                        className="mb-4"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 + index * 0.2, duration: 0.5 }}
+                        viewport={{ once: true }}
+                      >
+                        <div className={`${stat.color} p-3 rounded-lg inline-block`}>
+                          {stat.icon}
+                        </div>
+                      </motion.div>
 
-                        {/* Value with counter animation */}
-                        <div className="relative">
+                      <div className="flex-1 flex flex-col">
+                        <motion.div
+                          className="text-5xl font-bold mb-2 text-light-text dark:text-dark-text"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 + index * 0.2, duration: 0.5 }}
+                          viewport={{ once: true }}
+                        >
                           <Counter
                             from={0}
                             to={stat.value}
-                            className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-light-accent to-blue-500 dark:from-dark-accent dark:to-blue-400 leading-none"
+                            className="bg-clip-text text-transparent bg-gradient-to-r from-light-accent to-blue-500 dark:from-dark-accent dark:to-blue-400 leading-none"
                             duration={2}
                           />
-                        </div>
-                      </div>
+                        </motion.div>
 
-                      <div className="flex-1 flex flex-col">
-                        {/* Label with enhanced styling */}
                         <motion.div
                           className="text-lg font-medium mb-2 text-light-text dark:text-dark-text tracking-wide uppercase"
                           initial={{ opacity: 0, y: 10 }}
@@ -383,7 +390,6 @@ const About = () => {
                           {stat.label}
                         </motion.div>
 
-                        {/* Description with enhanced styling */}
                         <motion.div
                           className="text-sm text-light-textSecondary dark:text-dark-textSecondary font-light"
                           initial={{ opacity: 0, y: 10 }}
@@ -403,7 +409,7 @@ const About = () => {
         </ScrollRevealSection>
 
         <div className="grid md:grid-cols-12 gap-12 items-start">
-          {/* Left column - Bio */}
+          {/* Left column - Bio with enhanced animations */}
           <div className="md:col-span-7">
             <ParallaxSection>
               <motion.div
@@ -413,20 +419,20 @@ const About = () => {
                 <TextReveal delay={0.1}>
                   <FloatingElement delay={0.2} duration={7} className="inline-block">
                     <h3 className="text-2xl font-bold mb-4 text-light-accent dark:text-dark-accent">
-                      Hello, I'm {personalInfo.name.split(' ')[0]}!
+                      {t('about.greeting')}
                     </h3>
                   </FloatingElement>
                 </TextReveal>
 
                 <TextReveal delay={0.2}>
                   <p className="text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-                    {personalInfo.bio}
+                    {t('about.bio')}
                   </p>
                 </TextReveal>
 
                 <TextReveal delay={0.3}>
                   <p className="text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-                    With over {yearsOfExperience} years of experience in full-stack development, I specialize in building exceptional digital experiences. My focus is on creating accessible, user-friendly applications that solve real-world problems.
+                    {t('about.experience')}
                   </p>
                 </TextReveal>
 
@@ -440,7 +446,7 @@ const About = () => {
                   <TextReveal delay={0.5}>
                     <FloatingElement delay={0.3} duration={6} className="inline-block">
                       <h4 className="text-xl font-semibold mb-4 text-light-text dark:text-dark-text">
-                        My Toolbox
+                        {t('about.toolbox')}
                       </h4>
                     </FloatingElement>
                   </TextReveal>
@@ -453,16 +459,16 @@ const About = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 * index, duration: 0.5 }}
                         viewport={{ once: true }}
-                        className="flex flex-col items-center"
+                        className="flex flex-col items-center group"
                       >
                         <FloatingElement delay={index * 0.3} duration={3 + index * 0.5}>
                           <motion.div
                             whileHover={{
-                              y: -3,
+                              y: -5,
                               scale: 1.1,
-                              filter: "drop-shadow(0 0 4px rgba(var(--light-accent-rgb), 0.3))"
+                              filter: "drop-shadow(0 0 8px rgba(var(--light-accent-rgb), 0.4))"
                             }}
-                            className={`${tool.color} mb-2`}
+                            className={`${tool.color} mb-2 transition-colors duration-300 group-hover:text-light-accent dark:group-hover:text-dark-accent`}
                           >
                             {tool.icon}
                           </motion.div>
@@ -478,9 +484,8 @@ const About = () => {
             </ParallaxSection>
           </div>
 
-          {/* Right column - Skills */}
+          {/* Right column - Skills with enhanced design */}
           <div className="md:col-span-5">
-            {/* Skills */}
             <ScrollRevealSection direction="right" delay={0.2}>
               <div className="space-y-8">
                 {skills.map((skill, index) => (
@@ -494,9 +499,9 @@ const About = () => {
                     viewport={{ once: true }}
                     className="relative group"
                   >
-                    {/* Ultra minimalist skill card with floating effect */}
+                    {/* Enhanced skill card with glassmorphism */}
                     <motion.div
-                      className="relative overflow-hidden rounded-lg backdrop-blur-sm bg-transparent border-b border-white/5 dark:border-white/5 transition-all duration-500 pb-6"
+                      className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 dark:bg-black/5 border border-white/10 dark:border-white/5 transition-all duration-500 p-6"
                       animate={{
                         y: [0, -3, 0],
                       }}
@@ -508,13 +513,13 @@ const About = () => {
                       }}
                     >
                       <div className="relative z-10">
-                        {/* Header with icon and title */}
+                        {/* Header with enhanced icon animation */}
                         <div className="flex items-center mb-3">
                           <motion.div
                             className="mr-3 text-light-accent dark:text-dark-accent"
                             animate={{
-                              rotate: [0, 3, 0, -3, 0],
-                              scale: [1, 1.05, 1]
+                              rotate: [0, 5, 0, -5, 0],
+                              scale: [1, 1.1, 1]
                             }}
                             transition={{
                               duration: 6,
@@ -537,7 +542,7 @@ const About = () => {
                           </motion.h3>
                         </div>
 
-                        {/* Description with staggered reveal */}
+                        {/* Description with enhanced typography */}
                         <motion.p
                           className="text-sm text-light-textSecondary dark:text-dark-textSecondary mb-3 font-light pl-8"
                           initial={{ opacity: 0, y: 5 }}
@@ -548,18 +553,18 @@ const About = () => {
                           {skill.description}
                         </motion.p>
 
-                        {/* Skills tags with staggered animation and floating effect */}
+                        {/* Skills tags with enhanced design */}
                         <div className="flex flex-wrap gap-2 pl-8">
                           {skill.items.map((item, itemIndex) => (
-
                             <motion.span
+                              key={itemIndex}
                               custom={itemIndex}
                               variants={skillItemVariants}
                               initial="hidden"
                               whileInView="visible"
                               whileHover="hover"
                               viewport={{ once: true }}
-                              className="px-2 py-0.5 bg-transparent border border-white/10 dark:border-white/5 rounded-full text-xs text-light-textSecondary dark:text-dark-textSecondary transition-all duration-300 inline-block"
+                              className="px-2 py-0.5 bg-white/5 dark:bg-black/5 border border-white/10 dark:border-white/5 rounded-full text-xs text-light-textSecondary dark:text-dark-textSecondary transition-all duration-300 hover:bg-light-accent/10 dark:hover:bg-dark-accent/10"
                             >
                               {item}
                             </motion.span>
@@ -575,7 +580,7 @@ const About = () => {
         </div>
       </motion.div>
 
-      {/* Add CSS animation for gradient */}
+      {/* Enhanced CSS animations */}
       <style dangerouslySetInnerHTML={{
         __html: `
           @keyframes gradientAnimation {
@@ -587,6 +592,15 @@ const About = () => {
           :root {
             --light-accent-transparent: rgba(var(--light-accent-rgb), 0.7);
             --blue-transparent: rgba(59, 130, 246, 0.7);
+          }
+
+          .text-gradient-animated {
+            background: linear-gradient(120deg, var(--light-accent), #3b82f6, var(--light-accent));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 3s ease infinite;
           }
         `
       }} />

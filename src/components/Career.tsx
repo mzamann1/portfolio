@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBriefcase, FaGraduationCap, FaAward } from 'react-icons/fa';
 import Timeline from './shared/Timeline';
@@ -6,6 +7,10 @@ import SplitText from './shared/SplitText';
 import { useCVData } from './CVDataProvider';
 import { mapWorkExperienceToTimelineItemProps, mapEducationToTimelineItemProps, mapAchievementsToTimelineItemProps } from '../mappers';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import Text3D from './shared/Text3D';
+import TextGlitch from './shared/TextGlitch';
+import MorphingShape from './shared/MorphingShape';
 
 // Floating element animation
 interface FloatingElementProps {
@@ -37,11 +42,27 @@ const FloatingElement = ({ children, delay = 0, duration = 5, className = "" }: 
 };
 
 const Career = () => {
-  // Get CV data from Redux via context
+  const { t } = useTranslation();
   const { carrierJourney } = useCVData();
-
-  // State for active section
   const [activeSection, setActiveSection] = useState<string>("work");
+
+  const sections = [
+    { 
+      id: "work", 
+      label: t('career.work'), 
+      icon: FaBriefcase 
+    },
+    { 
+      id: "education", 
+      label: t('career.education'), 
+      icon: FaGraduationCap 
+    },
+    { 
+      id: "achievements", 
+      label: t('career.achievements'), 
+      icon: FaAward 
+    }
+  ];
 
   // Animation variants
   const containerVariants = {
@@ -67,68 +88,35 @@ const Career = () => {
   };
 
   return (
-    <section id="career" className="py-20 bg-light-primary dark:bg-dark-primary relative overflow-hidden">
-      {/* Background gradient circles */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-light-accent/5 dark:bg-dark-accent/5 blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 30, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-blue-500/5 dark:bg-blue-400/5 blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -30, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
+    <section id="career" className="py-24 relative overflow-hidden">
+      <MorphingShape className="top-0 left-0 w-full h-full opacity-20" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container relative z-10">
         <ScrollRevealSection>
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              My <span className="text-light-accent dark:text-dark-accent">Career</span> Journey
-            </h2>
+          <div className="text-center mb-16">
+            <Text3D className="text-4xl md:text-5xl font-bold mb-2">
+              <TextGlitch text={t('career.title')} glitchInterval={5000} />
+            </Text3D>
             <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-light-accent to-blue-500 dark:from-dark-accent dark:to-blue-400 mx-auto mb-6 rounded-full"
+              className="w-24 h-1 bg-gradient-to-r from-light-accent to-blue-500 dark:from-dark-accent dark:to-blue-400 mx-auto mb-8 rounded-full"
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: "6rem", opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            ></motion.div>
-            <p className="text-light-textSecondary dark:text-dark-textSecondary max-w-2xl mx-auto">
-              A timeline of my professional experience, education, and achievements.
-            </p>
-          </motion.div>
+              transition={{ delay: 0.5, duration: 0.8 }}
+            />
+            <motion.p
+              className="text-light-textSecondary dark:text-dark-textSecondary max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
+              {t('career.subtitle')}
+            </motion.p>
+          </div>
         </ScrollRevealSection>
 
-        {/* Section Navigation - Enhanced with horizontal tab design */}
         <div className="flex justify-center mb-12">
           <div className="inline-flex rounded-full bg-light-secondary/50 dark:bg-dark-secondary/50 backdrop-blur-sm p-1.5 shadow-lg">
-            {[
-              { id: "work", label: "Work", icon: FaBriefcase },
-              { id: "education", label: "Education", icon: FaGraduationCap },
-              { id: "achievements", label: "Achievements", icon: FaAward }
-            ].map((section) => (
+            {sections.map((section) => (
               <motion.button
                 key={section.id}
                 onClick={() => setActiveSection(section.id)}
@@ -147,86 +135,16 @@ const Career = () => {
           </div>
         </div>
 
-        {/* Timeline Sections - Using relative positioning to ensure all content is visible */}
-        <div className="max-w-4xl mx-auto">
-          <AnimatePresence mode="wait">
-            {activeSection === "work" && (
-              <motion.div
-                key="work"
-                initial="hidden"
-                animate="visible"
-                exit={{ opacity: 0 }}
-                variants={containerVariants}
-              >
-                <div className="flex items-center mb-8">
-                  <FloatingElement delay={0.2} duration={6}>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent">
-                      <FaBriefcase className="text-xl" />
-                    </div>
-                  </FloatingElement>
-                  <motion.h3
-                    className="text-2xl font-bold ml-4"
-                    variants={itemVariants}
-                  >
-                    <SplitText>Work Experience</SplitText>
-                  </motion.h3>
-                </div>
-                <Timeline items={mapWorkExperienceToTimelineItemProps(carrierJourney!.workExperiences)} />
-              </motion.div>
-            )}
-
-            {/* Education */}
-            {activeSection === "education" && (
-              <motion.div
-                key="education"
-                initial="hidden"
-                animate="visible"
-                exit={{ opacity: 0 }}
-                variants={containerVariants}
-              >
-                <div className="flex items-center mb-8">
-                  <FloatingElement delay={0.3} duration={5}>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent">
-                      <FaGraduationCap className="text-xl" />
-                    </div>
-                  </FloatingElement>
-                  <motion.h3
-                    className="text-2xl font-bold ml-4"
-                    variants={itemVariants}
-                  >
-                    <SplitText>Education</SplitText>
-                  </motion.h3>
-                </div>
-                <Timeline items={mapEducationToTimelineItemProps(carrierJourney!.education)} />
-              </motion.div>
-            )}
-
-            {/* Achievements */}
-            {activeSection === "achievements" && (
-              <motion.div
-                key="achievements"
-                initial="hidden"
-                animate="visible"
-                exit={{ opacity: 0 }}
-                variants={containerVariants}
-              >
-                <div className="flex items-center mb-8">
-                  <FloatingElement delay={0.4} duration={7}>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent">
-                      <FaAward className="text-xl" />
-                    </div>
-                  </FloatingElement>
-                  <motion.h3
-                    className="text-2xl font-bold ml-4"
-                    variants={itemVariants}
-                  >
-                    <SplitText>Achievements</SplitText>
-                  </motion.h3>
-                </div>
-                <Timeline items={mapAchievementsToTimelineItemProps(carrierJourney!.certifications)} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+        <div className="relative">
+          {activeSection === 'work' && (
+            <Timeline items={mapWorkExperienceToTimelineItemProps(carrierJourney!.workExperiences)} />
+          )}
+          {activeSection === 'education' && (
+            <Timeline items={mapEducationToTimelineItemProps(carrierJourney!.education)} />
+          )}
+          {activeSection === 'achievements' && (
+            <Timeline items={mapAchievementsToTimelineItemProps(carrierJourney!.certifications)} />
+          )}
         </div>
       </div>
     </section>

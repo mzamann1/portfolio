@@ -1,0 +1,84 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "menu": "Menu",
+    "theme": {
+      "light": "Light Mode",
+      "dark": "Dark Mode"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "career": "Career",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "title": "Full Stack Developer",
+    "subtitle": "Building digital experiences that matter",
+    "cta": "Get in touch",
+    "scroll": "Scroll down"
+  },
+  "about": {
+    "title": "About Me",
+    "tagline": "Crafting digital experiences with passion and precision",
+    "greeting": "Hello, I'm {{name}}!",
+    "bio": "I am a passionate Full Stack Developer with expertise in building modern web applications. My journey in software development has been driven by a constant desire to learn and create innovative solutions.",
+    "experience": "With over {{years}} years of experience in full-stack development, I specialize in building exceptional digital experiences. My focus is on creating accessible, user-friendly applications that solve real-world problems.",
+    "passion": "I'm passionate about staying at the forefront of technology trends and continuously expanding my skill set. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical articles and mentoring.",
+    "toolbox": "My Toolbox",
+    "stats": {
+      "experience": "Years Experience",
+      "projects": "Projects Completed",
+      "clients": "Happy Clients"
+    }
+  },
+  "skills": {
+    "frontend": {
+      "title": "Frontend Development",
+      "description": "Building responsive and interactive user interfaces with modern frameworks and libraries.",
+      "items": ["React", "TypeScript", "Next.js", "Tailwind CSS", "Framer Motion"]
+    },
+    "backend": {
+      "title": "Backend Development",
+      "description": "Creating robust server-side applications and APIs to power web applications.",
+      "items": [".NET Core", "ASP.NET", "Entity Framework", "SQL Server", "RESTful APIs"]
+    },
+    "tools": {
+      "title": "Tools & Technologies",
+      "description": "Leveraging modern tools and technologies to streamline development workflows.",
+      "items": ["Git", "Docker", "Azure DevOps", "VS Code", "Rider"]
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Some of my recent work",
+    "viewAll": "View All Projects",
+    "viewDetails": "View Details",
+    "visitSite": "Visit Site",
+    "viewCode": "View Code"
+  },
+  "career": {
+    "title": "Career Journey",
+    "subtitle": "My professional experience",
+    "present": "Present",
+    "skills": "Skills used",
+    "viewMore": "View More"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Let's work together",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully!",
+    "error": "Error sending message. Please try again."
+  }
+} 

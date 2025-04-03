@@ -1,9 +1,18 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { Link } from 'react-scroll';
-import { useState, useEffect, useRef } from 'react';
 import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiAward, FiMail } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './shared/LanguageSwitcher';
+
+interface NavItem {
+    href: string;
+    label: string;
+    icon: React.ReactNode;
+}
 
 const Navbar = () => {
+    const { t } = useTranslation();
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,6 +20,15 @@ const Navbar = () => {
     const navRef = useRef<HTMLDivElement>(null);
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+
+    const navItems: NavItem[] = [
+        { href: 'home', label: t('nav.home'), icon: <FiHome /> },
+        { href: 'about', label: t('nav.about'), icon: <FiUser /> },
+        { href: 'projects', label: t('nav.projects'), icon: <FiCode /> },
+        { href: 'skills', label: t('nav.skills'), icon: <FiAward /> },
+        { href: 'career', label: t('nav.career'), icon: <FiBriefcase /> },
+        { href: 'contact', label: t('nav.contact'), icon: <FiMail /> }
+    ];
 
     // Handle mouse movement for hover effects
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -55,18 +73,6 @@ const Navbar = () => {
         }
     }, [activeSection, scrolled]);
 
-    // Map icons to nav items
-    const navIcons = {
-        'home': <FiHome className="mr-2" />,
-        'about': <FiUser className="mr-2" />,
-        'skills': <FiCode className="mr-2" />,
-        'projects': <FiBriefcase className="mr-2" />,
-        'carrier': <FiAward className="mr-2" />,
-        'contact': <FiMail className="mr-2" />
-    };
-
-    const navItems = ['Home', 'About', 'Skills', 'Projects', 'Carrier', 'Contact'];
-    
     // Spring animation for the indicator
     const springLeft = useSpring(indicatorStyle.left, { stiffness: 300, damping: 30 });
     const springWidth = useSpring(indicatorStyle.width, { stiffness: 300, damping: 30 });
@@ -120,18 +126,18 @@ const Navbar = () => {
                         
                         {navItems.map((item) => (
                             <Link
-                                key={item}
-                                to={item.toLowerCase()}
+                                key={item.href}
+                                to={item.href}
                                 smooth={true}
                                 duration={500}
                                 spy={true}
                                 activeClass="active"
-                                onSetActive={() => setActiveSection(item.toLowerCase())}
-                                className={`cursor-pointer relative group nav-item-${item.toLowerCase()}`}
+                                onSetActive={() => setActiveSection(item.href)}
+                                className={`cursor-pointer relative group nav-item-${item.href}`}
                             >
                                 <motion.div 
                                     className={`transition-all duration-300 inline-flex items-center py-2 px-3 rounded-full ${
-                                        activeSection === item.toLowerCase()
+                                        activeSection === item.href
                                             ? 'text-light-accent dark:text-dark-accent'
                                             : 'text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent'
                                     }`}
@@ -141,11 +147,16 @@ const Navbar = () => {
                                     }}
                                     transition={{ type: 'spring', stiffness: 300 }}
                                 >
-                                    {navIcons[item.toLowerCase() as keyof typeof navIcons]}
-                                    {item}
+                                    {item.icon}
+                                    <span className="ml-2">{item.label}</span>
                                 </motion.div>
                             </Link>
                         ))}
+
+                        {/* Language Switcher */}
+                        <div className="ml-4">
+                            <LanguageSwitcher />
+                        </div>
                     </div>
                     
                     {/* Mobile Menu Button */}
@@ -184,52 +195,40 @@ const Navbar = () => {
                     >
                         <motion.div 
                             className="glass-morphism shadow-glass mx-4 mt-2 rounded-2xl overflow-hidden border border-white/10 dark:border-white/5 backdrop-blur-md"
-                            variants={{
-                                hidden: { opacity: 0 },
-                                show: {
-                                    opacity: 1,
-                                    transition: {
-                                        staggerChildren: 0.05
-                                    }
-                                }
-                            }}
-                            initial="hidden"
-                            animate="show"
                         >
-                            <div className="py-4 px-4 flex flex-col space-y-1">
-                                {navItems.map((item, _index) => (
+                            {/* Mobile Menu Items */}
+                            <div className="py-2">
+                                {navItems.map((item) => (
                                     <Link
-                                        key={item}
-                                        to={item.toLowerCase()}
+                                        key={item.href}
+                                        to={item.href}
                                         smooth={true}
                                         duration={500}
                                         spy={true}
                                         activeClass="active"
-                                        onSetActive={() => setActiveSection(item.toLowerCase())}
+                                        onSetActive={() => setActiveSection(item.href)}
                                         onClick={() => setMobileMenuOpen(false)}
+                                        className="block"
                                     >
-                                        <motion.div
-                                            variants={{
-                                                hidden: { x: -20, opacity: 0 },
-                                                show: { x: 0, opacity: 1 }
-                                            }}
+                                        <motion.div 
+                                            className={`flex items-center px-6 py-3 transition-all duration-300 ${
+                                                activeSection === item.href
+                                                    ? 'text-light-accent dark:text-dark-accent bg-light-accent/10 dark:bg-dark-accent/10'
+                                                    : 'text-light-text dark:text-dark-text hover:bg-light-accent/5 dark:hover:bg-dark-accent/5'
+                                            }`}
                                             whileHover={{ x: 5 }}
                                             transition={{ type: 'spring', stiffness: 300 }}
-                                            className={`cursor-pointer py-3 px-4 rounded-xl transition-all duration-200 flex items-center ${
-                                                activeSection === item.toLowerCase()
-                                                    ? 'bg-gradient-to-r from-light-accent/10 to-blue-500/10 dark:from-dark-accent/10 dark:to-blue-400/10 text-light-accent dark:text-dark-accent font-medium'
-                                                    : 'hover:bg-light-secondary/50 dark:hover:bg-dark-secondary/50 text-light-text dark:text-dark-text'
-                                            }`}
                                         >
-                                            <span className="mr-3 text-xl">
-                                                {navIcons[item.toLowerCase() as keyof typeof navIcons]}
-                                            </span>
-                                            <span className="block">
-                                                {item}
-                                            </span>
+                                            {item.icon}
+                                            <span className="ml-3">{item.label}</span>
                                         </motion.div>
                                     </Link>
                                 ))}
+                                
+                                {/* Language Switcher in Mobile Menu */}
+                                <div className="px-6 py-3 border-t border-light-border/10 dark:border-dark-border/10">
+                                    <LanguageSwitcher />
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>

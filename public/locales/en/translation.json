@@ -1,0 +1,7 @@
+{
+    "projects": {
+        "title": "My Projects",
+        "subtitle": "Here are some of my recent projects. Each project is built with a focus on performance, user experience, and clean code.",
+        "viewAll": "View All Projects"
+    }
+} 

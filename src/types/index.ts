@@ -52,16 +52,19 @@ interface IEducation {
 }
 
 interface IProject {
-    tags: Array<string>
-    githubLink?: string
-    title: string
-    description: string | ReactNode
-    technologies?: string[]
+    title: string;
+    description: string;
+    tags: string[];
     links: {
-        github?: string
-        live?: string
-    }
-    featured?: boolean
+        github?: string;
+        live?: string;
+    };
+    image?: string;
+    videoSrc?: string;
+    posterSrc?: string;
+    github?: string;
+    liveUrl?: string;
+    featured?: boolean;
 }
 
 interface ISkill {
@@ -75,4 +78,4 @@ interface ISkill {
     projects?: Array<IProject>
 }
 
-export type { ICVDataInterface, ICareerJourney, IWorkExperience, ICertifications, IEducation, IProject, ISkill, IPersonalInfo }
+export type { ICVDataInterface, ICareerJourney, IWorkExperience, ICertifications, IEducation, ISkill, IPersonalInfo, IProject }
