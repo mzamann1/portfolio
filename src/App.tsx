@@ -21,24 +21,24 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       <LoadingScreen />
-      <CVDataProvider>
-        <div className="bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text">
-          <CustomCursor />
-          <ScrollProgress />
-          <BackgroundGradientCanvas />
-          <MouseTrailEffect />
-          <ThemeToggle />
-          <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Career />
-            <Contact />
-          </main>
-        </div>
-      </CVDataProvider>
+        <CVDataProvider>
+          <div className="bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text">
+            <CustomCursor />
+            <ScrollProgress />
+            <BackgroundGradientCanvas />
+            <MouseTrailEffect />
+            <ThemeToggle />
+            <Navbar />
+            <main>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Career />
+              <Contact />
+            </main>
+          </div>
+        </CVDataProvider>
     </AnimatePresence>
   );
 }

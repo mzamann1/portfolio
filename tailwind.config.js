@@ -10,11 +10,11 @@ export default {
             colors: {
                 // Light theme colors
                 light: {
-                    primary: "#ffffff",
-                    secondary: "#f3f4f6",
-                    accent: "#3b82f6",
-                    text: "#1f2937",
-                    textSecondary: "#4b5563",
+                    primary: "#ffffff", // Pure white background
+                    secondary: "#f3f4f6", // Light gray for contrast
+                    accent: "#3b82f6", // Blue 500 - Vibrant blue for accents
+                    text: "#1f2937", // Slate 800 - Dark text for readability
+                    textSecondary: "#4b5563", // Slate 600 - Secondary text
                 },
                 // Dark theme colors
                 dark: {

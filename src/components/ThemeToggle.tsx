@@ -1,31 +1,50 @@
 // src/components/ThemeToggle.tsx
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { toggleTheme } from '../store/slices/themeSlice';
 
 const ThemeToggle = () => {
-    const [isDark, setIsDark] = useState(false);
+    const dispatch = useDispatch();
+    const theme = useSelector((state: RootState) => state.theme.theme);
 
-    useEffect(() => {
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [isDark]);
+    const handleClick = () => {
+        console.log('ThemeToggle clicked, current theme:', theme);
+        dispatch(toggleTheme());
+    };
 
     return (
         <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={() => setIsDark(!isDark)}
-            className="fixed top-4 right-4 z-50 p-2 rounded-full bg-light-secondary dark:bg-dark-secondary shadow-lg"
+            onClick={handleClick}
+            className="fixed bottom-4 right-4 z-[9999] p-3 rounded-full bg-light-secondary dark:bg-dark-secondary shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl border border-light-accent/20 dark:border-dark-accent/20"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
-            {isDark ? (
-                <FaSun className="text-yellow-500 text-xl" />
-            ) : (
-                <FaMoon className="text-gray-700 text-xl" />
-            )}
+            <AnimatePresence mode="wait">
+                {theme === 'dark' ? (
+                    <motion.div
+                        key="sun"
+                        initial={{ rotate: -180, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 180, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <FaSun className="text-blue-500 text-2xl" />
+                    </motion.div>
+                ) : (
+                    <motion.div
+                        key="moon"
+                        initial={{ rotate: 180, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -180, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <FaMoon className="text-slate-600 text-2xl" />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.button>
     );
 };
