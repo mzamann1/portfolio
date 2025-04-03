@@ -115,7 +115,6 @@ const Skills = () => {
                         >
                             <SkillGrid 
                                 skills={formatSkillsForGrid(activeCategory)}
-                                columns={{ sm: 3, md: 4, lg: 5, xl: 6 }}
                                 iconSize={80}
                                 className="py-1"
                                 onSkillClick={handleSkillClick}

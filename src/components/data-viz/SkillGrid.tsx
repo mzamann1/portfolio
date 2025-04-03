@@ -11,13 +11,6 @@ import { ISkill } from '../../types';
 export interface SkillGridProps {
   /** Array of skills to display */
   skills: ISkill[];
-  /** Number of columns on small screens */
-  columns?: {
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
-  };
   /** Size of each skill icon */
   iconSize?: number;
   /** Additional CSS classes to apply */
@@ -33,12 +26,6 @@ export interface SkillGridProps {
  */
 export const SkillGrid = ({
   skills,
-  columns = {
-    sm: 3,
-    md: 5,
-    lg: 5,
-    xl: 6
-  },
   iconSize = 64,
   className = '',
   animated = true,
