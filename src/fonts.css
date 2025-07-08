@@ -1,16 +1,16 @@
 /* Arabic Font Declaration */
 @font-face {
   font-family: "GumelaArabic";
-  src: url("./src/assets/fonts/GumelaArabic-Regular.woff2") format("woff2"),
-    url("./src/assets/fonts/GumelaArabic-Light.woff2") format("woff2"),
-    url("./src/assets/fonts/GumelaArabic-Bold.woff2") format("woff2");
+  src: url("/assets/fonts/GumelaArabic-Regular.woff2") format("woff2"),
+    url("/assets/fonts/GumelaArabic-Light.woff2") format("woff2"),
+    url("/assets/fonts/GumelaArabic-Bold.woff2") format("woff2");
   font-weight: 400 500 600 700 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Satoshi";
-  src: url("./src/assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  src: url("/assets/fonts/Satoshi-Variable.woff2") format("woff2");
   font-weight: 400 500 600 700 800 900;
   font-style: normal;
   font-display: swap;
