@@ -45,7 +45,7 @@ const AwardsCertifications = () => {
   const { t } = useTranslation();
   const { data: awardsData, loading, error } = useAwardsData();
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'award' | 'achievement' | 'certification'>('all');
-  const { fontClass, heading, body, getFontClass } = useLanguageFont();
+  const { fontClass, heading, body } = useLanguageFont();
 
   if (loading) {
     return (

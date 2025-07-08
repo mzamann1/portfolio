@@ -260,7 +260,7 @@ const Projects = () => {
           >
             <h2 className={heading}>{t('projects', 'Projects')}</h2>
             <div className="w-32 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-6" />
-            <p className={body + ' text-xl max-w-3xl mx-auto leading-relaxed'}>{projectsData?.description}</p>
+           {/* <p className={body + ' text-xl max-w-3xl mx-auto leading-relaxed'}>{projectsData?.description}</p> */}
           </motion.div>
         </div>
 

@@ -17,7 +17,7 @@ const markerVariants = {
 
 const WorkExperience = () => {
   const { i18n, t } = useTranslation();
-  const { fontClass, heading, body, getFontClass } = useLanguageFont();
+  const { fontClass, heading, body } = useLanguageFont();
   const [experiences, setExperiences] = useState<WorkExperienceItem[] | null>(null);
   const [loading, setLoading] = useState(true);
 

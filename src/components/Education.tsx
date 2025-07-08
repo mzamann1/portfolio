@@ -13,7 +13,7 @@ const cardVariants = {
 const Education = () => {
   const { t } = useTranslation();
   const { data: educationData, loading, error } = useEducationData();
-  const { fontClass, heading, body, getFontClass } = useLanguageFont();
+  const { fontClass, heading, body } = useLanguageFont();
 
   if (loading) {
     return (

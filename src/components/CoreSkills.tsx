@@ -107,7 +107,7 @@ const CoreSkills = () => {
   const { data: skillsData, loading, error } = useSkillsData();
   const [selectedCategory, setSelectedCategory] = useState<number>(0);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-  const { fontClass, heading, body, getFontClass } = useLanguageFont();
+  const { fontClass, heading, body } = useLanguageFont();
 
   if (loading) {
     return (
@@ -206,7 +206,7 @@ const CoreSkills = () => {
           {t('core_skills', 'Core Skills')}
         </h2>
         <p className={body + ' text-lg max-w-2xl mx-auto'}>
-          {skillsData?.description}
+          {/* {skillsData?.description} */}
         </p>
       </motion.div>
 
