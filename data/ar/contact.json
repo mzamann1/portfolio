@@ -1,0 +1,66 @@
+{
+  "description": "أنا دائماً مهتم بفرص جديدة ومشاريع مثيرة. سواء كان لديك سؤال، أو ترغب في التعاون، أو تريد فقط إلقاء التحية، لا تتردد في التواصل!",
+  "contactInfo": [
+    {
+      "id": "email",
+      "title": "البريد الإلكتروني",
+      "value": "zaman@example.com",
+      "icon": "FaEnvelope",
+      "type": "email"
+    },
+    {
+      "id": "phone",
+      "title": "الهاتف",
+      "value": "+92 300 1234567",
+      "icon": "FaPhone",
+      "type": "phone"
+    },
+    {
+      "id": "location",
+      "title": "الموقع",
+      "value": "كراتشي، باكستان",
+      "icon": "FaMapMarkerAlt",
+      "type": "location"
+    },
+    {
+      "id": "linkedin",
+      "title": "لينكدإن",
+      "value": "linkedin.com/in/zaman",
+      "icon": "FaLinkedin",
+      "type": "other"
+    }
+  ],
+  "socialLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/zaman",
+      "icon": "FaGithub"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/zaman",
+      "icon": "FaLinkedin"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/zaman",
+      "icon": "FaTwitter"
+    },
+    {
+      "name": "Portfolio",
+      "url": "https://zaman-portfolio.com",
+      "icon": "FaGlobe"
+    }
+  ],
+  "availability": {
+    "status": "available",
+    "message": "أنا متاح حالياً لفرص جديدة ومشاريع مثيرة!",
+    "availableFor": [
+      "وظائف بدوام كامل",
+      "مشاريع حرة",
+      "عمل تعاقدي",
+      "مساهمات المصادر المفتوحة",
+      "الاستشارات التقنية"
+    ]
+  }
+} 

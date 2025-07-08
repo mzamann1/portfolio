@@ -1,0 +1,215 @@
+{
+  "featured": [
+    {
+      "id": "ecommerce-platform",
+      "name": "منصة التجارة الإلكترونية",
+      "description": "حل شامل للتجارة الإلكترونية مع React و Node.js و MongoDB",
+      "date": "2024-01",
+      "image": "/images/ecommerce.jpg",
+      "technologies": ["react", "typescript", "nodejs", "express", "mongodb", "tailwind"],
+      "category": "featured",
+      "liveUrl": "https://ecommerce-demo.com",
+      "githubUrl": "https://github.com/zaman/ecommerce-platform",
+      "details": [
+        "بناء منصة تجارة إلكترونية متجاوبة مع واجهة مستخدم حديثة",
+        "تنفيذ معالجة دفع آمنة مع Stripe",
+        "تطوير لوحة تحكم إدارية لإدارة المنتجات",
+        "دمج تتبع المخزون في الوقت الفعلي",
+        "تحسين الأداء مع التحميل الكسول والتخزين المؤقت"
+      ],
+      "featured": true
+    },
+    {
+      "id": "task-management-app",
+      "name": "تطبيق إدارة المهام",
+      "description": "تطبيق إدارة مهام تعاوني مع تحديثات في الوقت الفعلي",
+      "date": "2023-11",
+      "image": "/images/task-app.jpg",
+      "technologies": ["react", "typescript", "firebase", "tailwind"],
+      "category": "featured",
+      "liveUrl": "https://task-app-demo.com",
+      "githubUrl": "https://github.com/zaman/task-management",
+      "details": [
+        "تعاون في الوقت الفعلي مع Firebase Firestore",
+        "تنظيم المهام بالسحب والإفلات",
+        "مصادقة المستخدمين والوصول القائم على الأدوار",
+        "تصميم متجاوب للموبايل",
+        "وظائف غير متصلة مع service workers"
+      ],
+      "featured": true
+    },
+    {
+      "id": "portfolio-website",
+      "name": "موقع المحفظة الشخصية",
+      "description": "موقع محفظة حديث مع الرسوم المتحركة والتدويل",
+      "date": "2023-12",
+      "image": "/images/portfolio.jpg",
+      "technologies": ["react", "typescript", "tailwind", "framer-motion"],
+      "category": "featured",
+      "liveUrl": "https://zaman-portfolio.com",
+      "githubUrl": "https://github.com/zaman/portfolio",
+      "details": [
+        "رسوم متحركة وانتقالات سلسة",
+        "دعم ثنائي اللغة (الإنجليزية/العربية)",
+        "تصميم متجاوب لجميع الأجهزة",
+        "تحسين محركات البحث مع meta tags",
+        "تحميل سريع مع تقسيم الكود"
+      ],
+      "featured": true
+    }
+  ],
+  "all": [
+    {
+      "id": "ecommerce-platform",
+      "name": "منصة التجارة الإلكترونية",
+      "description": "حل شامل للتجارة الإلكترونية مع React و Node.js و MongoDB",
+      "date": "2024-01",
+      "image": "/images/ecommerce.jpg",
+      "technologies": ["react", "typescript", "nodejs", "express", "mongodb", "tailwind"],
+      "category": "featured",
+      "liveUrl": "https://ecommerce-demo.com",
+      "githubUrl": "https://github.com/zaman/ecommerce-platform",
+      "details": [
+        "بناء منصة تجارة إلكترونية متجاوبة مع واجهة مستخدم حديثة",
+        "تنفيذ معالجة دفع آمنة مع Stripe",
+        "تطوير لوحة تحكم إدارية لإدارة المنتجات",
+        "دمج تتبع المخزون في الوقت الفعلي",
+        "تحسين الأداء مع التحميل الكسول والتخزين المؤقت"
+      ],
+      "featured": true
+    },
+    {
+      "id": "task-management-app",
+      "name": "تطبيق إدارة المهام",
+      "description": "تطبيق إدارة مهام تعاوني مع تحديثات في الوقت الفعلي",
+      "date": "2023-11",
+      "image": "/images/task-app.jpg",
+      "technologies": ["react", "typescript", "firebase", "tailwind"],
+      "category": "featured",
+      "liveUrl": "https://task-app-demo.com",
+      "githubUrl": "https://github.com/zaman/task-management",
+      "details": [
+        "تعاون في الوقت الفعلي مع Firebase Firestore",
+        "تنظيم المهام بالسحب والإفلات",
+        "مصادقة المستخدمين والوصول القائم على الأدوار",
+        "تصميم متجاوب للموبايل",
+        "وظائف غير متصلة مع service workers"
+      ],
+      "featured": true
+    },
+    {
+      "id": "portfolio-website",
+      "name": "موقع المحفظة الشخصية",
+      "description": "موقع محفظة حديث مع الرسوم المتحركة والتدويل",
+      "date": "2023-12",
+      "image": "/images/portfolio.jpg",
+      "technologies": ["react", "typescript", "tailwind", "framer-motion"],
+      "category": "featured",
+      "liveUrl": "https://zaman-portfolio.com",
+      "githubUrl": "https://github.com/zaman/portfolio",
+      "details": [
+        "رسوم متحركة وانتقالات سلسة",
+        "دعم ثنائي اللغة (الإنجليزية/العربية)",
+        "تصميم متجاوب لجميع الأجهزة",
+        "تحسين محركات البحث مع meta tags",
+        "تحميل سريع مع تقسيم الكود"
+      ],
+      "featured": true
+    },
+    {
+      "id": "weather-app",
+      "name": "لوحة الطقس",
+      "description": "تطبيق طقس في الوقت الفعلي مع توقعات قائمة على الموقع",
+      "date": "2023-09",
+      "image": "/images/weather.jpg",
+      "technologies": ["react", "javascript", "css3", "html5"],
+      "category": "regular",
+      "liveUrl": "https://weather-app-demo.com",
+      "githubUrl": "https://github.com/zaman/weather-app",
+      "details": [
+        "بيانات طقس في الوقت الفعلي من OpenWeatherMap API",
+        "توقعات طقس قائمة على الموقع",
+        "توقعات طقس لمدة 5 أيام",
+        "تصميم متجاوب مع رسوم متحركة للطقس",
+        "دعم تحديد الموقع الجغرافي للكشف التلقائي"
+      ],
+      "featured": false
+    },
+    {
+      "id": "blog-platform",
+      "name": "منصة المدونة",
+      "description": "نظام إدارة محتوى للمدونات مع دعم Markdown",
+      "date": "2023-08",
+      "image": "/images/blog.jpg",
+      "technologies": ["react", "nodejs", "express", "postgresql", "docker"],
+      "category": "regular",
+      "liveUrl": "https://blog-platform-demo.com",
+      "githubUrl": "https://github.com/zaman/blog-platform",
+      "details": [
+        "محرر Markdown مع معاينة مباشرة",
+        "مصادقة المستخدمين والتفويض",
+        "نظام تعليقات مع إشراف",
+        "هيكل URL صديق لمحركات البحث",
+        "حاويات Docker للنشر السهل"
+      ],
+      "featured": false
+    },
+    {
+      "id": "chat-application",
+      "name": "تطبيق الدردشة في الوقت الفعلي",
+      "description": "تطبيق رسائل فورية مع اتصالات WebSocket",
+      "date": "2023-07",
+      "image": "/images/chat.jpg",
+      "technologies": ["react", "nodejs", "express", "mongodb", "socket.io"],
+      "category": "regular",
+      "liveUrl": "https://chat-app-demo.com",
+      "githubUrl": "https://github.com/zaman/chat-app",
+      "details": [
+        "رسائل في الوقت الفعلي مع Socket.io",
+        "مصادقة المستخدمين وإدارة الملفات الشخصية",
+        "مشاركة الملفات وتحميل الصور",
+        "مؤشرات الحالة متصل/غير متصل",
+        "تشفير الرسائل للأمان"
+      ],
+      "featured": false
+    },
+    {
+      "id": "recipe-finder",
+      "name": "باحث الوصفات",
+      "description": "تطبيق اكتشاف الوصفات مع البحث القائم على المكونات",
+      "date": "2023-06",
+      "image": "/images/recipe.jpg",
+      "technologies": ["react", "python", "django", "postgresql", "aws"],
+      "category": "regular",
+      "liveUrl": "https://recipe-finder-demo.com",
+      "githubUrl": "https://github.com/zaman/recipe-finder",
+      "details": [
+        "البحث عن الوصفات القائم على المكونات",
+        "مجموعات الوصفات والمفضلة للمستخدمين",
+        "عرض المعلومات الغذائية",
+        "نظام تقييم ومراجعة الوصفات",
+        "AWS S3 لتخزين الصور"
+      ],
+      "featured": false
+    },
+    {
+      "id": "expense-tracker",
+      "name": "متتبع المصروفات",
+      "description": "تطبيق إدارة المالية الشخصية",
+      "date": "2023-05",
+      "image": "/images/expense.jpg",
+      "technologies": ["react", "javascript", "firebase", "tailwind"],
+      "category": "regular",
+      "liveUrl": "https://expense-tracker-demo.com",
+      "githubUrl": "https://github.com/zaman/expense-tracker",
+      "details": [
+        "تتبع الدخل والمصروفات",
+        "تحليل الإنفاق القائم على الفئات",
+        "تخطيط الميزانية الشهرية",
+        "تصور البيانات مع الرسوم البيانية",
+        "وظيفة التصدير للتقارير"
+      ],
+      "featured": false
+    }
+  ]
+} 

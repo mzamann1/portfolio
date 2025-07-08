@@ -1,0 +1,22 @@
+{
+  "navItems": [
+    { "id": "home", "name": "Home", "href": "#home", "icon": "FaHome" },
+    { "id": "about", "name": "About", "href": "#about", "icon": "FaUser" },
+    { "id": "skills", "name": "Skills", "href": "#skills", "icon": "FaCode" },
+    { "id": "projects", "name": "Projects", "href": "#projects", "icon": "FaProjectDiagram" },
+    { "id": "experience", "name": "Experience", "href": "#experience", "icon": "FaBriefcase" },
+    { "id": "education", "name": "Education", "href": "#education", "icon": "FaGraduationCap" },
+    { "id": "awards", "name": "Awards", "href": "#awards", "icon": "FaTrophy" },
+    { "id": "contact", "name": "Contact", "href": "#contact", "icon": "FaEnvelope" }
+  ],
+  "drawerItems": [
+    { "id": "home", "name": "🏠 Home", "href": "#home", "icon": "🏠" },
+    { "id": "about", "name": "👤 About", "href": "#about", "icon": "👤" },
+    { "id": "skills", "name": "💻 Skills", "href": "#skills", "icon": "💻" },
+    { "id": "projects", "name": "🚀 Projects", "href": "#projects", "icon": "🚀" },
+    { "id": "experience", "name": "💼 Experience", "href": "#experience", "icon": "💼" },
+    { "id": "education", "name": "🎓 Education", "href": "#education", "icon": "🎓" },
+    { "id": "awards", "name": "🏆 Awards", "href": "#awards", "icon": "🏆" },
+    { "id": "contact", "name": "📧 Contact", "href": "#contact", "icon": "📧" }
+  ]
+} 

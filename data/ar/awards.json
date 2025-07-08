@@ -1,0 +1,124 @@
+{
+  "awards": [
+    {
+      "id": "best-developer-2024",
+      "title": "جائزة أفضل مطور",
+      "issuer": "TechCorp Solutions",
+      "date": "2024-01",
+      "description": "تم التكريم للأداء الاستثنائي والقيادة في تطوير البرمجيات",
+      "category": "award",
+      "icon": "FaTrophy",
+      "color": "from-yellow-400 to-orange-500",
+      "badge": "🏆",
+      "skills": ["react", "typescript", "nodejs", "leadership"]
+    },
+    {
+      "id": "hackathon-winner-2023",
+      "title": "المركز الأول - هاكاثون الابتكار",
+      "issuer": "مجتمع كراتشي التقني",
+      "date": "2023-11",
+      "description": "الفوز بالمركز الأول لتطوير حل إدارة مهام مدعوم بالذكاء الاصطناعي",
+      "category": "achievement",
+      "icon": "FaMedal",
+      "color": "from-blue-500 to-purple-600",
+      "badge": "🥇",
+      "skills": ["react", "javascript", "ai", "problem-solving"]
+    },
+    {
+      "id": "aws-developer-cert",
+      "title": "شهادة مطور AWS معتمد",
+      "issuer": "Amazon Web Services",
+      "date": "2023-03",
+      "description": "شهادة في تطوير ونشر السحابة باستخدام AWS",
+      "category": "certification",
+      "icon": "FaAws",
+      "color": "from-orange-500 to-red-600",
+      "badge": "☁️",
+      "skills": ["aws", "cloud", "deployment", "docker"]
+    },
+    {
+      "id": "react-expert-cert",
+      "title": "شهادة خبير React",
+      "issuer": "Meta (Facebook)",
+      "date": "2023-08",
+      "description": "شهادة تطوير React متقدمة مع التركيز على الأداء وأفضل الممارسات",
+      "category": "certification",
+      "icon": "FaReact",
+      "color": "from-cyan-400 to-blue-500",
+      "badge": "⚛️",
+      "skills": ["react", "typescript", "performance", "optimization"]
+    },
+    {
+      "id": "open-source-contributor",
+      "title": "جائزة مساهم المصادر المفتوحة",
+      "issuer": "GitHub",
+      "date": "2023-06",
+      "description": "تم التكريم للمساهمات الكبيرة في مشاريع المصادر المفتوحة",
+      "category": "achievement",
+      "icon": "FaGithub",
+      "color": "from-gray-700 to-gray-900",
+      "badge": "🌟",
+      "skills": ["git", "collaboration", "community"]
+    },
+    {
+      "id": "typescript-master",
+      "title": "شهادة إتقان TypeScript",
+      "issuer": "Microsoft",
+      "date": "2023-09",
+      "description": "شهادة TypeScript متقدمة تغطي أمان النوع وأفضل الممارسات",
+      "category": "certification",
+      "icon": "SiTypescript",
+      "color": "from-blue-600 to-blue-800",
+      "badge": "📘",
+      "skills": ["typescript", "type-safety", "best-practices"]
+    },
+    {
+      "id": "ui-ux-excellence",
+      "title": "جائزة التميز في واجهة المستخدم وتجربة المستخدم",
+      "issuer": "مجتمع التصميم في باكستان",
+      "date": "2023-05",
+      "description": "تم التكريم لإنشاء تجارب مستخدم استثنائية في تطبيقات الويب",
+      "category": "award",
+      "icon": "FaPalette",
+      "color": "from-pink-400 to-purple-500",
+      "badge": "🎨",
+      "skills": ["ui-ux", "figma", "css3", "tailwind"]
+    },
+    {
+      "id": "performance-optimizer",
+      "title": "خبير تحسين الأداء",
+      "issuer": "معهد أداء الويب",
+      "date": "2023-07",
+      "description": "شهادة في تحسين أداء الويب و Core Web Vitals",
+      "category": "certification",
+      "icon": "FaTachometerAlt",
+      "color": "from-green-500 to-emerald-600",
+      "badge": "⚡",
+      "skills": ["performance", "optimization", "core-web-vitals"]
+    },
+    {
+      "id": "team-leader-award",
+      "title": "جائزة التميز في القيادة",
+      "issuer": "Digital Innovations Ltd",
+      "date": "2023-12",
+      "description": "تم التكريم للقيادة المتميزة وتوجيه المطورين المبتدئين",
+      "category": "award",
+      "icon": "FaUsers",
+      "color": "from-indigo-500 to-purple-600",
+      "badge": "👥",
+      "skills": ["leadership", "mentoring", "teamwork", "communication"]
+    },
+    {
+      "id": "security-cert",
+      "title": "شهادة أمان الويب",
+      "issuer": "OWASP",
+      "date": "2023-04",
+      "description": "شهادة في أمان تطبيقات الويب وأفضل ممارسات OWASP",
+      "category": "certification",
+      "icon": "FaShieldAlt",
+      "color": "from-red-500 to-red-700",
+      "badge": "🔒",
+      "skills": ["security", "owasp", "authentication", "authorization"]
+    }
+  ]
+} 

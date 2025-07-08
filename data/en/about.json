@@ -1,0 +1,61 @@
+{
+  "title": "About Me",
+  "description": "I am a passionate Full-Stack Developer with 4+ years of experience creating modern web applications. I specialize in React, TypeScript, and Node.js, with a strong focus on user experience and performance optimization. My journey in software development started with curiosity and has evolved into a career of continuous learning and innovation.",
+  "experience": "4+ Years of Experience",
+  "skills": [
+    {
+      "id": "frontend-development",
+      "name": "Frontend Development",
+      "level": 95,
+      "color": "from-blue-500 to-cyan-500",
+      "icon": "FaCode"
+    },
+    {
+      "id": "backend-development",
+      "name": "Backend Development",
+      "level": 85,
+      "color": "from-green-500 to-emerald-500",
+      "icon": "FaServer"
+    },
+    {
+      "id": "database-design",
+      "name": "Database Design",
+      "level": 80,
+      "color": "from-purple-500 to-pink-500",
+      "icon": "FaDatabase"
+    },
+    {
+      "id": "ui-ux-design",
+      "name": "UI/UX Design",
+      "level": 75,
+      "color": "from-orange-500 to-red-500",
+      "icon": "FaPalette"
+    },
+    {
+      "id": "devops",
+      "name": "DevOps & Cloud",
+      "level": 70,
+      "color": "from-indigo-500 to-purple-500",
+      "icon": "FaCloud"
+    }
+  ],
+  "stats": [
+    {
+      "value": 50,
+      "label": "Projects Completed"
+    },
+    {
+      "value": 25,
+      "label": "Technologies Mastered"
+    },
+    {
+      "value": 15,
+      "label": "Happy Clients"
+    },
+    {
+      "value": 100,
+      "label": "Code Quality",
+      "suffix": "%"
+    }
+  ]
+} 

@@ -1,0 +1,48 @@
+{
+  "title": "Hi, I am Muhammad Zaman",
+  "subtitle": "Full-Stack Developer with expertise in modern web technologies",
+  "stats": [
+    {
+      "value": 4,
+      "label": "Years Experience"
+    },
+    {
+      "value": 25,
+      "label": "Technologies"
+    },
+    {
+      "value": 15,
+      "label": "Projects"
+    },
+    {
+      "value": 100,
+      "label": "Dedication",
+      "suffix": "%"
+    }
+  ],
+  "profileCard": {
+    "name": "Zaman",
+    "title": "Full-Stack Developer",
+    "avatar": "Z",
+    "location": "Karachi, Pakistan",
+    "email": "zaman@example.com",
+    "phone": "+92 300 1234567",
+    "socialLinks": [
+      {
+        "name": "GitHub",
+        "url": "https://github.com/zaman",
+        "icon": "FaGithub"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/in/zaman",
+        "icon": "FaLinkedin"
+      },
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com/zaman",
+        "icon": "FaTwitter"
+      }
+    ]
+  }
+} 
