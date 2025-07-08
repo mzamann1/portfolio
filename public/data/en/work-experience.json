@@ -1,0 +1,89 @@
+{
+  "experiences": [
+    {
+      "id": "senior-developer-2024",
+      "title": "Senior Full-Stack Developer",
+      "company": "TechCorp Solutions",
+      "from": "2024-01",
+      "to": "Present",
+      "skills": ["react", "typescript", "nodejs", "express", "mongodb", "aws", "docker"],
+      "achievements": [
+        "Led development of enterprise e-commerce platform serving 100K+ users",
+        "Mentored 5 junior developers and conducted code reviews",
+        "Implemented CI/CD pipeline reducing deployment time by 60%",
+        "Optimized application performance resulting in 40% faster load times",
+        "Architected microservices architecture for better scalability"
+      ],
+      "location": "Karachi, Pakistan",
+      "type": "full-time"
+    },
+    {
+      "id": "fullstack-developer-2023",
+      "title": "Full-Stack Developer",
+      "company": "Digital Innovations Ltd",
+      "from": "2023-03",
+      "to": "2023-12",
+      "skills": ["react", "javascript", "nodejs", "express", "postgresql", "firebase"],
+      "achievements": [
+        "Developed 8+ client projects with 95% client satisfaction rate",
+        "Built real-time collaboration tools used by 50+ teams",
+        "Implemented responsive designs for mobile-first applications",
+        "Integrated third-party APIs and payment gateways",
+        "Reduced bug reports by 70% through comprehensive testing"
+      ],
+      "location": "Remote",
+      "type": "full-time"
+    },
+    {
+      "id": "frontend-developer-2022",
+      "title": "Frontend Developer",
+      "company": "WebCraft Studios",
+      "from": "2022-06",
+      "to": "2023-02",
+      "skills": ["react", "javascript", "html5", "css3", "tailwind", "figma"],
+      "achievements": [
+        "Created 15+ responsive websites and web applications",
+        "Collaborated with design team to implement pixel-perfect UI/UX",
+        "Improved website accessibility scores by 85%",
+        "Optimized bundle sizes reducing load times by 50%",
+        "Implemented modern CSS animations and transitions"
+      ],
+      "location": "Lahore, Pakistan",
+      "type": "full-time"
+    },
+    {
+      "id": "freelance-developer-2021",
+      "title": "Freelance Web Developer",
+      "company": "Self-Employed",
+      "from": "2021-01",
+      "to": "2022-05",
+      "skills": ["javascript", "html5", "css3", "python", "django", "git"],
+      "achievements": [
+        "Completed 25+ projects for various clients worldwide",
+        "Specialized in e-commerce and content management systems",
+        "Built custom WordPress themes and plugins",
+        "Provided ongoing maintenance and support services",
+        "Achieved 100% project completion rate on time"
+      ],
+      "location": "Remote",
+      "type": "freelance"
+    },
+    {
+      "id": "intern-developer-2020",
+      "title": "Software Development Intern",
+      "company": "StartupHub Inc",
+      "from": "2020-06",
+      "to": "2020-12",
+      "skills": ["javascript", "html5", "css3", "git", "vscode"],
+      "achievements": [
+        "Assisted in development of company's main product",
+        "Fixed 50+ bugs and implemented 20+ new features",
+        "Learned modern development practices and tools",
+        "Participated in agile development processes",
+        "Received excellent performance review and recommendation"
+      ],
+      "location": "Islamabad, Pakistan",
+      "type": "contract"
+    }
+  ]
+} 

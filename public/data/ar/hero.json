@@ -1,0 +1,48 @@
+{
+  "title": "مرحباً، أنا محمد زمان",
+  "subtitle": "مطور ويب شامل متخصص في تقنيات الويب الحديثة",
+  "stats": [
+    {
+      "value": 4,
+      "label": "سنوات الخبرة"
+    },
+    {
+      "value": 25,
+      "label": "التقنيات"
+    },
+    {
+      "value": 15,
+      "label": "المشاريع"
+    },
+    {
+      "value": 100,
+      "label": "الالتزام",
+      "suffix": "%"
+    }
+  ],
+  "profileCard": {
+    "name": "زمان",
+    "title": "مطور ويب شامل",
+    "avatar": "ز",
+    "location": "كراتشي، باكستان",
+    "email": "zaman@example.com",
+    "phone": "+92 300 1234567",
+    "socialLinks": [
+      {
+        "name": "GitHub",
+        "url": "https://github.com/zaman",
+        "icon": "FaGithub"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/in/zaman",
+        "icon": "FaLinkedin"
+      },
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com/zaman",
+        "icon": "FaTwitter"
+      }
+    ]
+  }
+} 

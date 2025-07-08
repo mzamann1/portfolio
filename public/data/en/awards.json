@@ -1,0 +1,124 @@
+{
+  "awards": [
+    {
+      "id": "best-developer-2024",
+      "title": "Best Developer Award",
+      "issuer": "TechCorp Solutions",
+      "date": "2024-01",
+      "description": "Recognized for exceptional performance and leadership in software development",
+      "category": "award",
+      "icon": "FaTrophy",
+      "color": "from-yellow-400 to-orange-500",
+      "badge": "🏆",
+      "skills": ["react", "typescript", "nodejs", "leadership"]
+    },
+    {
+      "id": "hackathon-winner-2023",
+      "title": "First Place - Innovation Hackathon",
+      "issuer": "Karachi Tech Community",
+      "date": "2023-11",
+      "description": "Won first place for developing an AI-powered task management solution",
+      "category": "achievement",
+      "icon": "FaMedal",
+      "color": "from-blue-500 to-purple-600",
+      "badge": "🥇",
+      "skills": ["react", "javascript", "ai", "problem-solving"]
+    },
+    {
+      "id": "aws-developer-cert",
+      "title": "AWS Certified Developer Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2023-03",
+      "description": "Certified in AWS cloud development and deployment practices",
+      "category": "certification",
+      "icon": "FaAws",
+      "color": "from-orange-500 to-red-600",
+      "badge": "☁️",
+      "skills": ["aws", "cloud", "deployment", "docker"]
+    },
+    {
+      "id": "react-expert-cert",
+      "title": "React Expert Certification",
+      "issuer": "Meta (Facebook)",
+      "date": "2023-08",
+      "description": "Advanced React development certification with focus on performance and best practices",
+      "category": "certification",
+      "icon": "FaReact",
+      "color": "from-cyan-400 to-blue-500",
+      "badge": "⚛️",
+      "skills": ["react", "typescript", "performance", "optimization"]
+    },
+    {
+      "id": "open-source-contributor",
+      "title": "Open Source Contributor Award",
+      "issuer": "GitHub",
+      "date": "2023-06",
+      "description": "Recognized for significant contributions to open source projects",
+      "category": "achievement",
+      "icon": "FaGithub",
+      "color": "from-gray-700 to-gray-900",
+      "badge": "🌟",
+      "skills": ["git", "collaboration", "community"]
+    },
+    {
+      "id": "typescript-master",
+      "title": "TypeScript Master Certification",
+      "issuer": "Microsoft",
+      "date": "2023-09",
+      "description": "Advanced TypeScript certification covering type safety and best practices",
+      "category": "certification",
+      "icon": "SiTypescript",
+      "color": "from-blue-600 to-blue-800",
+      "badge": "📘",
+      "skills": ["typescript", "type-safety", "best-practices"]
+    },
+    {
+      "id": "ui-ux-excellence",
+      "title": "UI/UX Excellence Award",
+      "issuer": "Design Community Pakistan",
+      "date": "2023-05",
+      "description": "Awarded for creating exceptional user experiences in web applications",
+      "category": "award",
+      "icon": "FaPalette",
+      "color": "from-pink-400 to-purple-500",
+      "badge": "🎨",
+      "skills": ["ui-ux", "figma", "css3", "tailwind"]
+    },
+    {
+      "id": "performance-optimizer",
+      "title": "Performance Optimization Expert",
+      "issuer": "Web Performance Institute",
+      "date": "2023-07",
+      "description": "Certified in web performance optimization and Core Web Vitals",
+      "category": "certification",
+      "icon": "FaTachometerAlt",
+      "color": "from-green-500 to-emerald-600",
+      "badge": "⚡",
+      "skills": ["performance", "optimization", "core-web-vitals"]
+    },
+    {
+      "id": "team-leader-award",
+      "title": "Team Leadership Excellence",
+      "issuer": "Digital Innovations Ltd",
+      "date": "2023-12",
+      "description": "Recognized for outstanding leadership and mentoring of junior developers",
+      "category": "award",
+      "icon": "FaUsers",
+      "color": "from-indigo-500 to-purple-600",
+      "badge": "👥",
+      "skills": ["leadership", "mentoring", "teamwork", "communication"]
+    },
+    {
+      "id": "security-cert",
+      "title": "Web Security Certification",
+      "issuer": "OWASP",
+      "date": "2023-04",
+      "description": "Certified in web application security and OWASP best practices",
+      "category": "certification",
+      "icon": "FaShieldAlt",
+      "color": "from-red-500 to-red-700",
+      "badge": "🔒",
+      "skills": ["security", "owasp", "authentication", "authorization"]
+    }
+  ]
+} 

@@ -1,0 +1,208 @@
+{
+  "categories": [
+    {
+      "id": "frontend",
+      "name": "تطوير الواجهة الأمامية",
+      "color": "from-blue-500 to-cyan-500",
+      "skills": [
+        {
+          "id": "react",
+          "name": "React",
+          "icon": "FaReact",
+          "proficiency": 90,
+          "description": "React حديث مع hooks والمكونات الوظيفية",
+          "category": "frontend"
+        },
+        {
+          "id": "typescript",
+          "name": "TypeScript",
+          "icon": "SiTypescript",
+          "proficiency": 85,
+          "description": "تطوير JavaScript آمن النوع",
+          "category": "frontend"
+        },
+        {
+          "id": "javascript",
+          "name": "JavaScript",
+          "icon": "SiJavascript",
+          "proficiency": 95,
+          "description": "JavaScript حديث ES6+",
+          "category": "frontend"
+        },
+        {
+          "id": "html5",
+          "name": "HTML5",
+          "icon": "FaHtml5",
+          "proficiency": 95,
+          "description": "ترميز HTML دلالي",
+          "category": "frontend"
+        },
+        {
+          "id": "css3",
+          "name": "CSS3",
+          "icon": "FaCss3Alt",
+          "proficiency": 90,
+          "description": "CSS حديث مع Flexbox و Grid",
+          "category": "frontend"
+        },
+        {
+          "id": "tailwind",
+          "name": "Tailwind CSS",
+          "icon": "SiTailwindcss",
+          "proficiency": 88,
+          "description": "إطار CSS يعتمد على المرافق",
+          "category": "frontend"
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "تطوير الخلفية",
+      "color": "from-green-500 to-emerald-500",
+      "skills": [
+        {
+          "id": "nodejs",
+          "name": "Node.js",
+          "icon": "FaNodeJs",
+          "proficiency": 85,
+          "description": "بيئة تشغيل JavaScript من جانب الخادم",
+          "category": "backend"
+        },
+        {
+          "id": "express",
+          "name": "Express.js",
+          "icon": "SiExpress",
+          "proficiency": 80,
+          "description": "إطار تطبيقات الويب",
+          "category": "backend"
+        },
+        {
+          "id": "python",
+          "name": "Python",
+          "icon": "FaPython",
+          "proficiency": 75,
+          "description": "برمجة للأغراض العامة",
+          "category": "backend"
+        },
+        {
+          "id": "django",
+          "name": "Django",
+          "icon": "SiDjango",
+          "proficiency": 70,
+          "description": "إطار Python للويب",
+          "category": "backend"
+        }
+      ]
+    },
+    {
+      "id": "database",
+      "name": "قواعد البيانات والحوسبة السحابية",
+      "color": "from-purple-500 to-pink-500",
+      "skills": [
+        {
+          "id": "mongodb",
+          "name": "MongoDB",
+          "icon": "SiMongodb",
+          "proficiency": 80,
+          "description": "قاعدة بيانات NoSQL للمستندات",
+          "category": "database"
+        },
+        {
+          "id": "postgresql",
+          "name": "PostgreSQL",
+          "icon": "SiPostgresql",
+          "proficiency": 75,
+          "description": "إدارة قواعد البيانات العلائقية",
+          "category": "database"
+        },
+        {
+          "id": "aws",
+          "name": "AWS",
+          "icon": "FaAws",
+          "proficiency": 70,
+          "description": "خدمات الحوسبة السحابية",
+          "category": "database"
+        },
+        {
+          "id": "firebase",
+          "name": "Firebase",
+          "icon": "SiFirebase",
+          "proficiency": 75,
+          "description": "منصة Google للموبايل",
+          "category": "database"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "name": "الأدوات و DevOps",
+      "color": "from-orange-500 to-red-500",
+      "skills": [
+        {
+          "id": "git",
+          "name": "Git",
+          "icon": "FaGitAlt",
+          "proficiency": 90,
+          "description": "نظام التحكم في الإصدارات",
+          "category": "tools"
+        },
+        {
+          "id": "docker",
+          "name": "Docker",
+          "icon": "FaDocker",
+          "proficiency": 75,
+          "description": "منصة الحاويات",
+          "category": "tools"
+        },
+        {
+          "id": "vscode",
+          "name": "VS Code",
+          "icon": "SiVisualstudiocode",
+          "proficiency": 95,
+          "description": "محرر الأكواد",
+          "category": "tools"
+        },
+        {
+          "id": "figma",
+          "name": "Figma",
+          "icon": "FaFigma",
+          "proficiency": 70,
+          "description": "التصميم والنماذج الأولية",
+          "category": "tools"
+        }
+      ]
+    }
+  ],
+  "softSkills": [
+    {
+      "id": "communication",
+      "name": "التواصل",
+      "icon": "FaComments"
+    },
+    {
+      "id": "teamwork",
+      "name": "العمل الجماعي",
+      "icon": "FaUsers"
+    },
+    {
+      "id": "problem-solving",
+      "name": "حل المشاكل",
+      "icon": "FaLightbulb"
+    },
+    {
+      "id": "adaptability",
+      "name": "التكيف",
+      "icon": "FaRandom"
+    },
+    {
+      "id": "leadership",
+      "name": "القيادة",
+      "icon": "FaCrown"
+    },
+    {
+      "id": "time-management",
+      "name": "إدارة الوقت",
+      "icon": "FaClock"
+    }
+  ]
+} 

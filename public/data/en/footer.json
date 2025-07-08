@@ -1,0 +1,28 @@
+{
+  "description": "Creating beautiful, functional, and user-friendly web experiences with modern technologies and best practices.",
+  "quickLinks": [
+    { "id": "home", "name": "Home", "href": "#home" },
+    { "id": "about", "name": "About", "href": "#about" },
+    { "id": "skills", "name": "Skills", "href": "#skills" },
+    { "id": "projects", "name": "Projects", "href": "#projects" },
+    { "id": "experience", "name": "Experience", "href": "#experience" },
+    { "id": "contact", "name": "Contact", "href": "#contact" }
+  ],
+  "services": [
+    { "id": "web-development", "name": "Web Development", "description": "Full-stack web applications with modern frameworks" },
+    { "id": "mobile-apps", "name": "Mobile Apps", "description": "Cross-platform mobile applications" },
+    { "id": "ui-ux-design", "name": "UI/UX Design", "description": "User-centered design and prototyping" },
+    { "id": "consulting", "name": "Technical Consulting", "description": "Architecture and technology guidance" }
+  ],
+  "contactInfo": [
+    { "id": "email", "title": "Email", "value": "zaman@example.com", "icon": "FaEnvelope", "type": "email" },
+    { "id": "phone", "title": "Phone", "value": "+92 300 1234567", "icon": "FaPhone", "type": "phone" },
+    { "id": "location", "title": "Location", "value": "Karachi, Pakistan", "icon": "FaMapMarkerAlt", "type": "location" }
+  ],
+  "socialLinks": [
+    { "name": "GitHub", "url": "https://github.com/zaman", "icon": "FaGithub" },
+    { "name": "LinkedIn", "url": "https://linkedin.com/in/zaman", "icon": "FaLinkedin" },
+    { "name": "Twitter", "url": "https://twitter.com/zaman", "icon": "FaTwitter" },
+    { "name": "Portfolio", "url": "https://zaman-portfolio.com", "icon": "FaGlobe" }
+  ]
+} 

@@ -1,0 +1,66 @@
+{
+  "description": "I'm always interested in new opportunities and exciting projects. Whether you have a question, want to collaborate, or just want to say hello, feel free to reach out!",
+  "contactInfo": [
+    {
+      "id": "email",
+      "title": "Email",
+      "value": "zaman@example.com",
+      "icon": "FaEnvelope",
+      "type": "email"
+    },
+    {
+      "id": "phone",
+      "title": "Phone",
+      "value": "+92 300 1234567",
+      "icon": "FaPhone",
+      "type": "phone"
+    },
+    {
+      "id": "location",
+      "title": "Location",
+      "value": "Karachi, Pakistan",
+      "icon": "FaMapMarkerAlt",
+      "type": "location"
+    },
+    {
+      "id": "linkedin",
+      "title": "LinkedIn",
+      "value": "linkedin.com/in/zaman",
+      "icon": "FaLinkedin",
+      "type": "other"
+    }
+  ],
+  "socialLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/zaman",
+      "icon": "FaGithub"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/zaman",
+      "icon": "FaLinkedin"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/zaman",
+      "icon": "FaTwitter"
+    },
+    {
+      "name": "Portfolio",
+      "url": "https://zaman-portfolio.com",
+      "icon": "FaGlobe"
+    }
+  ],
+  "availability": {
+    "status": "available",
+    "message": "I'm currently available for new opportunities and exciting projects!",
+    "availableFor": [
+      "Full-time positions",
+      "Freelance projects",
+      "Contract work",
+      "Open source contributions",
+      "Technical consulting"
+    ]
+  }
+} 

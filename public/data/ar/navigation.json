@@ -1,0 +1,22 @@
+{
+  "navItems": [
+    { "id": "home", "name": "الرئيسية", "href": "#home", "icon": "FaHome" },
+    { "id": "about", "name": "عني", "href": "#about", "icon": "FaUser" },
+    { "id": "skills", "name": "المهارات", "href": "#skills", "icon": "FaCode" },
+    { "id": "projects", "name": "المشاريع", "href": "#projects", "icon": "FaProjectDiagram" },
+    { "id": "experience", "name": "الخبرة", "href": "#experience", "icon": "FaBriefcase" },
+    { "id": "education", "name": "التعليم", "href": "#education", "icon": "FaGraduationCap" },
+    { "id": "awards", "name": "الجوائز", "href": "#awards", "icon": "FaTrophy" },
+    { "id": "contact", "name": "تواصل", "href": "#contact", "icon": "FaEnvelope" }
+  ],
+  "drawerItems": [
+    { "id": "home", "name": "🏠 الرئيسية", "href": "#home", "icon": "🏠" },
+    { "id": "about", "name": "👤 عني", "href": "#about", "icon": "👤" },
+    { "id": "skills", "name": "💻 المهارات", "href": "#skills", "icon": "💻" },
+    { "id": "projects", "name": "🚀 المشاريع", "href": "#projects", "icon": "🚀" },
+    { "id": "experience", "name": "💼 الخبرة", "href": "#experience", "icon": "💼" },
+    { "id": "education", "name": "🎓 التعليم", "href": "#education", "icon": "🎓" },
+    { "id": "awards", "name": "🏆 الجوائز", "href": "#awards", "icon": "🏆" },
+    { "id": "contact", "name": "📧 تواصل", "href": "#contact", "icon": "📧" }
+  ]
+} 

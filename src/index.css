@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-24px) scale(1.08); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-16px) scale(1.05); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.03); }
+}
+
+/* Glitch animations */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-red {
+  0% {
+    transform: translate(0);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translate(-1px, 1px);
+    opacity: 0.9;
+  }
+  40% {
+    transform: translate(-1px, -1px);
+    opacity: 0.7;
+  }
+  60% {
+    transform: translate(1px, 1px);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate(1px, -1px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 0.8;
+  }
+}
+
+@keyframes glitch-blue {
+  0% {
+    transform: translate(0);
+    opacity: 0.6;
+  }
+  20% {
+    transform: translate(1px, -1px);
+    opacity: 0.7;
+  }
+  40% {
+    transform: translate(1px, 1px);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translate(-1px, -1px);
+    opacity: 0.6;
+  }
+  80% {
+    transform: translate(-1px, 1px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 0.6;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+.animate-float-medium {
+  animation: float-medium 5s ease-in-out infinite;
+}
+.animate-float-fast {
+  animation: float-fast 3.5s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.1s ease-in-out infinite;
+}
+
+.animate-glitch-red {
+  animation: glitch-red 0.1s ease-in-out infinite;
+}
+
+.animate-glitch-blue {
+  animation: glitch-blue 0.1s ease-in-out infinite;
+}
+
+/* Global font settings */
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Ensure all elements inherit Inter */
+* {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #a855f7, #06b6d4);
+  border-radius: 8px;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 #18181b;
+}
