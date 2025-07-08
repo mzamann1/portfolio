@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import LanguageToggle from './LanguageToggle.tsx';
 import ThemeToggle from './ThemeToggle.tsx';
 import { FaHome, FaUser, FaBriefcase, FaAward, FaProjectDiagram, FaEnvelope, FaGraduationCap, FaStar, FaLightbulb } from 'react-icons/fa';
+import { useLanguageFont } from '../hooks/useLanguageFont';
 
 const Navigation = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === 'rtl';
   const [activeSection, setActiveSection] = useState('hero');
+  const { fontClass } = useLanguageFont();
 
   // All main sections
   const navItems = [
@@ -95,7 +97,7 @@ const Navigation = () => {
   return (
     <>
       {/* Vertical Navigation Sidebar */}
-      <nav className={`fixed top-1/2 -translate-y-1/2 z-50 ${isRTL ? 'left-6' : 'right-6'}`}>
+      <nav className={`fixed top-1/2 -translate-y-1/2 z-50 ${isRTL ? 'left-6' : 'right-6'} ${fontClass}`}>
         <div className="bg-base-200/80 backdrop-blur-md rounded-full p-3 shadow-2xl border border-base-300/20 custom-scrollbar">
           <div className="flex flex-col space-y-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
             {navItems.map((item) => (

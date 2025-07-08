@@ -154,13 +154,12 @@ class PortfolioDataService {
 
     // Try to fetch the language-specific file, fallback to English if not found
     let data: T | undefined;
-    let triedFallback = false;
+    
     try {
       data = await this.fetchJson<T>(`${this.BASE_URL}/${language}/${filename}`);
     } catch {
       if (language !== 'en') {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        triedFallback = true;
         try {
           data = await this.fetchJson<T>(`${this.BASE_URL}/en/${filename}`);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

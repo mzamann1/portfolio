@@ -30,11 +30,14 @@ function App() {
   }, [isDarkMode]);
 
   useEffect(() => {
-    // Set RTL/LTR based on language
-    if (i18n.language === 'ar') {
+    // Set RTL/LTR and language based on language
+    const lang = i18n.language.split('-')[0];
+    if (lang === 'ar') {
       document.documentElement.setAttribute('dir', 'rtl');
+      document.documentElement.setAttribute('lang', 'ar');
     } else {
       document.documentElement.setAttribute('dir', 'ltr');
+      document.documentElement.setAttribute('lang', 'en');
     }
   }, [i18n.language]);
 

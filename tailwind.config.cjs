@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
+        'sans': ['Satoshi', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
+        'gumela': ['GumelaArabic', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
       },
     },
   },

@@ -7,12 +7,14 @@ import { useUIStore } from '../stores/uiStore';
 import ProjectFilters from './ProjectFilters';
 import Loading from './Loading';
 import { FaGithub, FaExternalLinkAlt, FaEye, FaCode } from 'react-icons/fa';
+import { useLanguageFont } from '../hooks/useLanguageFont';
 
 const Projects = () => {
   const { t } = useTranslation();
   const { data: projectsData, loading, error } = useProjectsData();
   const { projectFilters } = usePortfolioStore();
   const { searchQuery } = useUIStore();
+  const { fontClass, heading, body } = useLanguageFont();
   // Removed unused state
 
   // Filter projects based on search and filters
@@ -58,11 +60,11 @@ const Projects = () => {
 
   if (loading) return <Loading />;
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className={`min-h-screen flex items-center justify-center ${fontClass}`}>
       <div className="text-center">
         <div className="text-6xl mb-4">😔</div>
-        <h2 className="text-2xl font-bold mb-2">Oops! Something went wrong</h2>
-        <p className="text-base-content/70">Error loading projects: {error}</p>
+        <h2 className={heading}>Oops! Something went wrong</h2>
+        <p className={body}>Error loading projects: {error}</p>
       </div>
     </div>
   );
@@ -240,7 +242,7 @@ const Projects = () => {
   );
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-base-100 via-base-200/30 to-base-100">
+    <section id="projects" className={`py-20 bg-gradient-to-br from-base-100 via-base-200/30 to-base-100 ${fontClass}`}>
       <motion.div
         className="container mx-auto px-4"
         initial={{ opacity: 0, y: 40 }}
@@ -256,13 +258,9 @@ const Projects = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent tracking-tight">
-              {t('projects', 'Projects')}
-            </h2>
+            <h2 className={heading}>{t('projects', 'Projects')}</h2>
             <div className="w-32 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-6" />
-            <p className="text-xl text-base-content/70 max-w-3xl mx-auto leading-relaxed">
-              {t('projects_description', 'Explore my latest projects and see how I bring ideas to life with modern web technologies.')}
-            </p>
+            <p className={body + ' text-xl max-w-3xl mx-auto leading-relaxed'}>{projectsData?.description}</p>
           </motion.div>
         </div>
 
@@ -293,7 +291,7 @@ const Projects = () => {
                 {t('featured_description', 'Handpicked projects that showcase my best work')}
               </p>
             </div>
-            <motion.div
+              <motion.div
               className={`grid gap-6 md:gap-8 ${featuredProjects.length === 1 ? 'justify-center' : ''}`}
               style={featuredProjects.length === 1 ? { display: 'flex' } : {
                 gridTemplateColumns: featuredProjects.length === 2 
@@ -311,7 +309,7 @@ const Projects = () => {
                 ))}
               </AnimatePresence>
             </motion.div>
-          </motion.div>
+              </motion.div>
         )}
 
         {/* All Projects Grid */}
@@ -343,7 +341,7 @@ const Projects = () => {
               </p>
             </motion.div>
           ) : (
-            <motion.div
+              <motion.div
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
               variants={containerVariants}
               initial="hidden"
@@ -357,7 +355,7 @@ const Projects = () => {
               </AnimatePresence>
             </motion.div>
           )}
-        </motion.div>
+              </motion.div>
 
         {/* Call to Action */}
         <motion.div

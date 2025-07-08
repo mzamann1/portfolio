@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import ProfileCard3D from './ProfileCard3D';
+import { useHeroData } from '../hooks/usePortfolioData';
+import { useLanguageFont } from '../hooks/useLanguageFont';
 import { 
   DiReact, 
   DiJavascript1, 
@@ -80,6 +82,8 @@ if (typeof window !== 'undefined' && !document.getElementById('typewriter-cursor
 
 const Hero = () => {
   const { t } = useTranslation();
+  const { data: heroData, loading } = useHeroData();
+  const { fontClass, body, getFontClass } = useLanguageFont();
   
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -112,8 +116,16 @@ const Hero = () => {
     { icon: <DiPhp className="w-24 h-24" />, delay: 0.6, duration: 9.6 }
   ];
 
+  if (loading || !heroData) {
+    return (
+      <section id="home" className="min-h-screen flex items-center justify-center">
+        <div className="loading loading-spinner loading-lg"></div>
+      </section>
+    );
+  }
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10">
+    <section id="home" className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 ${fontClass}`}>
       {/* Animated Floating Programming Icons */}
       <div className="pointer-events-none absolute inset-0 w-full h-full z-0">
         {backgroundIcons.map((item, index) => (
@@ -164,7 +176,7 @@ const Hero = () => {
                 initial={{ opacity: 0, x: -80 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="font-inter font-black text-4xl md:text-5xl lg:text-6xl tracking-tight transition-all duration-100 relative overflow-hidden"
+                className={getFontClass({ weight: 'bold', size: '6xl' }) + ' tracking-tight transition-all duration-100 relative overflow-hidden'}
               >
                 <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-bold" style={{ WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   <Typewriter
@@ -183,7 +195,7 @@ const Hero = () => {
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-sans text-lg md:text-2xl text-base-content/80 mb-8 max-w-2xl mx-auto lg:mx-0"
+              className={body + ' text-lg md:text-2xl text-base-content/80 mb-8 max-w-2xl mx-auto lg:mx-0 font-light'}
             >
               {t('hero_subtitle')}
             </motion.p>
@@ -196,30 +208,15 @@ const Hero = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <div className="text-center lg:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                  <CountUpNumber end={4} duration={2} />+
+              {heroData.stats.map((stat, index) => (
+                <div key={index} className="text-center lg:text-left">
+                  <div className={`${fontClass} text-3xl md:text-4xl font-bold text-primary mb-2`}>
+                    <CountUpNumber end={stat.value} duration={2} />
+                    {stat.suffix || '+'}
+                  </div>
+                  <div className={`${fontClass} text-sm text-base-content/70`}>{stat.label}</div>
                 </div>
-                <div className="text-sm text-base-content/70">Years Experience</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">
-                  <CountUpNumber end={25} duration={2} />+
-                </div>
-                <div className="text-sm text-base-content/70">Technologies</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">
-                  <CountUpNumber end={15} duration={2} />+
-                </div>
-                <div className="text-sm text-base-content/70">Projects</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                  <CountUpNumber end={100} duration={2} />%
-                </div>
-                <div className="text-sm text-base-content/70">Dedication</div>
-              </div>
+              ))}
             </motion.div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">

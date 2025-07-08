@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
-import { portfolioDataService, getCurrentLanguage } from '../services/portfolioDataService';
-import type { 
-  PortfolioData, 
-  HeroData, 
-  AboutData, 
-  SkillsData, 
-  ProjectsData, 
-  WorkExperienceData, 
-  EducationData, 
-  AwardsData, 
-  ContactData, 
-  FooterData, 
-  NavigationData 
-} from '../types/PortfolioData';
-import { useTranslation } from 'react-i18next';
-import { useLanguageStore } from '../stores/languageStore';
+import { useState, useEffect } from "react";
+import {
+  portfolioDataService,
+  getCurrentLanguage,
+} from "../services/portfolioDataService";
+import type {
+  PortfolioData,
+  HeroData,
+  AboutData,
+  SkillsData,
+  ProjectsData,
+  WorkExperienceData,
+  EducationData,
+  AwardsData,
+  ContactData,
+  FooterData,
+  NavigationData,
+} from "../types/PortfolioData";
+import { useTranslation } from "react-i18next";
+import { useLanguageStore } from "../stores/languageStore";
 
 interface UsePortfolioDataState<T> {
   data: T | null;
@@ -33,7 +36,13 @@ function usePortfolioSection<T>(
 ): UsePortfolioDataReturn<T> {
   const { i18n } = useTranslation();
   const { currentLanguage } = useLanguageStore();
-  const lang = (langOverride || currentLanguage || i18n.language || getCurrentLanguage() || 'en').split('-')[0];
+  const lang = (
+    langOverride ||
+    currentLanguage ||
+    i18n.language ||
+    getCurrentLanguage() ||
+    "en"
+  ).split("-")[0];
   const [state, setState] = useState<UsePortfolioDataState<T>>({
     data: null,
     loading: true,
@@ -42,14 +51,14 @@ function usePortfolioSection<T>(
 
   const fetchData = async () => {
     try {
-      setState(prev => ({ ...prev, loading: true, error: null }));
+      setState((prev) => ({ ...prev, loading: true, error: null }));
       const data = await fetchFunction(lang);
       setState({ data, loading: false, error: null });
     } catch (error) {
       setState({
         data: null,
         loading: false,
-        error: error instanceof Error ? error.message : 'An error occurred',
+        error: error instanceof Error ? error.message : "An error occurred",
       });
     }
   };
@@ -66,57 +75,120 @@ function usePortfolioSection<T>(
 }
 
 // Hook for all portfolio data
-export function useAllPortfolioData(langOverride?: string): UsePortfolioDataReturn<PortfolioData> {
-  return usePortfolioSection((lang) => portfolioDataService.getAllData(lang), langOverride);
+export function useAllPortfolioData(
+  langOverride?: string
+): UsePortfolioDataReturn<PortfolioData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getAllData(lang),
+    langOverride
+  );
 }
 
 // Individual section hooks
-export function useHeroData(langOverride?: string): UsePortfolioDataReturn<HeroData> {
-  return usePortfolioSection((lang) => portfolioDataService.getHeroData(lang), langOverride);
+export function useHeroData(
+  langOverride?: string
+): UsePortfolioDataReturn<HeroData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getHeroData(lang),
+    langOverride
+  );
 }
 
-export function useAboutData(langOverride?: string): UsePortfolioDataReturn<AboutData> {
-  return usePortfolioSection((lang) => portfolioDataService.getAboutData(lang), langOverride);
+export function useAboutData(
+  langOverride?: string
+): UsePortfolioDataReturn<AboutData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getAboutData(lang),
+    langOverride
+  );
 }
 
-export function useSkillsData(langOverride?: string): UsePortfolioDataReturn<SkillsData> {
-  return usePortfolioSection((lang) => portfolioDataService.getSkillsData(lang), langOverride);
+export function useSkillsData(
+  langOverride?: string
+): UsePortfolioDataReturn<SkillsData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getSkillsData(lang),
+    langOverride
+  );
 }
 
-export function useProjectsData(langOverride?: string): UsePortfolioDataReturn<ProjectsData> {
-  return usePortfolioSection((lang) => portfolioDataService.getProjectsData(lang), langOverride);
+export function useProjectsData(
+  langOverride?: string
+): UsePortfolioDataReturn<ProjectsData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getProjectsData(lang),
+    langOverride
+  );
 }
 
-export function useWorkExperienceData(langOverride?: string): UsePortfolioDataReturn<WorkExperienceData> {
-  return usePortfolioSection((lang) => portfolioDataService.getWorkExperienceData(lang), langOverride);
+export function useWorkExperienceData(
+  langOverride?: string
+): UsePortfolioDataReturn<WorkExperienceData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getWorkExperienceData(lang),
+    langOverride
+  );
 }
 
-export function useEducationData(langOverride?: string): UsePortfolioDataReturn<EducationData> {
-  return usePortfolioSection((lang) => portfolioDataService.getEducationData(lang), langOverride);
+export function useEducationData(
+  langOverride?: string
+): UsePortfolioDataReturn<EducationData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getEducationData(lang),
+    langOverride
+  );
 }
 
-export function useAwardsData(langOverride?: string): UsePortfolioDataReturn<AwardsData> {
-  return usePortfolioSection((lang) => portfolioDataService.getAwardsData(lang), langOverride);
+export function useAwardsData(
+  langOverride?: string
+): UsePortfolioDataReturn<AwardsData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getAwardsData(lang),
+    langOverride
+  );
 }
 
-export function useContactData(langOverride?: string): UsePortfolioDataReturn<ContactData> {
-  return usePortfolioSection((lang) => portfolioDataService.getContactData(lang), langOverride);
+export function useContactData(
+  langOverride?: string
+): UsePortfolioDataReturn<ContactData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getContactData(lang),
+    langOverride
+  );
 }
 
-export function useFooterData(langOverride?: string): UsePortfolioDataReturn<FooterData> {
-  return usePortfolioSection((lang) => portfolioDataService.getFooterData(lang), langOverride);
+export function useFooterData(
+  langOverride?: string
+): UsePortfolioDataReturn<FooterData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getFooterData(lang),
+    langOverride
+  );
 }
 
-export function useNavigationData(langOverride?: string): UsePortfolioDataReturn<NavigationData> {
-  return usePortfolioSection((lang) => portfolioDataService.getNavigationData(lang), langOverride);
+export function useNavigationData(
+  langOverride?: string
+): UsePortfolioDataReturn<NavigationData> {
+  return usePortfolioSection(
+    (lang) => portfolioDataService.getNavigationData(lang),
+    langOverride
+  );
 }
 
 // Utility hook for getting skills by IDs
 export function useSkillsByIds(skillIds: string[], langOverride?: string) {
   const { i18n } = useTranslation();
   const { currentLanguage } = useLanguageStore();
-  const lang = (langOverride || currentLanguage || i18n.language || getCurrentLanguage() || 'en').split('-')[0];
-  const [skills, setSkills] = useState<import('../types/PortfolioData').Skill[]>([]);
+  const lang = (
+    langOverride ||
+    currentLanguage ||
+    i18n.language ||
+    getCurrentLanguage() ||
+    "en"
+  ).split("-")[0];
+  const [skills, setSkills] = useState<
+    import("../types/PortfolioData").Skill[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -130,17 +202,20 @@ export function useSkillsByIds(skillIds: string[], langOverride?: string) {
       try {
         setLoading(true);
         setError(null);
-        const skillsData = await portfolioDataService.getSkillsByIds(skillIds, lang);
+        const skillsData = await portfolioDataService.getSkillsByIds(
+          skillIds,
+          lang
+        );
         setSkills(skillsData);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch skills');
+        setError(err instanceof Error ? err.message : "Failed to fetch skills");
       } finally {
         setLoading(false);
       }
     };
     fetchSkills();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skillIds.join(','), lang]);
+  }, [skillIds.join(","), lang]);
 
   return { skills, loading, error };
 }
@@ -149,8 +224,16 @@ export function useSkillsByIds(skillIds: string[], langOverride?: string) {
 export function useProjectsBySkill(skillId: string, langOverride?: string) {
   const { i18n } = useTranslation();
   const { currentLanguage } = useLanguageStore();
-  const lang = (langOverride || currentLanguage || i18n.language || getCurrentLanguage() || 'en').split('-')[0];
-  const [projects, setProjects] = useState<import('../types/PortfolioData').Project[]>([]);
+  const lang = (
+    langOverride ||
+    currentLanguage ||
+    i18n.language ||
+    getCurrentLanguage() ||
+    "en"
+  ).split("-")[0];
+  const [projects, setProjects] = useState<
+    import("../types/PortfolioData").Project[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -164,10 +247,15 @@ export function useProjectsBySkill(skillId: string, langOverride?: string) {
       try {
         setLoading(true);
         setError(null);
-        const projectsData = await portfolioDataService.getProjectsBySkill(skillId, lang);
+        const projectsData = await portfolioDataService.getProjectsBySkill(
+          skillId,
+          lang
+        );
         setProjects(projectsData);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch projects');
+        setError(
+          err instanceof Error ? err.message : "Failed to fetch projects"
+        );
       } finally {
         setLoading(false);
       }
@@ -181,7 +269,9 @@ export function useProjectsBySkill(skillId: string, langOverride?: string) {
 
 // Hook for cache management
 export function usePortfolioCache() {
-  const [cacheStatus, setCacheStatus] = useState(portfolioDataService.getCacheStatus());
+  const [cacheStatus, setCacheStatus] = useState(
+    portfolioDataService.getCacheStatus()
+  );
 
   const clearCache = () => {
     portfolioDataService.clearCache();
@@ -197,4 +287,4 @@ export function usePortfolioCache() {
     clearCache,
     refreshCacheStatus,
   };
-} 
+}

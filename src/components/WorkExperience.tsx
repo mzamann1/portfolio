@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import type { WorkExperienceItem } from '../types/WorkExperienceItem';
+import { useLanguageFont } from '../hooks/useLanguageFont';
 
 const cardVariants = {
   hiddenLeft: { opacity: 0, x: -80, scale: 0.95 },
@@ -16,6 +17,7 @@ const markerVariants = {
 
 const WorkExperience = () => {
   const { i18n, t } = useTranslation();
+  const { fontClass, heading, body, getFontClass } = useLanguageFont();
   const [experiences, setExperiences] = useState<WorkExperienceItem[] | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,12 +35,12 @@ const WorkExperience = () => {
   }, [i18n.language]);
 
   return (
-    <section id="experience" className="w-full max-w-7xl mx-auto py-16 px-4">
-      <h2 className="font-inter font-extrabold text-3xl md:text-4xl mb-16 text-primary text-center">
+    <section id="experience" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+      <h2 className={heading}>
         {t('work_experience', 'Work Experience')}
       </h2>
       {loading ? (
-        <div className="text-center text-lg text-base-content/60 py-12">{t('loading', 'Loading...')}</div>
+        <div className={body + ' text-lg text-base-content/60 py-12'}>{t('loading', 'Loading...')}</div>
       ) : (
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
           {experiences && experiences.map((exp, idx) => {

@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useSkillsData } from '../hooks/usePortfolioData';
+import Loading from './Loading';
 import { 
-  SiReact, 
   SiTypescript, 
   SiJavascript, 
   SiTailwindcss, 
-  SiHtml5, 
-  SiCss3, 
   SiJquery,
   SiSharp,
   SiDotnet,
   SiGithub,
-  SiGit,
   SiDocker,
   SiPostman,
-  SiJest
+  SiJest,
+  SiExpress,
+  SiDjango,
+  SiMongodb,
+  SiPostgresql,
+  SiFirebase
 } from 'react-icons/si';
 import { 
   FaDatabase as FaSqlServer,
@@ -25,74 +29,124 @@ import {
   FaDatabase as FaBlazor,
   FaDatabase as FaAzureDevOps,
   FaDatabase as FaVsCode,
-  FaDatabase as FaVisualStudio
+  FaDatabase as FaVisualStudio,
+  FaReact,
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaPython,
+  FaAws,
+  FaGitAlt,
+  FaFigma,
+  FaComments,
+  FaUsers,
+  FaLightbulb,
+  FaRandom,
+  FaCrown
 } from 'react-icons/fa';
+import { useLanguageFont } from '../hooks/useLanguageFont';
 
-type SkillCategory = {
-  name: string;
-  color: string;
-  skills: Skill[];
+const iconMap: Record<string, React.ReactNode> = {
+  // Frontend
+  FaReact: <FaReact className="w-8 h-8" />,
+  SiTypescript: <SiTypescript className="w-8 h-8" />,
+  SiJavascript: <SiJavascript className="w-8 h-8" />,
+  FaHtml5: <FaHtml5 className="w-8 h-8" />,
+  FaCss3Alt: <FaCss3Alt className="w-8 h-8" />,
+  SiTailwindcss: <SiTailwindcss className="w-8 h-8" />,
+  SiJquery: <SiJquery className="w-8 h-8" />,
+  
+  // Backend
+  SiSharp: <SiSharp className="w-8 h-8" />,
+  SiDotnet: <SiDotnet className="w-8 h-8" />,
+  FaNodeJs: <FaNodeJs className="w-8 h-8" />,
+  SiExpress: <SiExpress className="w-8 h-8" />,
+  FaPython: <FaPython className="w-8 h-8" />,
+  SiDjango: <SiDjango className="w-8 h-8" />,
+  
+  // Database & Cloud
+  FaSqlServer: <FaSqlServer className="w-8 h-8" />,
+  FaOracle: <FaOracle className="w-8 h-8" />,
+  FaTsql: <FaTsql className="w-8 h-8" />,
+  SiMongodb: <SiMongodb className="w-8 h-8" />,
+  SiPostgresql: <SiPostgresql className="w-8 h-8" />,
+  FaAws: <FaAws className="w-8 h-8" />,
+  SiFirebase: <SiFirebase className="w-8 h-8" />,
+  
+  // Tools & DevOps
+  FaEntityFramework: <FaEntityFramework className="w-8 h-8" />,
+  FaWebApi: <FaWebApi className="w-8 h-8" />,
+  FaBlazor: <FaBlazor className="w-8 h-8" />,
+  FaAzureDevOps: <FaAzureDevOps className="w-8 h-8" />,
+  SiGithub: <SiGithub className="w-8 h-8" />,
+  FaGitAlt: <FaGitAlt className="w-8 h-8" />,
+  SiDocker: <SiDocker className="w-8 h-8" />,
+  SiPostman: <SiPostman className="w-8 h-8" />,
+  SiJest: <SiJest className="w-8 h-8" />,
+  FaVsCode: <FaVsCode className="w-8 h-8" />,
+  FaVisualStudio: <FaVisualStudio className="w-8 h-8" />,
+  FaFigma: <FaFigma className="w-8 h-8" />,
+  
+  // Soft Skills
+  FaComments: <FaComments className="w-8 h-8" />,
+  FaUsers: <FaUsers className="w-8 h-8" />,
+  FaLightbulb: <FaLightbulb className="w-8 h-8" />,
+  FaRandom: <FaRandom className="w-8 h-8" />,
+  FaCrown: <FaCrown className="w-8 h-8" />
 };
 
-type Skill = {
-  name: string;
-  icon: React.ReactNode;
-  proficiency: number; // 0-100
-  description: string;
-};
-
-const skillCategories: SkillCategory[] = [
-  {
-    name: 'Frontend Development',
-    color: 'from-blue-500 to-cyan-500',
-    skills: [
-      { name: 'React', icon: <SiReact className="w-8 h-8" />, proficiency: 95, description: 'Modern UI development with hooks and context' },
-      { name: 'TypeScript', icon: <SiTypescript className="w-8 h-8" />, proficiency: 90, description: 'Type-safe JavaScript development' },
-      { name: 'JavaScript', icon: <SiJavascript className="w-8 h-8" />, proficiency: 92, description: 'ES6+ features and modern patterns' },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss className="w-8 h-8" />, proficiency: 88, description: 'Utility-first CSS framework' },
-      { name: 'HTML/CSS', icon: <div className="flex gap-1"><SiHtml5 className="w-8 h-8" /><SiCss3 className="w-8 h-8" /></div>, proficiency: 95, description: 'Semantic markup and responsive design' },
-      { name: 'jQuery', icon: <SiJquery className="w-8 h-8" />, proficiency: 85, description: 'DOM manipulation and AJAX' },
-    ]
-  },
-  {
-    name: 'Backend Development',
-    color: 'from-purple-500 to-pink-500',
-    skills: [
-      { name: 'C#', icon: <SiSharp className="w-8 h-8" />, proficiency: 95, description: 'Object-oriented programming and LINQ' },
-      { name: 'ASP.NET Core', icon: <SiDotnet className="w-8 h-8" />, proficiency: 92, description: 'Web APIs and MVC architecture' },
-      { name: 'Blazor', icon: <FaBlazor className="w-8 h-8" />, proficiency: 88, description: 'WebAssembly and server-side rendering' },
-      { name: 'Web API', icon: <FaWebApi className="w-8 h-8" />, proficiency: 90, description: 'RESTful services and authentication' },
-      { name: 'Entity Framework', icon: <FaEntityFramework className="w-8 h-8" />, proficiency: 85, description: 'ORM and database operations' },
-    ]
-  },
-  {
-    name: 'Database & DevOps',
-    color: 'from-green-500 to-emerald-500',
-    skills: [
-      { name: 'SQL Server', icon: <FaSqlServer className="w-8 h-8" />, proficiency: 88, description: 'Database design and optimization' },
-      { name: 'Oracle DB', icon: <FaOracle className="w-8 h-8" />, proficiency: 82, description: 'Enterprise database management' },
-      { name: 'T-SQL', icon: <FaTsql className="w-8 h-8" />, proficiency: 85, description: 'Stored procedures and queries' },
-      { name: 'Azure DevOps', icon: <FaAzureDevOps className="w-8 h-8" />, proficiency: 80, description: 'CI/CD pipelines and deployment' },
-      { name: 'Git', icon: <SiGit className="w-8 h-8" />, proficiency: 90, description: 'Version control and collaboration' },
-      { name: 'Docker', icon: <SiDocker className="w-8 h-8" />, proficiency: 75, description: 'Containerization and orchestration' },
-    ]
-  },
-  {
-    name: 'Tools & Testing',
-    color: 'from-orange-500 to-red-500',
-    skills: [
-      { name: 'VS Code', icon: <FaVsCode className="w-8 h-8" />, proficiency: 95, description: 'Code editing and extensions' },
-      { name: 'Visual Studio', icon: <FaVisualStudio className="w-8 h-8" />, proficiency: 90, description: 'IDE and debugging tools' },
-      { name: 'Postman', icon: <SiPostman className="w-8 h-8" />, proficiency: 85, description: 'API testing and documentation' },
-      { name: 'Jest', icon: <SiJest className="w-8 h-8" />, proficiency: 80, description: 'Unit testing and mocking' },
-      { name: 'GitHub', icon: <SiGithub className="w-8 h-8" />, proficiency: 88, description: 'Repository management and collaboration' },
-    ]
-  }
-];
+// Fallback icon component
+const FallbackIcon = () => (
+  <div className="w-8 h-8 bg-base-content/20 rounded flex items-center justify-center">
+    <span className="text-xs font-bold text-base-content/60">?</span>
+  </div>
+);
 
 const CoreSkills = () => {
+  const { t } = useTranslation();
+  const { data: skillsData, loading, error } = useSkillsData();
   const [selectedCategory, setSelectedCategory] = useState<number>(0);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const { fontClass, heading, body, getFontClass } = useLanguageFont();
+
+  if (loading) {
+    return (
+      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+        <h2 className={heading}>
+          {t('core_skills', 'Core Skills')}
+        </h2>
+        <Loading />
+      </section>
+    );
+  }
+
+  if (error || !skillsData?.categories || skillsData.categories.length === 0) {
+    return (
+      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+        <h2 className={heading}>
+          {t('core_skills', 'Core Skills')}
+        </h2>
+        <div className={body + ' text-center text-lg text-base-content/60 py-12'}>
+          {error || t('no_skills_data', 'No skills data available')}
+        </div>
+      </section>
+    );
+  }
+
+  // Safety check for selected category
+  const currentCategory = skillsData.categories[selectedCategory];
+  if (!currentCategory || !currentCategory.skills || currentCategory.skills.length === 0) {
+    return (
+      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+        <h2 className={heading}>
+          {t('core_skills', 'Core Skills')}
+        </h2>
+        <div className={body + ' text-center text-lg text-base-content/60 py-12'}>
+          {t('no_skills_in_category', 'No skills found in this category')}
+        </div>
+      </section>
+    );
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -140,7 +194,7 @@ const CoreSkills = () => {
   };
 
   return (
-    <section id="skills" className="w-full max-w-7xl mx-auto py-16 px-4">
+    <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -148,11 +202,11 @@ const CoreSkills = () => {
         transition={{ duration: 0.8 }}
         className="text-center mb-12"
       >
-        <h2 className="font-inter font-extrabold text-3xl md:text-4xl mb-4 text-primary">
-          Core Skills
+        <h2 className={heading}>
+          {t('core_skills', 'Core Skills')}
         </h2>
-        <p className="text-base-content/70 text-lg max-w-2xl mx-auto">
-          A comprehensive toolkit of technologies and frameworks I've mastered through years of professional development
+        <p className={body + ' text-lg max-w-2xl mx-auto'}>
+          {skillsData?.description}
         </p>
       </motion.div>
 
@@ -164,9 +218,9 @@ const CoreSkills = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        {skillCategories.map((category, index) => (
+        {skillsData.categories.map((category, index) => (
           <motion.button
-            key={category.name}
+            key={category.id}
             variants={categoryVariants}
             onClick={() => setSelectedCategory(index)}
             className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
@@ -192,100 +246,75 @@ const CoreSkills = () => {
           transition={{ duration: 0.5 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {skillCategories[selectedCategory].skills.map((skill) => (
+          {currentCategory.skills.map((skill) => (
             <motion.div
-              key={skill.name}
+              key={skill.id}
               variants={skillVariants}
               initial="hidden"
               animate="visible"
               whileHover="hover"
-              onHoverStart={() => setHoveredSkill(skill.name)}
+              onHoverStart={() => setHoveredSkill(skill.id)}
               onHoverEnd={() => setHoveredSkill(null)}
-              className="group relative bg-base-200 rounded-2xl p-6 shadow-lg border border-base-300 hover:border-primary/30 transition-all duration-300"
+              className="group relative bg-gradient-to-br from-base-100 to-base-200/50 backdrop-blur-sm border border-base-300/20 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
             >
-              {/* Skill Header */}
+              {/* Background Pattern */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${currentCategory.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
+              
+              {/* Icon */}
               <div className="flex items-center gap-4 mb-4">
-                <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
-                  {skill.icon}
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${currentCategory.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  {iconMap[skill.icon] || <FallbackIcon />}
                 </div>
-                <div>
-                  <h3 className="font-inter font-bold text-lg text-base-content">
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-base-content group-hover:text-primary transition-colors duration-300">
                     {skill.name}
                   </h3>
                   <div className="text-sm text-base-content/60">
-                    {skill.proficiency}% proficiency
+                    {skill.proficiency}% {t('proficiency', 'Proficiency')}
                   </div>
                 </div>
               </div>
 
               {/* Progress Bar */}
               <div className="mb-4">
-                <div className="w-full bg-base-300 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-base-300 rounded-full h-3 overflow-hidden">
                   <motion.div
-                    custom={skill.proficiency}
+                    className={`h-full bg-gradient-to-r ${currentCategory.color} rounded-full`}
                     variants={progressVariants}
+                    custom={skill.proficiency}
                     initial="hidden"
                     animate="visible"
-                    className={`h-full bg-gradient-to-r ${skillCategories[selectedCategory].color} rounded-full`}
                   />
                 </div>
               </div>
 
               {/* Description */}
+              <p className="text-sm text-base-content/70 leading-relaxed">
+                {skill.description}
+              </p>
+
+              {/* Tooltip */}
               <AnimatePresence>
-                {hoveredSkill === skill.name && (
+                {hoveredSkill === skill.id && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="text-sm text-base-content/70 leading-relaxed"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-base-300 text-base-content text-xs px-3 py-1 rounded-full shadow-lg border border-base-300/50 z-10"
                   >
-                    {skill.description}
+                    {skill.proficiency}% {t('mastery', 'Mastery')}
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Hover Indicator */}
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              {/* Shine effect */}
+              <div className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden">
+                <div className={`absolute left-1/2 top-0 w-2/3 h-1/3 bg-gradient-to-r ${currentCategory.color} opacity-0 group-hover:opacity-20 blur-lg rotate-12 -translate-x-1/2 transition-all duration-500`} />
               </div>
             </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
-
-      {/* Skills Summary */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="mt-16 text-center"
-      >
-        <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 border border-primary/20">
-          <h3 className="font-inter font-bold text-xl mb-4 text-primary">
-            Technical Expertise Summary
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-            <div>
-              <div className="font-bold text-2xl text-primary">4+</div>
-              <div className="text-base-content/70">Years Experience</div>
-            </div>
-            <div>
-              <div className="font-bold text-2xl text-primary">25+</div>
-              <div className="text-base-content/70">Technologies</div>
-            </div>
-            <div>
-              <div className="font-bold text-2xl text-primary">15+</div>
-              <div className="text-base-content/70">Projects Completed</div>
-            </div>
-            <div>
-              <div className="font-bold text-2xl text-primary">4</div>
-              <div className="text-base-content/70">Specializations</div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 };

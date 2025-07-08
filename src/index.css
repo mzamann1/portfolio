@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Custom animations */
 @keyframes fade-in {
   from { opacity: 0; }
@@ -149,6 +150,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* English font settings */
+[lang="en"], [lang="en-US"], [lang="en-GB"] {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Arabic font settings */
+[lang="ar"], [lang="ar-SA"], [lang="ar-EG"] {
+  font-family: 'Segoe UI', 'Tahoma', 'Arial Unicode MS', 'GumelaArabic', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+/* RTL specific font adjustments */
+[dir="rtl"] {
+  font-family: 'Segoe UI', 'Tahoma', 'Arial Unicode MS', 'GumelaArabic', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+/* LTR specific font adjustments */
+[dir="ltr"] {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -156,9 +183,29 @@ body {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-/* Ensure all elements inherit Inter */
-* {
+/* Font classes for manual control */
+.font-english {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.font-arabic {
+  font-family: 'Segoe UI', 'Tahoma', 'Arial Unicode MS', 'GumelaArabic', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+/* Test class to verify font loading */
+.font-test {
+  font-family: 'GumelaArabic', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  color: red;
+}
+
+/* Ensure all elements inherit the appropriate font */
+* {
+  font-family: inherit;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

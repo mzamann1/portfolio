@@ -8,9 +8,11 @@ import {
   SiNextdotjs, 
   SiDocker 
 } from 'react-icons/si';
+import { useLanguageFont } from '../hooks/useLanguageFont';
 
 const About = () => {
   const { t } = useTranslation();
+  const { fontClass, heading, body, getFontClass } = useLanguageFont();
 
   const skills = [
     { name: 'React', level: 90, color: 'from-blue-500 to-cyan-500', icon: <SiReact className="w-5 h-5" /> },
@@ -22,7 +24,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-base-100/80 backdrop-blur">
+    <section id="about" className={`py-20 bg-base-100/80 backdrop-blur ${fontClass}`}>
       <motion.div
         className="container mx-auto px-4"
         initial={{ opacity: 0, y: 40 }}
@@ -31,7 +33,7 @@ const About = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tight">
+          <h2 className={heading}>
             {t('about')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
@@ -42,13 +44,13 @@ const About = () => {
           <div className="space-y-6">
             <div className="card bg-base-200/80 backdrop-blur border border-base-300/40 shadow-xl rounded-2xl hover:shadow-2xl transition-shadow duration-300">
               <div className="card-body">
-                <h3 className="card-title text-2xl font-bold mb-4">
+                <h3 className={getFontClass({ weight: 'bold', size: '2xl' }) + ' mb-4'}>
                   {t('about_title', 'Frontend Developer & UI/UX Enthusiast')}
                 </h3>
-                <p className="text-base-content/80 leading-relaxed">
+                <p className={body}>
                   {t('about_description', 'I am a passionate frontend developer with expertise in creating stunning, responsive, and user-friendly web applications. With a strong foundation in modern web technologies, I bring ideas to life through clean code and beautiful design.')}
                 </p>
-                <p className="text-base-content/80 leading-relaxed">
+                <p className={body}>
                   {t('about_experience', 'With years of experience in React, TypeScript, and modern CSS frameworks, I specialize in building scalable applications that deliver exceptional user experiences.')}
                 </p>
               </div>
