@@ -45,7 +45,7 @@ class PortfolioDataService {
   private cache: Map<string, unknown> = new Map();
   private lastFetch: Map<string, number> = new Map();
   private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-  private readonly BASE_URL = '/data';
+  private readonly BASE_URL = 'https://raw.githubusercontent.com/mzamann1/portfolio/main/public/data';
 
   // Fetch individual section data
   async getHeroData(lang?: string): Promise<HeroData> {
