@@ -12,7 +12,7 @@ import { useLanguageFont } from '../hooks/useLanguageFont';
 
 const About = () => {
   const { t } = useTranslation();
-  const { fontClass, heading, body, getFontClass } = useLanguageFont();
+  const { heading, body } = useLanguageFont();
 
   const skills = [
     { name: 'React', level: 90, color: 'from-blue-500 to-cyan-500', icon: <SiReact className="w-5 h-5" /> },
@@ -38,21 +38,21 @@ const About = () => {
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
         {/* Left: About & Stats */}
         <div>
-          <h2 className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 className={`text-4xl font-extrabold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent ${heading}`}>
             {t('about')}
           </h2>
-          <p className="text-lg text-base-content/80 mb-6">
+          <p className={`text-lg text-base-content/80 mb-6 ${body}`}>
             {t('about_description', 'I am a passionate frontend developer with expertise in creating stunning, responsive, and user-friendly web applications. With a strong foundation in modern web technologies, I bring ideas to life through clean code and beautiful design.')}
           </p>
           <div className="flex gap-8 mb-8">
             {[{ label: t('years_experience', 'Years Experience'), value: 3, suffix: '+' }, { label: t('projects_completed', 'Projects'), value: 50, suffix: '+' }, { label: t('client_satisfaction', 'Satisfaction'), value: 100, suffix: '%' }].map(stat => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl font-bold text-primary">{stat.value}{stat.suffix}</div>
-                <div className="text-sm text-base-content/60">{stat.label}</div>
+                <div className={`text-3xl font-bold text-primary ${heading}`}>{stat.value}{stat.suffix}</div>
+                <div className={`text-sm text-base-content/60 ${body}`}>{stat.label}</div>
               </div>
             ))}
           </div>
-          <button className="btn btn-primary btn-lg rounded-full w-full max-w-xs shadow-lg font-bold flex items-center justify-center gap-2 hover:scale-105 transition">
+          <button className={`btn btn-primary btn-lg rounded-full w-full max-w-xs shadow-lg font-bold flex items-center justify-center gap-2 hover:scale-105 transition ${body}`}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
@@ -61,13 +61,13 @@ const About = () => {
         </div>
         {/* Right: Skills */}
         <div className="space-y-6 w-full">
-          <h3 className="text-2xl font-bold mb-4">{t('skills', 'Skills')}</h3>
+          <h3 className={`text-2xl font-bold mb-4 ${heading}`}>{t('skills', 'Skills')}</h3>
           <div className="space-y-5">
             {skills.map((skill, idx) => (
               <div key={skill.name}>
                 <div className="flex items-center gap-3 mb-1">
                   <span className="text-xl">{skill.icon}</span>
-                  <span className="font-medium">{skill.name}</span>
+                  <span className={`font-medium ${body}`}>{skill.name}</span>
                 </div>
                 <div className="relative w-full h-3 bg-base-300 rounded-full overflow-hidden">
                   <motion.div
