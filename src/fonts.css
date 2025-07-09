@@ -1,17 +1,59 @@
 /* Arabic Font Declaration */
 @font-face {
   font-family: "GumelaArabic";
-  src: url("/fonts/GumelaArabic-Regular.woff2") format("woff2"),
-    url("/fonts/GumelaArabic-Light.woff2") format("woff2"),
-    url("/fonts/GumelaArabic-Bold.woff2") format("woff2");
-  font-weight: 400 500 600 700 800 900;
+  src: url("/fonts/GumelaArabic-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GumelaArabic";
+  src: url("/fonts/GumelaArabic-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GumelaArabic";
+  src: url("/fonts/GumelaArabic-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Satoshi Font Declaration */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Variable.woff") format("woff");
-  font-weight: 400 500 600 700 800 900;
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }

@@ -83,7 +83,7 @@ if (typeof window !== 'undefined' && !document.getElementById('typewriter-cursor
 const Hero = () => {
   const { t } = useTranslation();
   const { data: heroData, loading } = useHeroData();
-  const { fontClass, body, getFontClass } = useLanguageFont();
+  const { fontClass, body, getFontClass, isArabic } = useLanguageFont();
   
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -176,9 +176,18 @@ const Hero = () => {
                 initial={{ opacity: 0, x: -80 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className={getFontClass({ weight: 'bold', size: '6xl' }) + ' tracking-tight transition-all duration-100 relative overflow-hidden'}
+                className={
+                  getFontClass({ weight: 'bold', size: '6xl' }) +
+                  ' tracking-tight transition-all duration-100 relative overflow-hidden ' +
+                  (isArabic ? 'text-right' : 'text-left')
+                }
+                dir={isArabic ? 'rtl' : 'ltr'}
               >
-                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-bold" style={{ WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                <span
+                  className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-bold"
+                  style={{ WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
+                  dir={isArabic ? 'rtl' : 'ltr'}
+                >
                   <Typewriter
                     words={[t('hero_title')]}
                     loop={1}
@@ -195,21 +204,30 @@ const Hero = () => {
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className={body + ' text-lg md:text-2xl text-base-content/80 mb-8 max-w-2xl mx-auto lg:mx-0 font-light'}
+              className={
+                body +
+                ' text-lg md:text-2xl text-base-content/80 mb-8 max-w-2xl mx-auto lg:mx-0 font-light ' +
+                (isArabic ? 'text-right' : 'text-left')
+              }
+              dir={isArabic ? 'rtl' : 'ltr'}
             >
               {t('hero_subtitle')}
             </motion.p>
             
             {/* Statistics with Count-Up Animation */}
             <motion.div 
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto lg:mx-0"
+              className={
+                'grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto lg:mx-0 ' +
+                (isArabic ? 'text-right' : 'text-left')
+              }
+              dir={isArabic ? 'rtl' : 'ltr'}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               {heroData.stats.map((stat, index) => (
-                <div key={index} className="text-center lg:text-left">
+                <div key={index} className={isArabic ? 'text-right' : 'text-left'}>
                   <div className={`${fontClass} text-3xl md:text-4xl font-bold text-primary mb-2`}>
                     <CountUpNumber end={stat.value} duration={2} />
                     {stat.suffix || '+'}
@@ -220,22 +238,24 @@ const Hero = () => {
             </motion.div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+             
               <motion.button 
+                onClick={() => scrollToSection('#contact')}
+                className="relative btn btn-primary btn-lg px-8 rounded-full shadow-md overflow-visible border-0"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {t('contact')}
+              </motion.button>
+               <motion.button 
                 onClick={() => scrollToSection('#projects')}
-                className="btn btn-primary btn-lg px-8 rounded-xl shadow-md"
+                className="btn btn-outline btn-lg px-8 rounded-full shadow-md"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
                 {t('projects')}
-              </motion.button>
-              <motion.button 
-                onClick={() => scrollToSection('#contact')}
-                className="btn btn-outline btn-lg px-8 rounded-xl shadow-md"
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                {t('contact')}
               </motion.button>
             </div>
           </div>

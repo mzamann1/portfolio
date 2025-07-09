@@ -62,18 +62,37 @@ export interface ProjectsData {
   all: Project[];
 }
 
+export interface ProjectModalDetails {
+  longDescription: string;
+  challenges: string[];
+  solutions: string[];
+  role: string;
+  teamSize?: number;
+  duration: string;
+  impact: string[];
+  lessonsLearned: string[];
+  screenshots?: string[];
+  demoVideo?: string;
+  architecture?: string;
+  performance?: string[];
+  security?: string[];
+  testing?: string[];
+  deployment?: string;
+}
+
 export interface Project {
   id: string;
   name: string;
-  description: string;
+  description: string; // Short description for card
   date: string;
   image?: string;
   technologies: string[]; // Skill IDs used in this project
   category: 'featured' | 'regular';
   liveUrl?: string;
   githubUrl?: string;
-  details: string[];
+  details: string[]; // Key features for card
   featured: boolean;
+  modalDetails: ProjectModalDetails; // Detailed information for modal
 }
 
 // Work Experience Section Types

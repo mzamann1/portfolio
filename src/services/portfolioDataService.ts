@@ -45,8 +45,8 @@ class PortfolioDataService {
   private cache: Map<string, unknown> = new Map();
   private lastFetch: Map<string, number> = new Map();
   private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-  private readonly BASE_URL = 'https://raw.githubusercontent.com/mzamann1/portfolio/main/public/data';
-
+  private readonly BASE_PATH = import.meta.env.VITE_DATA_PATH;
+  
   // Fetch individual section data
   async getHeroData(lang?: string): Promise<HeroData> {
     return this.fetchSectionData<HeroData>('hero.json', lang);
@@ -152,17 +152,17 @@ class PortfolioDataService {
       return this.cache.get(cacheKey) as T;
     }
 
+    // Use BASE_PATH from env
+    const baseUrl = `${this.BASE_PATH}/${language}`;
+
     // Try to fetch the language-specific file, fallback to English if not found
     let data: T | undefined;
-    
     try {
-      data = await this.fetchJson<T>(`${this.BASE_URL}/${language}/${filename}`);
+      data = await this.fetchJson<T>(`${baseUrl}/${filename}`);
     } catch {
       if (language !== 'en') {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         try {
-          data = await this.fetchJson<T>(`${this.BASE_URL}/en/${filename}`);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          data = await this.fetchJson<T>(`${this.BASE_PATH}/en/${filename}`);
         } catch {
           // fallback failed
         }
@@ -291,4 +291,4 @@ class PortfolioDataService {
 export const portfolioDataService = new PortfolioDataService();
 
 // Export the class for testing purposes
-export { PortfolioDataService, getCurrentLanguage }; 
+export { PortfolioDataService, getCurrentLanguage };

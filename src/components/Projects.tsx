@@ -1,13 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useProjectsData } from '../hooks/usePortfolioData';
 import { usePortfolioStore } from '../stores/portfolioStore';
 import { useUIStore } from '../stores/uiStore';
 import ProjectFilters from './ProjectFilters';
 import Loading from './Loading';
+import ProjectModal from './ProjectModal';
 import { FaGithub, FaExternalLinkAlt, FaEye, FaCode } from 'react-icons/fa';
 import { useLanguageFont } from '../hooks/useLanguageFont';
+import type { Project } from '../types/PortfolioData';
 
 const Projects = () => {
   const { t } = useTranslation();
@@ -15,7 +17,20 @@ const Projects = () => {
   const { projectFilters } = usePortfolioStore();
   const { searchQuery } = useUIStore();
   const { fontClass, heading, body } = useLanguageFont();
-  // Removed unused state
+  
+  // Modal state
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   // Filter projects based on search and filters
   const filteredProjects = useMemo(() => {
@@ -107,13 +122,14 @@ const Projects = () => {
     }
   };
 
-  const ProjectCard = ({ project, isFeatured = false, compact = false }: { project: import('../types/PortfolioData').Project; isFeatured?: boolean; compact?: boolean }) => (
+  const ProjectCard = ({ project, isFeatured = false, compact = false }: { project: Project; isFeatured?: boolean; compact?: boolean }) => (
     <motion.div
       variants={cardVariants}
       initial="hidden"
       animate="visible"
       whileHover="hover"
-      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-base-100 to-base-200/50 backdrop-blur-sm border border-base-300/20 shadow-xl hover:shadow-2xl transition-all duration-500 ${compact ? 'max-w-2xl mx-auto' : ''}`}
+      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-base-100 to-base-200/50 backdrop-blur-sm border border-base-300/60 hover:border-primary/60 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer ${compact ? 'max-w-2xl mx-auto' : ''}`}
+      onClick={() => openModal(project)}
       // Hover effects handled by CSS
     >
       {/* Background Pattern */}
@@ -146,6 +162,18 @@ const Projects = () => {
         {/* Action Buttons */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
           <div className="flex gap-3">
+            {/* View Details Button */}
+            <motion.button
+              className="w-12 h-12 bg-gradient-to-r from-primary to-secondary text-primary-content rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                openModal(project);
+              }}
+            >
+              <FaEye className="w-4 h-4" />
+            </motion.button>
             {project.liveUrl && (
               <motion.a
                 href={project.liveUrl}
@@ -154,6 +182,7 @@ const Projects = () => {
                 className="w-12 h-12 bg-primary hover:bg-primary-focus text-primary-content rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={(e) => e.stopPropagation()}
               >
                 <FaExternalLinkAlt className="w-4 h-4" />
               </motion.a>
@@ -166,6 +195,7 @@ const Projects = () => {
                 className="w-12 h-12 bg-base-100 hover:bg-base-200 text-base-content rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={(e) => e.stopPropagation()}
               >
                 <FaGithub className="w-5 h-5" />
               </motion.a>
@@ -238,6 +268,18 @@ const Projects = () => {
 
       {/* Bottom Border Animation */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+      
+      {/* Click Indicator */}
+      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="bg-base-200/80 text-base-content/70 text-xs px-2 py-1 rounded-full">
+          Click to view details
+        </div>
+      </div>
+      
+      {/* Shine effect */}
+      <span className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden">
+        <span className="absolute left-1/2 top-0 w-2/3 h-1/3 bg-gradient-to-r from-white/40 to-transparent opacity-0 group-hover:opacity-60 blur-lg rotate-12 -translate-x-1/2 transition-all duration-500" />
+      </span>
     </motion.div>
   );
 
@@ -381,6 +423,13 @@ const Projects = () => {
           </div>
         </motion.div>
       </motion.div>
+      
+      {/* Project Modal */}
+      <ProjectModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </section>
   );
 };

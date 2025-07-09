@@ -1,35 +1,143 @@
 {
   "experiences": [
     {
-      "id": "senior-developer-2024",
-      "title": "Senior Full-Stack Developer",
-      "company": "TechCorp Solutions",
-      "from": "2024-01",
+      "id": "astera-software-2024",
+      "title": "Full-Stack Developer",
+      "company": "Astera Software",
+      "from": "2023-12",
       "to": "Present",
-      "skills": ["react", "typescript", "nodejs", "express", "mongodb", "aws", "docker"],
+      "skills": [
+        "react",
+        "typescript",
+        "css3",
+        "html5",
+        "tailwind",
+        "vite",
+        "antd",
+        "redux",
+        "axios",
+        "jwt",
+        "postgresql",
+        "azure",
+        "docker",
+        "git"
+      ],
       "achievements": [
-        "Led development of enterprise e-commerce platform serving 100K+ users",
-        "Mentored 5 junior developers and conducted code reviews",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Optimized application performance resulting in 40% faster load times",
-        "Architected microservices architecture for better scalability"
+        {
+          "text": "Owned the full-stack architecture and development of the application:",
+          "sub": [
+            {
+              "text": [
+                "Backend engineered using ",
+                { "bold": ".NET 8" },
+                ", with a layered, ",
+                { "bold": "Clean Architecture" },
+                ", applying ",
+                { "bold": "CQRS" },
+                ", ",
+                { "bold": "Mediator pattern" },
+                ", and ",
+                { "bold": "Repository + Unit of Work patterns" },
+                " for maintainability and scalability."
+              ]
+            },
+            {
+              "text": [
+                "Frontend built using ",
+                { "bold": "React" },
+                ", ",
+                { "bold": "Vite" },
+                ", ",
+                { "bold": "TypeScript" },
+                ",",
+                { "bold": "Redux" },
+                ", styled with ",
+                { "bold": "Ant Design" },
+                ", and ",
+                { "bold": "Tailwind CSS" },
+                ", resulting in a fast, sleek, modular, and responsive UI across devices with consistent UI/UX design."
+              ]
+            },
+            {
+              "text": [
+                "Optimized rendering with lazy loading, component memoization, and efficient state management"
+              ]
+            },
+            {
+              "text": [
+                "Led the successful delivery of Phase 1 of the HRMS within strict deadlines, covering all planned modules and integrations. Adopted ",
+                { "bold": "Agile methodology" },
+                ", participating in sprint planning, retrospectives, and daily stand-ups for iterative and transparent progress tracking."
+              ]
+            },
+            {
+              "text": [
+                "Developed a comprehensive API suite to support HR modules such as employee onboarding and reporting — providing secure and well-structured endpoints for smooth client-server interaction."
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Implemented key performance optimizations:",
+          "sub": [
+            {
+              "text": [
+                "Contributed to the migration of a legacy WinForms desktop application to WPF, assisting in enhancing the UI/UX layer through improved layouts and interactions. This effort contributed to a ",
+                { "bold": "60% increase" },
+                " in customer adoption, as users embraced the more modern and interactive interface."
+              ]
+            },
+            {
+              "text": "Contributed to the migration of a legacy WinForms desktop application to WPF, assisting in enhancing the UI/UX layer through improved layouts and interactions. This effort contributed to a 60% increase in customer adoption, as users embraced the more modern and interactive interface."
+            },
+            {
+              "text": [
+                "Reduced response times via query tuning, asynchronous I/O, and caching"
+              ]
+            },
+            {
+              "text": [
+                "Overall system performance improved by ",
+                { "bold": "25%" },
+                ", leading to smoother user interactions and better load handling."
+              ]
+            }
+          ]
+        }
       ],
       "location": "Karachi, Pakistan",
       "type": "full-time"
     },
     {
-      "id": "fullstack-developer-2023",
-      "title": "Full-Stack Developer",
-      "company": "Digital Innovations Ltd",
-      "from": "2023-03",
+      "id": "zepcom-senior-developer-2023",
+      "title": "Senior Software Engineer (.NET)",
+      "company": "Zepcom / AllShore Virtual Talent",
+      "from": "2023-08",
       "to": "2023-12",
-      "skills": ["react", "javascript", "nodejs", "express", "postgresql", "firebase"],
+      "skills": [
+        "csharp",
+        "dotnet",
+        "sql",
+        "git",
+        "azure",
+        "clean-architecture",
+        "mediator-pattern",
+        "repository-pattern",
+        "microservices",
+        "j-query"
+      ],
       "achievements": [
-        "Developed 8+ client projects with 95% client satisfaction rate",
-        "Built real-time collaboration tools used by 50+ teams",
-        "Implemented responsive designs for mobile-first applications",
-        "Integrated third-party APIs and payment gateways",
-        "Reduced bug reports by 70% through comprehensive testing"
+        {
+          "text": "Developed 8+ client projects with 95% client satisfaction rate",
+          "sub": [
+            {
+              "text": "Built real-time collaboration tools used by 50+ teams"
+            },
+            {
+              "text": "Implemented responsive designs for mobile-first applications"
+            }
+          ]
+        }
       ],
       "location": "Remote",
       "type": "full-time"
@@ -86,4 +194,4 @@
       "type": "contract"
     }
   ]
-} 
+}

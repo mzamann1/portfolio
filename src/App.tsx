@@ -5,6 +5,7 @@ import './i18n';
 import { useAppInitialization } from './hooks/useAppInitialization';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
+import About from './components/About';
 import WorkExperience from './components/WorkExperience';
 import CoreSkills from './components/CoreSkills';
 import SoftSkills from './components/SoftSkills';
@@ -60,6 +61,7 @@ function App() {
             <Navigation />
             <main>
               <Hero />
+              <About />
               <WorkExperience />
               <CoreSkills />
               <SoftSkills />

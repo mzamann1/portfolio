@@ -17,7 +17,62 @@
         "Integrated real-time inventory tracking",
         "Optimized performance with lazy loading and caching"
       ],
-      "featured": true
+      "featured": true,
+      "modalDetails": {
+        "longDescription": "A comprehensive e-commerce platform built with modern technologies. This project showcases full-stack development skills, from frontend user interface design to backend API development and database management. The platform includes advanced features like real-time inventory tracking, secure payment processing, and an intuitive admin dashboard.",
+        "challenges": [
+          "Implementing real-time inventory synchronization across multiple users",
+          "Ensuring secure payment processing and PCI compliance",
+          "Optimizing performance for large product catalogs",
+          "Creating a responsive design that works across all devices"
+        ],
+        "solutions": [
+          "Used WebSocket connections for real-time updates and implemented optimistic UI updates",
+          "Integrated Stripe with proper error handling and webhook verification",
+          "Implemented pagination, lazy loading, and Redis caching for better performance",
+          "Adopted a mobile-first approach with CSS Grid and Flexbox for responsive design"
+        ],
+        "role": "Full Stack Developer",
+        "teamSize": 3,
+        "duration": "6 months",
+        "impact": [
+          "Reduced page load time by 40% through optimization",
+          "Increased conversion rate by 25% with improved UX",
+          "Successfully processed over 10,000 transactions",
+          "Achieved 99.9% uptime during peak shopping seasons"
+        ],
+        "lessonsLearned": [
+          "Importance of proper state management in complex applications",
+          "Value of comprehensive testing in e-commerce applications",
+          "Need for scalable architecture from the start",
+          "Critical role of user experience in conversion rates"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "demoVideo": "https://example.com/demo-video",
+        "architecture": "Microservices architecture with React frontend, Node.js backend, MongoDB database, and Redis caching. Deployed on AWS with Docker containers.",
+        "performance": [
+          "Lighthouse score: 95+ across all metrics",
+          "First Contentful Paint: < 1.5s",
+          "Time to Interactive: < 3s",
+          "Core Web Vitals: All green"
+        ],
+        "security": [
+          "JWT authentication with refresh tokens",
+          "Input validation and sanitization",
+          "HTTPS enforcement",
+          "Regular security audits"
+        ],
+        "testing": [
+          "Unit tests with Jest (90% coverage)",
+          "Integration tests with Supertest",
+          "E2E tests with Cypress",
+          "Performance testing with Artillery"
+        ],
+        "deployment": "CI/CD pipeline with GitHub Actions, deployed to AWS ECS with auto-scaling and load balancing."
+      }
     },
     {
       "id": "task-management-app",
@@ -36,7 +91,60 @@
         "Mobile-responsive design",
         "Offline functionality with service workers"
       ],
-      "featured": true
+      "featured": true,
+      "modalDetails": {
+        "longDescription": "A modern task management application built with React and Firebase. This project demonstrates proficiency in real-time applications, collaborative features, and Progressive Web App development. The app allows teams to manage tasks, set deadlines, and track progress in real-time with offline capabilities.",
+        "challenges": [
+          "Implementing real-time collaboration without conflicts",
+          "Creating a smooth offline experience",
+          "Managing complex state across multiple users",
+          "Ensuring data consistency in collaborative environments"
+        ],
+        "solutions": [
+          "Used Firebase Realtime Database with conflict resolution strategies",
+          "Implemented service workers for offline functionality",
+          "Adopted Redux Toolkit for centralized state management",
+          "Implemented optimistic updates for better UX"
+        ],
+        "role": "Frontend Developer",
+        "teamSize": 2,
+        "duration": "3 months",
+        "impact": [
+          "Improved team productivity by 30%",
+          "Reduced meeting time by 50%",
+          "Successfully deployed as PWA",
+          "Achieved 95% user satisfaction rate"
+        ],
+        "lessonsLearned": [
+          "Importance of offline-first design",
+          "Value of real-time collaboration features",
+          "Need for proper conflict resolution in collaborative apps",
+          "Benefits of Progressive Web App capabilities"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React SPA with Firebase backend, Redux Toolkit for state management, and PWA capabilities with service workers.",
+        "performance": [
+          "PWA score: 95+",
+          "Fast loading times under 2s",
+          "Smooth offline experience",
+          "Excellent mobile performance"
+        ],
+        "security": [
+          "Firebase Authentication",
+          "Data validation and sanitization",
+          "Secure API endpoints",
+          "Role-based access control"
+        ],
+        "testing": [
+          "React Testing Library for component testing",
+          "E2E tests with Cypress",
+          "PWA testing and validation",
+          "Performance testing with Lighthouse"
+        ],
+        "deployment": "Deployed on Firebase Hosting with automatic CI/CD pipeline."
+      }
     },
     {
       "id": "portfolio-website",
@@ -55,7 +163,60 @@
         "SEO optimized with meta tags",
         "Fast loading with code splitting"
       ],
-      "featured": true
+      "featured": true,
+      "modalDetails": {
+        "longDescription": "A modern, responsive portfolio website showcasing my skills and projects. This project demonstrates expertise in React development, internationalization, animations, and modern web development practices. The website features smooth animations, bilingual support, and excellent performance across all devices.",
+        "challenges": [
+          "Implementing smooth animations without performance issues",
+          "Creating a bilingual experience with RTL support",
+          "Ensuring excellent performance with animations",
+          "Making the design work seamlessly across all devices"
+        ],
+        "solutions": [
+          "Used Framer Motion for optimized animations with proper performance considerations",
+          "Implemented i18next with custom RTL layout handling",
+          "Adopted code splitting and lazy loading for better performance",
+          "Used Tailwind CSS for responsive design with custom animations"
+        ],
+        "role": "Full Stack Developer",
+        "teamSize": 1,
+        "duration": "2 months",
+        "impact": [
+          "Achieved 100/100 Lighthouse performance score",
+          "Reduced initial load time by 60%",
+          "Successfully implemented bilingual support",
+          "Created engaging user experience with animations"
+        ],
+        "lessonsLearned": [
+          "Importance of performance optimization in animated websites",
+          "Value of proper internationalization from the start",
+          "Benefits of modern CSS frameworks like Tailwind",
+          "Critical role of user experience in portfolio websites"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React SPA with TypeScript, Tailwind CSS for styling, Framer Motion for animations, and i18next for internationalization.",
+        "performance": [
+          "Lighthouse score: 100/100",
+          "First Contentful Paint: < 1s",
+          "Time to Interactive: < 2s",
+          "Core Web Vitals: All green"
+        ],
+        "security": [
+          "HTTPS enforcement",
+          "Content Security Policy",
+          "Regular dependency updates",
+          "Secure deployment practices"
+        ],
+        "testing": [
+          "Component testing with React Testing Library",
+          "E2E testing with Playwright",
+          "Performance testing with Lighthouse CI",
+          "Cross-browser compatibility testing"
+        ],
+        "deployment": "Deployed on Vercel with automatic deployments from GitHub, optimized for global CDN."
+      }
     }
   ],
   "all": [
@@ -76,7 +237,62 @@
         "Integrated real-time inventory tracking",
         "Optimized performance with lazy loading and caching"
       ],
-      "featured": true
+      "featured": true,
+      "modalDetails": {
+        "longDescription": "A comprehensive e-commerce platform built with modern technologies. This project showcases full-stack development skills, from frontend user interface design to backend API development and database management. The platform includes advanced features like real-time inventory tracking, secure payment processing, and an intuitive admin dashboard.",
+        "challenges": [
+          "Implementing real-time inventory synchronization across multiple users",
+          "Ensuring secure payment processing and PCI compliance",
+          "Optimizing performance for large product catalogs",
+          "Creating a responsive design that works across all devices"
+        ],
+        "solutions": [
+          "Used WebSocket connections for real-time updates and implemented optimistic UI updates",
+          "Integrated Stripe with proper error handling and webhook verification",
+          "Implemented pagination, lazy loading, and Redis caching for better performance",
+          "Adopted a mobile-first approach with CSS Grid and Flexbox for responsive design"
+        ],
+        "role": "Full Stack Developer",
+        "teamSize": 3,
+        "duration": "6 months",
+        "impact": [
+          "Reduced page load time by 40% through optimization",
+          "Increased conversion rate by 25% with improved UX",
+          "Successfully processed over 10,000 transactions",
+          "Achieved 99.9% uptime during peak shopping seasons"
+        ],
+        "lessonsLearned": [
+          "Importance of proper state management in complex applications",
+          "Value of comprehensive testing in e-commerce applications",
+          "Need for scalable architecture from the start",
+          "Critical role of user experience in conversion rates"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "demoVideo": "https://example.com/demo-video",
+        "architecture": "Microservices architecture with React frontend, Node.js backend, MongoDB database, and Redis caching. Deployed on AWS with Docker containers.",
+        "performance": [
+          "Lighthouse score: 95+ across all metrics",
+          "First Contentful Paint: < 1.5s",
+          "Time to Interactive: < 3s",
+          "Core Web Vitals: All green"
+        ],
+        "security": [
+          "JWT authentication with refresh tokens",
+          "Input validation and sanitization",
+          "HTTPS enforcement",
+          "Regular security audits"
+        ],
+        "testing": [
+          "Unit tests with Jest (90% coverage)",
+          "Integration tests with Supertest",
+          "E2E tests with Cypress",
+          "Performance testing with Artillery"
+        ],
+        "deployment": "CI/CD pipeline with GitHub Actions, deployed to AWS ECS with auto-scaling and load balancing."
+      }
     },
     {
       "id": "task-management-app",
@@ -95,7 +311,60 @@
         "Mobile-responsive design",
         "Offline functionality with service workers"
       ],
-      "featured": true
+      "featured": true,
+      "modalDetails": {
+        "longDescription": "A modern task management application built with React and Firebase. This project demonstrates proficiency in real-time applications, collaborative features, and Progressive Web App development. The app allows teams to manage tasks, set deadlines, and track progress in real-time with offline capabilities.",
+        "challenges": [
+          "Implementing real-time collaboration without conflicts",
+          "Creating a smooth offline experience",
+          "Managing complex state across multiple users",
+          "Ensuring data consistency in collaborative environments"
+        ],
+        "solutions": [
+          "Used Firebase Realtime Database with conflict resolution strategies",
+          "Implemented service workers for offline functionality",
+          "Adopted Redux Toolkit for centralized state management",
+          "Implemented optimistic updates for better UX"
+        ],
+        "role": "Frontend Developer",
+        "teamSize": 2,
+        "duration": "3 months",
+        "impact": [
+          "Improved team productivity by 30%",
+          "Reduced meeting time by 50%",
+          "Successfully deployed as PWA",
+          "Achieved 95% user satisfaction rate"
+        ],
+        "lessonsLearned": [
+          "Importance of offline-first design",
+          "Value of real-time collaboration features",
+          "Need for proper conflict resolution in collaborative apps",
+          "Benefits of Progressive Web App capabilities"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React SPA with Firebase backend, Redux Toolkit for state management, and PWA capabilities with service workers.",
+        "performance": [
+          "PWA score: 95+",
+          "Fast loading times under 2s",
+          "Smooth offline experience",
+          "Excellent mobile performance"
+        ],
+        "security": [
+          "Firebase Authentication",
+          "Data validation and sanitization",
+          "Secure API endpoints",
+          "Role-based access control"
+        ],
+        "testing": [
+          "React Testing Library for component testing",
+          "E2E tests with Cypress",
+          "PWA testing and validation",
+          "Performance testing with Lighthouse"
+        ],
+        "deployment": "Deployed on Firebase Hosting with automatic CI/CD pipeline."
+      }
     },
     {
       "id": "portfolio-website",
@@ -114,7 +383,60 @@
         "SEO optimized with meta tags",
         "Fast loading with code splitting"
       ],
-      "featured": true
+      "featured": true,
+      "modalDetails": {
+        "longDescription": "A modern, responsive portfolio website showcasing my skills and projects. This project demonstrates expertise in React development, internationalization, animations, and modern web development practices. The website features smooth animations, bilingual support, and excellent performance across all devices.",
+        "challenges": [
+          "Implementing smooth animations without performance issues",
+          "Creating a bilingual experience with RTL support",
+          "Ensuring excellent performance with animations",
+          "Making the design work seamlessly across all devices"
+        ],
+        "solutions": [
+          "Used Framer Motion for optimized animations with proper performance considerations",
+          "Implemented i18next with custom RTL layout handling",
+          "Adopted code splitting and lazy loading for better performance",
+          "Used Tailwind CSS for responsive design with custom animations"
+        ],
+        "role": "Full Stack Developer",
+        "teamSize": 1,
+        "duration": "2 months",
+        "impact": [
+          "Achieved 100/100 Lighthouse performance score",
+          "Reduced initial load time by 60%",
+          "Successfully implemented bilingual support",
+          "Created engaging user experience with animations"
+        ],
+        "lessonsLearned": [
+          "Importance of performance optimization in animated websites",
+          "Value of proper internationalization from the start",
+          "Benefits of modern CSS frameworks like Tailwind",
+          "Critical role of user experience in portfolio websites"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React SPA with TypeScript, Tailwind CSS for styling, Framer Motion for animations, and i18next for internationalization.",
+        "performance": [
+          "Lighthouse score: 100/100",
+          "First Contentful Paint: < 1s",
+          "Time to Interactive: < 2s",
+          "Core Web Vitals: All green"
+        ],
+        "security": [
+          "HTTPS enforcement",
+          "Content Security Policy",
+          "Regular dependency updates",
+          "Secure deployment practices"
+        ],
+        "testing": [
+          "Component testing with React Testing Library",
+          "E2E testing with Playwright",
+          "Performance testing with Lighthouse CI",
+          "Cross-browser compatibility testing"
+        ],
+        "deployment": "Deployed on Vercel with automatic deployments from GitHub, optimized for global CDN."
+      }
     },
     {
       "id": "weather-app",
@@ -133,7 +455,60 @@
         "Responsive design with weather animations",
         "Geolocation support for automatic location detection"
       ],
-      "featured": false
+      "featured": false,
+      "modalDetails": {
+        "longDescription": "A modern weather application that provides real-time weather information and forecasts. This project demonstrates skills in API integration, geolocation services, and creating engaging user interfaces with weather-themed animations and responsive design.",
+        "challenges": [
+          "Integrating multiple weather APIs for comprehensive data",
+          "Implementing accurate geolocation services",
+          "Creating engaging weather animations",
+          "Ensuring fast loading times with API calls"
+        ],
+        "solutions": [
+          "Used OpenWeatherMap API with proper error handling and caching",
+          "Implemented browser geolocation with fallback options",
+          "Created CSS animations for weather conditions",
+          "Implemented service workers for offline functionality"
+        ],
+        "role": "Frontend Developer",
+        "teamSize": 1,
+        "duration": "1 month",
+        "impact": [
+          "Achieved 95% accuracy in weather predictions",
+          "Reduced API calls by 40% through caching",
+          "Improved user engagement with animations",
+          "Successfully deployed with PWA capabilities"
+        ],
+        "lessonsLearned": [
+          "Importance of API error handling and fallbacks",
+          "Value of caching strategies for performance",
+          "Benefits of progressive enhancement",
+          "Critical role of user experience in utility apps"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React SPA with OpenWeatherMap API integration, browser geolocation services, and PWA capabilities.",
+        "performance": [
+          "Lighthouse score: 90+",
+          "Fast API response handling",
+          "Efficient caching strategy",
+          "Smooth weather animations"
+        ],
+        "security": [
+          "API key protection",
+          "HTTPS enforcement",
+          "Input validation",
+          "Secure geolocation handling"
+        ],
+        "testing": [
+          "API integration testing",
+          "Geolocation testing",
+          "Cross-browser compatibility",
+          "PWA functionality testing"
+        ],
+        "deployment": "Deployed on Netlify with automatic deployments and CDN optimization."
+      }
     },
     {
       "id": "blog-platform",
@@ -152,7 +527,60 @@
         "SEO-friendly URL structure",
         "Docker containerization for easy deployment"
       ],
-      "featured": false
+      "featured": false,
+      "modalDetails": {
+        "longDescription": "A comprehensive blog platform with content management capabilities. This project showcases full-stack development skills with a focus on content creation, user management, and SEO optimization. The platform includes advanced features like markdown editing, comment moderation, and analytics.",
+        "challenges": [
+          "Implementing a robust markdown editor with live preview",
+          "Creating an efficient comment moderation system",
+          "Optimizing for SEO and search engine visibility",
+          "Managing user roles and permissions effectively"
+        ],
+        "solutions": [
+          "Used React Markdown with custom preview components",
+          "Implemented real-time comment moderation with admin controls",
+          "Created SEO-optimized URL structure and meta tags",
+          "Built role-based access control with JWT tokens"
+        ],
+        "role": "Full Stack Developer",
+        "teamSize": 2,
+        "duration": "4 months",
+        "impact": [
+          "Improved content creation workflow by 50%",
+          "Reduced spam comments by 90%",
+          "Increased organic traffic by 40%",
+          "Achieved 99.5% uptime"
+        ],
+        "lessonsLearned": [
+          "Importance of content management systems",
+          "Value of SEO optimization in content platforms",
+          "Need for robust moderation tools",
+          "Benefits of containerized deployment"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React frontend with Node.js/Express backend, PostgreSQL database, and Docker containerization.",
+        "performance": [
+          "Fast content loading with caching",
+          "Optimized database queries",
+          "Efficient image handling",
+          "CDN integration for static assets"
+        ],
+        "security": [
+          "JWT authentication",
+          "Input sanitization",
+          "SQL injection prevention",
+          "XSS protection"
+        ],
+        "testing": [
+          "Unit tests for API endpoints",
+          "Integration tests for database",
+          "E2E tests for user workflows",
+          "Security testing with OWASP guidelines"
+        ],
+        "deployment": "Docker containerization with automated deployment pipeline and database backups."
+      }
     },
     {
       "id": "chat-application",
@@ -171,7 +599,60 @@
         "Online/offline status indicators",
         "Message encryption for security"
       ],
-      "featured": false
+      "featured": false,
+      "modalDetails": {
+        "longDescription": "A real-time chat application that enables instant messaging with advanced features. This project demonstrates expertise in WebSocket technology, real-time communication, and secure messaging systems. The app includes features like file sharing, user status tracking, and message encryption.",
+        "challenges": [
+          "Implementing real-time messaging without delays",
+          "Managing WebSocket connections efficiently",
+          "Ensuring message delivery and reliability",
+          "Implementing secure file sharing"
+        ],
+        "solutions": [
+          "Used Socket.io for reliable real-time communication",
+          "Implemented connection pooling and heartbeat mechanisms",
+          "Created message acknowledgment and retry systems",
+          "Built secure file upload with encryption"
+        ],
+        "role": "Full Stack Developer",
+        "teamSize": 2,
+        "duration": "3 months",
+        "impact": [
+          "Achieved sub-100ms message delivery",
+          "Supported 1000+ concurrent users",
+          "Reduced server load by 30%",
+          "Implemented end-to-end encryption"
+        ],
+        "lessonsLearned": [
+          "Importance of WebSocket connection management",
+          "Value of real-time communication protocols",
+          "Need for message reliability systems",
+          "Critical role of security in messaging apps"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React frontend with Node.js/Express backend, MongoDB for data storage, and Socket.io for real-time communication.",
+        "performance": [
+          "Sub-100ms message delivery",
+          "Efficient WebSocket management",
+          "Optimized file upload handling",
+          "Scalable architecture for high load"
+        ],
+        "security": [
+          "End-to-end message encryption",
+          "Secure file upload validation",
+          "JWT authentication",
+          "Input sanitization and validation"
+        ],
+        "testing": [
+          "WebSocket connection testing",
+          "Real-time message testing",
+          "Load testing with multiple users",
+          "Security testing for file uploads"
+        ],
+        "deployment": "Deployed on AWS with auto-scaling and load balancing for high availability."
+      }
     },
     {
       "id": "recipe-finder",
@@ -190,7 +671,60 @@
         "Recipe rating and review system",
         "AWS S3 for image storage"
       ],
-      "featured": false
+      "featured": false,
+      "modalDetails": {
+        "longDescription": "A comprehensive recipe discovery application that helps users find recipes based on available ingredients. This project showcases skills in search algorithms, data management, and creating user-friendly interfaces for culinary content. The app includes nutritional information and user-generated content.",
+        "challenges": [
+          "Implementing intelligent ingredient-based search",
+          "Managing large recipe databases efficiently",
+          "Creating accurate nutritional calculations",
+          "Handling user-generated content and reviews"
+        ],
+        "solutions": [
+          "Built custom search algorithm with ingredient matching",
+          "Implemented database indexing for fast queries",
+          "Integrated nutrition API for accurate calculations",
+          "Created moderation system for user content"
+        ],
+        "role": "Full Stack Developer",
+        "teamSize": 3,
+        "duration": "4 months",
+        "impact": [
+          "Improved recipe discovery by 60%",
+          "Increased user engagement by 45%",
+          "Reduced food waste through better meal planning",
+          "Built community of 10,000+ users"
+        ],
+        "lessonsLearned": [
+          "Importance of search algorithm optimization",
+          "Value of user-generated content moderation",
+          "Need for accurate data in food applications",
+          "Benefits of community features in apps"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React frontend with Django backend, PostgreSQL database, and AWS S3 for image storage.",
+        "performance": [
+          "Fast search results under 500ms",
+          "Optimized image loading",
+          "Efficient database queries",
+          "CDN integration for global access"
+        ],
+        "security": [
+          "User authentication and authorization",
+          "Input validation and sanitization",
+          "Secure file upload handling",
+          "Content moderation system"
+        ],
+        "testing": [
+          "Search algorithm testing",
+          "Database performance testing",
+          "User acceptance testing",
+          "Nutrition calculation accuracy testing"
+        ],
+        "deployment": "Deployed on AWS with RDS for database and S3 for file storage, with CloudFront CDN."
+      }
     },
     {
       "id": "expense-tracker",
@@ -209,7 +743,60 @@
         "Data visualization with charts",
         "Export functionality for reports"
       ],
-      "featured": false
+      "featured": false,
+      "modalDetails": {
+        "longDescription": "A comprehensive personal finance management application that helps users track expenses, analyze spending patterns, and plan budgets. This project demonstrates skills in data visualization, financial calculations, and creating intuitive interfaces for personal finance management.",
+        "challenges": [
+          "Implementing accurate financial calculations",
+          "Creating intuitive data visualizations",
+          "Managing sensitive financial data securely",
+          "Building comprehensive reporting features"
+        ],
+        "solutions": [
+          "Used precise decimal arithmetic for financial calculations",
+          "Implemented Chart.js for interactive data visualizations",
+          "Built secure data storage with Firebase Authentication",
+          "Created comprehensive export and reporting system"
+        ],
+        "role": "Frontend Developer",
+        "teamSize": 1,
+        "duration": "2 months",
+        "impact": [
+          "Helped users save 20% more on average",
+          "Improved financial awareness for 500+ users",
+          "Reduced time spent on expense tracking by 70%",
+          "Achieved 4.8/5 user rating"
+        ],
+        "lessonsLearned": [
+          "Importance of precision in financial calculations",
+          "Value of data visualization in finance apps",
+          "Need for secure handling of financial data",
+          "Benefits of user-friendly financial tools"
+        ],
+        "screenshots": [
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+        ],
+        "architecture": "React SPA with Firebase backend, Chart.js for data visualization, and Tailwind CSS for styling.",
+        "performance": [
+          "Fast data entry and calculations",
+          "Smooth chart animations",
+          "Efficient data processing",
+          "Quick report generation"
+        ],
+        "security": [
+          "Firebase Authentication",
+          "Data encryption at rest",
+          "Secure API endpoints",
+          "Regular security audits"
+        ],
+        "testing": [
+          "Financial calculation accuracy testing",
+          "Data visualization testing",
+          "User workflow testing",
+          "Security testing for financial data"
+        ],
+        "deployment": "Deployed on Firebase Hosting with automatic backups and data export capabilities."
+      }
     }
   ]
 } 

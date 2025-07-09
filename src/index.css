@@ -109,6 +109,13 @@
   }
 }
 
+@keyframes subtle-bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-3px); }
+  50% { transform: translateY(-1px); }
+  70% { transform: translateY(-3px); }
+}
+
 .animate-fade-in {
   animation: fade-in 1s ease-out;
 }
@@ -137,6 +144,66 @@
 
 .animate-glitch-blue {
   animation: glitch-blue 0.1s ease-in-out infinite;
+}
+
+.animate-subtle-bounce {
+  animation: subtle-bounce 2.2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes gravity-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.animate-gravity-bounce {
+  animation: gravity-bounce 1.8s cubic-bezier(.3,0,.7,1.5) infinite;
+  display: inline-block;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shine-text {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.2) 40%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(255,255,255,0.2) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shine 1.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes gradient-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+.gradient-shine-text {
+  background: linear-gradient(90deg, var(--tw-gradient-from, #06b6d4), var(--tw-gradient-via, #a21caf), var(--tw-gradient-to, #f59e42));
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shine 1.2s linear infinite;
+  display: inline-block;
 }
 
 /* Global font settings */
@@ -219,4 +286,13 @@ body {
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #a855f7 #18181b;
+}
+
+@keyframes bounce-slow-short {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-0.5rem); }
+  60% { transform: translateY(0); }
+}
+.animate-bounce-slow-short {
+  animation: bounce-slow-short 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

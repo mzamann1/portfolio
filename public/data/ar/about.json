@@ -1,61 +1,18 @@
 {
-  "title": "عني",
-  "description": "أنا مطور ويب شامل شغوف بخبرة تزيد عن 4 سنوات في إنشاء تطبيقات الويب الحديثة. أتخصص في React و TypeScript و Node.js، مع تركيز قوي على تجربة المستخدم وتحسين الأداء. بدأت رحلتي في تطوير البرمجيات بالفضول وتطورت إلى مهنة من التعلم المستمر والابتكار.",
-  "experience": "4+ سنوات من الخبرة",
+  "title": "مطور واجهات أمامية ومهتم بتجربة المستخدم",
+  "description": "أنا مطور واجهات أمامية شغوف بخبرة في إنشاء تطبيقات ويب مذهلة ومتجاوبة وسهلة الاستخدام. أمتلك أساسًا قويًا في تقنيات الويب الحديثة وأحول الأفكار إلى واقع من خلال كود نظيف وتصميم جميل.",
+  "experience": "مع سنوات من الخبرة في React وTypeScript وأطر CSS الحديثة، أختص في بناء تطبيقات قابلة للتوسع تقدم تجارب مستخدم استثنائية.",
   "skills": [
-    {
-      "id": "frontend-development",
-      "name": "تطوير الواجهة الأمامية",
-      "level": 95,
-      "color": "from-blue-500 to-cyan-500",
-      "icon": "FaCode"
-    },
-    {
-      "id": "backend-development",
-      "name": "تطوير الخلفية",
-      "level": 85,
-      "color": "from-green-500 to-emerald-500",
-      "icon": "FaServer"
-    },
-    {
-      "id": "database-design",
-      "name": "تصميم قواعد البيانات",
-      "level": 80,
-      "color": "from-purple-500 to-pink-500",
-      "icon": "FaDatabase"
-    },
-    {
-      "id": "ui-ux-design",
-      "name": "تصميم واجهة المستخدم",
-      "level": 75,
-      "color": "from-orange-500 to-red-500",
-      "icon": "FaPalette"
-    },
-    {
-      "id": "devops",
-      "name": "DevOps والحوسبة السحابية",
-      "level": 70,
-      "color": "from-indigo-500 to-purple-500",
-      "icon": "FaCloud"
-    }
+    { "name": "React", "level": 90, "color": "from-blue-500 to-cyan-500" },
+    { "name": "TypeScript", "level": 85, "color": "from-blue-600 to-blue-800" },
+    { "name": "Tailwind CSS", "level": 95, "color": "from-cyan-500 to-blue-500" },
+    { "name": "Node.js", "level": 80, "color": "from-green-500 to-green-700" },
+    { "name": "Next.js", "level": 85, "color": "from-gray-800 to-black" },
+    { "name": "Docker", "level": 75, "color": "from-blue-500 to-blue-700" }
   ],
   "stats": [
-    {
-      "value": 50,
-      "label": "مشروع مكتمل"
-    },
-    {
-      "value": 25,
-      "label": "تقنية متقنة"
-    },
-    {
-      "value": 15,
-      "label": "عميل سعيد"
-    },
-    {
-      "value": 100,
-      "label": "جودة الكود",
-      "suffix": "%"
-    }
+    { "label": "سنوات الخبرة", "value": 3, "suffix": "+" },
+    { "label": "المشاريع", "value": 50, "suffix": "+" },
+    { "label": "الرضا", "value": 100, "suffix": "%" }
   ]
 } 
