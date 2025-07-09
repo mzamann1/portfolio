@@ -6,70 +6,13 @@
       "institution": "University of Karachi",
       "from": "2016",
       "to": "2020",
-      "gpa": 3.8,
+      "gpa": 3.3,
       "description": "Focused on software engineering, algorithms, and web development",
       "achievements": [
         "Graduated with First Class Honours",
         "Final Year Project: E-Learning Management System",
-        "Member of Computer Science Society",
         "Participated in multiple hackathons and coding competitions",
-        "Completed internship at local software company"
-      ]
-    },
-    {
-      "id": "web-development-cert-2021",
-      "degree": "Full-Stack Web Development Certification",
-      "institution": "Udemy",
-      "from": "2021-01",
-      "to": "2021-06",
-      "description": "Comprehensive course covering modern web development technologies",
-      "achievements": [
-        "Completed 50+ hours of video content",
-        "Built 10+ real-world projects",
-        "Learned React, Node.js, and database management",
-        "Received certificate of completion with distinction"
-      ]
-    },
-    {
-      "id": "react-advanced-cert-2022",
-      "degree": "Advanced React Development",
-      "institution": "Coursera",
-      "from": "2022-03",
-      "to": "2022-08",
-      "description": "Advanced React concepts including hooks, context, and performance optimization",
-      "achievements": [
-        "Mastered React Hooks and Context API",
-        "Learned advanced state management patterns",
-        "Implemented performance optimization techniques",
-        "Completed capstone project with peer review"
-      ]
-    },
-    {
-      "id": "aws-cert-2023",
-      "degree": "AWS Certified Developer Associate",
-      "institution": "Amazon Web Services",
-      "from": "2023-01",
-      "to": "2023-03",
-      "description": "Cloud computing certification focusing on AWS services and deployment",
-      "achievements": [
-        "Passed AWS certification exam with 85% score",
-        "Learned cloud architecture and deployment strategies",
-        "Gained hands-on experience with AWS services",
-        "Valid until 2026 with continuing education requirements"
-      ]
-    },
-    {
-      "id": "typescript-cert-2023",
-      "degree": "TypeScript Masterclass",
-      "institution": "Frontend Masters",
-      "from": "2023-06",
-      "to": "2023-09",
-      "description": "Advanced TypeScript course covering type safety and best practices",
-      "achievements": [
-        "Mastered TypeScript type system",
-        "Learned advanced type patterns and generics",
-        "Implemented type-safe React applications",
-        "Completed practical exercises and real-world projects"
+        "Completed internship at Pixcile, an AR/VR startup in Karachi"
       ]
     }
   ]

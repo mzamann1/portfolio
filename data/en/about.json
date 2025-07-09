@@ -1,61 +1,18 @@
 {
-  "title": "About Me",
-  "description": "I am a passionate Full-Stack Developer with 4+ years of experience creating modern web applications. I specialize in React, TypeScript, and Node.js, with a strong focus on user experience and performance optimization. My journey in software development started with curiosity and has evolved into a career of continuous learning and innovation.",
-  "experience": "4+ Years of Experience",
+  "title": "Frontend Developer & UI/UX Enthusiast",
+  "description": "I am a passionate frontend developer with expertise in creating stunning, responsive, and user-friendly web applications. With a strong foundation in modern web technologies, I bring ideas to life through clean code and beautiful design.",
+  "experience": "With years of experience in React, TypeScript, and modern CSS frameworks, I specialize in building scalable applications that deliver exceptional user experiences.",
   "skills": [
-    {
-      "id": "frontend-development",
-      "name": "Frontend Development",
-      "level": 95,
-      "color": "from-blue-500 to-cyan-500",
-      "icon": "FaCode"
-    },
-    {
-      "id": "backend-development",
-      "name": "Backend Development",
-      "level": 85,
-      "color": "from-green-500 to-emerald-500",
-      "icon": "FaServer"
-    },
-    {
-      "id": "database-design",
-      "name": "Database Design",
-      "level": 80,
-      "color": "from-purple-500 to-pink-500",
-      "icon": "FaDatabase"
-    },
-    {
-      "id": "ui-ux-design",
-      "name": "UI/UX Design",
-      "level": 75,
-      "color": "from-orange-500 to-red-500",
-      "icon": "FaPalette"
-    },
-    {
-      "id": "devops",
-      "name": "DevOps & Cloud",
-      "level": 70,
-      "color": "from-indigo-500 to-purple-500",
-      "icon": "FaCloud"
-    }
+    { "name": "React", "level": 90, "color": "from-blue-500 to-cyan-500" },
+    { "name": "TypeScript", "level": 85, "color": "from-blue-600 to-blue-800" },
+    { "name": "Tailwind CSS", "level": 95, "color": "from-cyan-500 to-blue-500" },
+    { "name": "Node.js", "level": 80, "color": "from-green-500 to-green-700" },
+    { "name": "Next.js", "level": 85, "color": "from-gray-800 to-black" },
+    { "name": "Docker", "level": 75, "color": "from-blue-500 to-blue-700" }
   ],
   "stats": [
-    {
-      "value": 50,
-      "label": "Projects Completed"
-    },
-    {
-      "value": 25,
-      "label": "Technologies Mastered"
-    },
-    {
-      "value": 15,
-      "label": "Happy Clients"
-    },
-    {
-      "value": 100,
-      "label": "Code Quality",
-      "suffix": "%"
-    }
+    { "label": "Years Experience", "value": 3, "suffix": "+" },
+    { "label": "Projects", "value": 50, "suffix": "+" },
+    { "label": "Satisfaction", "value": 100, "suffix": "%" }
   ]
 } 
