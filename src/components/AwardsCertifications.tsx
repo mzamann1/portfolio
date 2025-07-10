@@ -112,7 +112,7 @@ const AwardsCertifications = () => {
   ];
 
   return (
-    <section id="awards" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+    <section id="awards" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

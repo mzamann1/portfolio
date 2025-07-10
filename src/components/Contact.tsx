@@ -138,7 +138,7 @@ const Contact = () => {
   }
 
   return (
-    <div id="contact" className={`py-20 bg-base-100/80 backdrop-blur ${fontClass}`}>
+    <section id="contact" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
       <motion.div
         className="container mx-auto px-4"
         initial={{ opacity: 0, y: 40 }}
@@ -354,7 +354,7 @@ const Contact = () => {
           </div>
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

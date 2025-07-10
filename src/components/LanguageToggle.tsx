@@ -43,12 +43,12 @@ const LanguageToggle = () => {
     : 'linear-gradient(to left, var(--tw-gradient-from, #a855f7), var(--tw-gradient-to, #06b6d4))';
 
   return (
-    <div className="relative flex items-center w-28 h-10 bg-base-100 border-2 border-primary/40 rounded-full shadow-md px-1">
+    <div className="relative flex items-center w-20 h-8 md:w-28 md:h-10 bg-base-100 border-2 border-primary/40 rounded-full shadow-md px-1">
       {/* Animated background for active language */}
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-        className="absolute top-1 left-1 w-1/2 h-8 rounded-full z-0"
+        className="absolute top-1 left-1 w-1/2 h-6 md:h-8 rounded-full z-0"
         style={{
           background: 'linear-gradient(90deg, var(--tw-gradient-stops))',
           backgroundImage: highlightGradient,
@@ -60,7 +60,7 @@ const LanguageToggle = () => {
           <button
             key={lang.code}
             onClick={() => changeLanguage(lang.code)}
-            className={`flex-1 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-200 focus:outline-none ${
+            className={`flex-1 h-6 md:h-8 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all duration-200 focus:outline-none ${
               currentLanguage === lang.code
                 ? 'text-white scale-110' : 'text-base-content/70 hover:text-primary'
             }`}

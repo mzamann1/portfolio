@@ -284,7 +284,7 @@ const Projects = () => {
   );
 
   return (
-    <section id="projects" className={`py-20 bg-gradient-to-br from-base-100 via-base-200/30 to-base-100 ${fontClass}`}>
+    <section id="projects" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
       <motion.div
         className="container mx-auto px-4"
         initial={{ opacity: 0, y: 40 }}

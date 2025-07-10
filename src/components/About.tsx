@@ -34,25 +34,25 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-base-100/90">
-      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="py-16 md:py-20 bg-base-100/90">
+      <div className="container mx-auto px-4 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
         {/* Left: About & Stats */}
         <div>
-          <h2 className={`text-4xl font-extrabold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent ${heading}`}>
+          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 md:mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent ${heading}`}>
             {t('about')}
           </h2>
-          <p className={`text-lg text-base-content/80 mb-6 ${body}`}>
+          <p className={`text-base md:text-lg text-base-content/80 mb-5 md:mb-6 ${body}`}>
             {t('about_description', 'I am a passionate frontend developer with expertise in creating stunning, responsive, and user-friendly web applications. With a strong foundation in modern web technologies, I bring ideas to life through clean code and beautiful design.')}
           </p>
-          <div className="flex gap-8 mb-8">
+          <div className="flex flex-row justify-between gap-2 md:gap-8 mb-6 md:mb-8 w-full max-w-xl">
             {[{ label: t('years_experience', 'Years Experience'), value: 5, suffix: '+' }, { label: t('projects_completed', 'Projects'), value: 50, suffix: '+' }, { label: t('client_satisfaction', 'Satisfaction'), value: 100, suffix: '%' }].map(stat => (
-              <div key={stat.label} className="text-center">
-                <div className={`text-3xl font-bold text-primary ${heading}`}>{stat.value}{stat.suffix}</div>
+              <div key={stat.label} className="text-center flex-1 min-w-0">
+                <div className={`text-3xl md:text-4xl font-bold text-primary ${heading}`}>{stat.value}{stat.suffix}</div>
                 <div className={`text-sm text-base-content/60 ${body}`}>{stat.label}</div>
               </div>
             ))}
           </div>
-          <button className={`btn btn-primary btn-lg rounded-full w-full max-w-xs shadow-lg font-bold flex items-center justify-center gap-2 hover:scale-105 transition ${body}`}>
+          <button className={`btn btn-primary btn-md lg:btn-lg px-8 md:px-10 rounded-full mx-auto shadow-md font-bold flex items-center justify-center gap-2 hover:scale-105 transition ${body}`}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
@@ -60,18 +60,18 @@ const About = () => {
           </button>
         </div>
         {/* Right: Skills */}
-        <div className="space-y-6 w-full">
-          <h3 className={`text-2xl font-bold mb-4 ${heading}`}>{t('skills', 'Skills')}</h3>
-          <div className="space-y-5">
+        <div className="space-y-6 w-full max-w-xl mx-auto">
+          <h3 className={`text-xl md:text-2xl font-bold mb-2 md:mb-4 ${heading}`}>{t('skills', 'Skills')}</h3>
+          <div className="space-y-4 md:space-y-5">
             {skills.map((skill, idx) => (
               <div key={skill.name}>
-                <div className="flex items-center gap-3 mb-1">
-                  <span className="text-xl">{skill.icon}</span>
-                  <span className={`font-medium ${body}`}>{skill.name}</span>
+                <div className="flex items-center gap-2 md:gap-3 mb-1">
+                  <span className="text-lg md:text-xl">{skill.icon}</span>
+                  <span className={`font-medium text-sm md:text-base ${body}`}>{skill.name}</span>
                 </div>
-                <div className="relative w-full h-3 bg-base-300 rounded-full overflow-hidden">
+                <div className="relative w-full h-2.5 md:h-3 bg-base-300 rounded-full overflow-hidden">
                   <motion.div
-                    className="absolute top-0 left-0 h-3 rounded-full shadow-lg"
+                    className="absolute top-0 left-0 h-2.5 md:h-3 rounded-full shadow-lg"
                     style={{
                       background: skillGradients[idx % skillGradients.length],
                     }}
@@ -79,7 +79,7 @@ const About = () => {
                     whileInView={{ width: `${skill.level}%`, boxShadow: '0 0 16px 2px #fff3' }}
                     transition={{ width: { duration: 1.2, ease: 'easeOut' }, boxShadow: { duration: 1.2, ease: 'easeOut' } }}
                   />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-base-content/70">
+                  <span className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-base-content/70">
                     {skill.level}%
                   </span>
                 </div>

@@ -96,8 +96,8 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Vertical Navigation Sidebar */}
-      <nav className={`fixed top-1/2 -translate-y-1/2 z-50 ${isRTL ? 'left-6' : 'right-6'} ${fontClass}`}>
+      {/* Vertical Navigation Sidebar - Hidden on mobile */}
+      <nav className={`fixed top-1/2 -translate-y-1/2 z-50 ${isRTL ? 'left-6' : 'right-6'} ${fontClass} hidden lg:block`}>
         <div className="bg-base-200/80 backdrop-blur-md rounded-full p-3 shadow-2xl border border-base-300/20 custom-scrollbar">
           <div className="flex flex-col space-y-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
             {navItems.map((item) => (
@@ -123,12 +123,18 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Language and Theme Toggles - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-3 shadow-xl border border-base-300/20">
+      {/* Language and Theme Toggles - Responsive positioning and sizing */}
+      <div className={`fixed z-50 flex gap-2 md:gap-3 ${
+        isRTL 
+          ? 'bottom-4 md:bottom-6 left-4 md:left-6' 
+          : 'bottom-4 md:bottom-6 right-4 md:right-6'
+      }`}>
+        {/* Theme Toggle */}
+        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-2 md:p-3 shadow-xl border border-base-300/20">
           <ThemeToggle />
         </div>
-        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-3 shadow-xl border border-base-300/20">
+        {/* Language Toggle */}
+        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-2 md:p-3 shadow-xl border border-base-300/20">
           <LanguageToggle />
         </div>
       </div>

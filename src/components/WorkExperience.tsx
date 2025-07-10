@@ -81,7 +81,7 @@ const WorkExperience = () => {
 
   if (loading) {
     return (
-      <section id="experience" className={`w-full container mx-auto py-16 px-4 ${fontClass}`}>
+      <section id="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
         <h2 className={heading}>
           {t('work_experience', 'Work Experience')}
         </h2>
@@ -92,7 +92,7 @@ const WorkExperience = () => {
 
   if (error || !workExperienceData?.experiences) {
     return (
-      <section id="experience" className={`w-full container mx-auto py-16 px-4 ${fontClass}`}>
+      <section id="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
         <h2 className={heading}>
           {t('work_experience', 'Work Experience')}
         </h2>
@@ -106,7 +106,7 @@ const WorkExperience = () => {
   const experiences = workExperienceData.experiences;
 
   return (
-    <section id="experience" className={`w-full container mx-auto py-16 px-4 ${fontClass}`}>
+    <section id="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
       <h2 className={heading}>
         {t('work_experience', 'Work Experience')}
       </h2>

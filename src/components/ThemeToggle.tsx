@@ -11,7 +11,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className={`relative w-16 h-9 rounded-full flex items-center px-1 transition-colors duration-300 focus:outline-none border-2 border-primary/40 shadow-md bg-base-100 dark:bg-base-200`}
+      className={`relative w-12 h-7 md:w-16 md:h-9 rounded-full flex items-center px-1 transition-colors duration-300 focus:outline-none border-2 border-primary/40 shadow-md bg-base-100 dark:bg-base-200`}
       aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
       tabIndex={0}
     >
@@ -21,14 +21,14 @@ const ThemeToggle = () => {
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-        className={`relative z-10 w-7 h-7 rounded-full flex items-center justify-center shadow-lg ${isDarkMode ? 'bg-primary/90' : 'bg-yellow-400/90'} border-2 border-base-200`}
+        className={`relative z-10 w-5 h-5 md:w-7 md:h-7 rounded-full flex items-center justify-center shadow-lg ${isDarkMode ? 'bg-primary/90' : 'bg-yellow-400/90'} border-2 border-base-200`}
         style={{
           boxShadow: isDarkMode
             ? '0 0 12px 2px var(--tw-shadow-color, theme(colors.primary.DEFAULT))'
             : '0 0 12px 2px #facc15',
           left: isRTL 
-            ? (isDarkMode ? '0' : 'calc(100% - 1.75rem)')
-            : (isDarkMode ? 'calc(100% - 1.75rem)' : '0'),
+            ? (isDarkMode ? '0' : 'calc(100% - 1.25rem)')
+            : (isDarkMode ? 'calc(100% - 1.25rem)' : '0'),
           position: 'absolute',
         }}
       >
@@ -42,7 +42,7 @@ const ThemeToggle = () => {
               transition={{ duration: 0.3 }}
               className="text-white"
             >
-              <FaSun className="w-4 h-4 text-yellow-200 drop-shadow" />
+              <FaSun className="w-3 h-3 md:w-4 md:h-4 text-yellow-200 drop-shadow" />
             </motion.span>
           ) : (
             <motion.span
@@ -53,7 +53,7 @@ const ThemeToggle = () => {
               transition={{ duration: 0.3 }}
               className="text-primary"
             >
-              <FaMoon className="w-4 h-4 text-primary drop-shadow" />
+              <FaMoon className="w-3 h-3 md:w-4 md:h-4 text-primary drop-shadow" />
             </motion.span>
           )}
         </AnimatePresence>

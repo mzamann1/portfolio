@@ -111,7 +111,7 @@ const CoreSkills = () => {
 
   if (loading) {
     return (
-      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
         <h2 className={heading}>
           {t('core_skills', 'Core Skills')}
         </h2>
@@ -122,7 +122,7 @@ const CoreSkills = () => {
 
   if (error || !skillsData?.categories || skillsData.categories.length === 0) {
     return (
-      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
         <h2 className={heading}>
           {t('core_skills', 'Core Skills')}
         </h2>
@@ -137,7 +137,7 @@ const CoreSkills = () => {
   const currentCategory = skillsData.categories[selectedCategory];
   if (!currentCategory || !currentCategory.skills || currentCategory.skills.length === 0) {
     return (
-      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+      <section id="skills" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
         <h2 className={heading}>
           {t('core_skills', 'Core Skills')}
         </h2>

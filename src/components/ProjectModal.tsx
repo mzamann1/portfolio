@@ -103,7 +103,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
           
           {/* Modal */}
           <motion.div
-            className={`relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl bg-gradient-to-br from-base-100 to-base-200/50 backdrop-blur-sm border border-base-300/20 shadow-2xl ${fontClass}`}
+            className={`relative w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl bg-gradient-to-br from-base-100 to-base-200/50 backdrop-blur-sm border border-base-300/20 shadow-2xl ${fontClass} overflow-x-hidden`}
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -112,7 +112,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
           >
             {/* Close Button */}
             <motion.button
-              className="absolute top-4 right-4 z-10 w-10 h-10 bg-base-200/80 hover:bg-base-300/80 text-base-content rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+              className="absolute top-2 right-2 md:top-4 md:right-4 z-10 w-9 h-9 md:w-10 md:h-10 bg-base-200/80 hover:bg-base-300/80 text-base-content rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
               onClick={onClose}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -124,7 +124,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
             </motion.button>
 
             {/* Project Image */}
-            <div className="relative h-64 md:h-80 overflow-hidden">
+            <div className="relative h-40 sm:h-56 md:h-80 overflow-hidden">
               <motion.img
                 src={project.image || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=400&fit=crop'}
                 alt={project.name}
@@ -151,12 +151,12 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
             </div>
 
             {/* Content */}
-            <div className="p-6 md:p-8 overflow-y-auto max-h-[calc(90vh-16rem)]">
+            <div className="p-4 sm:p-6 md:p-8 overflow-y-auto max-h-[calc(90vh-12rem)]">
               <motion.div variants={contentVariants} initial="hidden" animate="visible">
                                  {/* Header */}
                  <div className="mb-6">
                    <motion.h2 
-                     className={`${heading} text-3xl md:text-4xl mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent`}
+                     className={`${heading} text-2xl sm:text-3xl md:text-4xl mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent`}
                      initial={{ opacity: 0, y: 20 }}
                      animate={{ opacity: 1, y: 0 }}
                      transition={{ delay: 0.5 }}
@@ -165,7 +165,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                    </motion.h2>
                    
                    <motion.p 
-                     className={`${body} text-lg text-base-content/70 leading-relaxed`}
+                     className={`${body} text-base sm:text-lg text-base-content/70 leading-relaxed`}
                      initial={{ opacity: 0, y: 20 }}
                      animate={{ opacity: 1, y: 0 }}
                      transition={{ delay: 0.6 }}
@@ -176,7 +176,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 
                 {/* Project Info */}
                 <motion.div 
-                  className="flex flex-wrap items-center gap-4 mb-6 text-sm text-base-content/60"
+                  className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 text-xs sm:text-sm text-base-content/60"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
@@ -193,7 +193,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 
                 {/* Action Buttons */}
                 <motion.div 
-                  className="flex flex-wrap gap-3 mb-8"
+                  className="flex flex-wrap gap-2 sm:gap-3 mb-8"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 }}
@@ -203,7 +203,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-primary btn-lg rounded-full shadow-lg hover:shadow-xl"
+                      className="btn btn-primary btn-md rounded-full shadow-lg hover:shadow-xl"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -216,7 +216,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-outline btn-lg rounded-full shadow-lg hover:shadow-xl"
+                      className="btn btn-outline btn-md rounded-full shadow-lg hover:shadow-xl"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -289,14 +289,14 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                    transition={{ delay: 1.1 }}
                    className="grid md:grid-cols-2 gap-6 mb-8"
                  >
-                   <div className="bg-base-200/50 rounded-xl p-4">
-                     <h4 className="font-semibold text-primary mb-2">My Role</h4>
-                     <p className="text-base-content/80">{project.modalDetails.role}</p>
-                   </div>
-                   <div className="bg-base-200/50 rounded-xl p-4">
-                     <h4 className="font-semibold text-secondary mb-2">Duration</h4>
-                     <p className="text-base-content/80">{project.modalDetails.duration}</p>
-                   </div>
+                  <div className="bg-base-200/50 rounded-xl p-4 md:p-6">
+                    <h4 className="text-lg md:text-xl font-bold text-primary mb-2">My Role</h4>
+                    <p className="text-base md:text-lg text-base-content/80">{project.modalDetails.role}</p>
+                  </div>
+                  <div className="bg-base-200/50 rounded-xl p-4 md:p-6">
+                    <h4 className="text-lg md:text-xl font-bold text-secondary mb-2">Duration</h4>
+                    <p className="text-base md:text-lg text-base-content/80">{project.modalDetails.duration}</p>
+                  </div>
                  </motion.div>
 
                  {/* Challenges & Solutions */}
@@ -306,12 +306,12 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                    transition={{ delay: 1.2 }}
                    className="grid md:grid-cols-2 gap-6 mb-8"
                  >
-                   <div>
-                     <h3 className={`${heading} text-xl mb-4 flex items-center gap-2`}>
-                       <span className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs">!</span>
-                       Challenges
-                     </h3>
-                     <ul className="space-y-2">
+                  <div className="bg-base-200/50 rounded-xl p-4 md:p-6">
+                    <h3 className="text-lg md:text-xl font-bold text-red-500 mb-4 flex items-center gap-2">
+                      <span className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs">!</span>
+                      Challenges
+                    </h3>
+                    <ul className="space-y-2 text-base md:text-lg">
                        {project.modalDetails.challenges.map((challenge, index) => (
                          <motion.li
                            key={index}
@@ -327,12 +327,12 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                        ))}
                      </ul>
                    </div>
-                   <div>
-                     <h3 className={`${heading} text-xl mb-4 flex items-center gap-2`}>
-                       <span className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
-                       Solutions
-                     </h3>
-                     <ul className="space-y-2">
+                  <div className="bg-base-200/50 rounded-xl p-4 md:p-6">
+                    <h3 className="text-lg md:text-xl font-bold text-green-600 mb-4 flex items-center gap-2">
+                      <span className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+                      Solutions
+                    </h3>
+                    <ul className="space-y-2 text-base md:text-lg">
                        {project.modalDetails.solutions.map((solution, index) => (
                          <motion.li
                            key={index}
@@ -356,29 +356,29 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                      initial={{ opacity: 0, y: 20 }}
                      animate={{ opacity: 1, y: 0 }}
                      transition={{ delay: 1.3 }}
-                     className="mb-8"
+                     className="mb-8 bg-base-200/50 rounded-xl p-4 md:p-6"
                    >
-                     <h3 className={`${heading} text-xl mb-4 flex items-center gap-2`}>
+                     <h3 className="text-lg md:text-xl font-bold text-blue-600 mb-4 flex items-center gap-2">
                        <span className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">📈</span>
                        Impact & Results
                      </h3>
-                     <ul className="space-y-3">
-                       {project.modalDetails.impact.map((impact, index) => (
-                         <motion.li
-                           key={index}
-                           custom={index}
-                           variants={featureVariants}
-                           initial="hidden"
-                           animate="visible"
-                           className="flex items-start gap-3 text-base-content/80"
-                         >
-                           <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
-                           <span className="leading-relaxed">{impact}</span>
-                         </motion.li>
-                       ))}
-                     </ul>
-                   </motion.div>
-                 )}
+                     <ul className="space-y-3 text-base md:text-lg">
+                        {project.modalDetails.impact.map((impact, index) => (
+                          <motion.li
+                            key={index}
+                            custom={index}
+                            variants={featureVariants}
+                            initial="hidden"
+                            animate="visible"
+                            className="flex items-start gap-3 text-base-content/80"
+                          >
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                            <span className="leading-relaxed">{impact}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
 
                  {/* Lessons Learned */}
                  {project.modalDetails.lessonsLearned && project.modalDetails.lessonsLearned.length > 0 && (
@@ -386,29 +386,29 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                      initial={{ opacity: 0, y: 20 }}
                      animate={{ opacity: 1, y: 0 }}
                      transition={{ delay: 1.4 }}
-                     className="mb-8"
+                     className="mb-8 bg-base-200/50 rounded-xl p-4 md:p-6"
                    >
-                     <h3 className={`${heading} text-xl mb-4 flex items-center gap-2`}>
+                     <h3 className="text-lg md:text-xl font-bold text-purple-600 mb-4 flex items-center gap-2">
                        <span className="w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs">🎓</span>
                        Lessons Learned
                      </h3>
-                     <ul className="space-y-3">
-                       {project.modalDetails.lessonsLearned.map((lesson, index) => (
-                         <motion.li
-                           key={index}
-                           custom={index}
-                           variants={featureVariants}
-                           initial="hidden"
-                           animate="visible"
-                           className="flex items-start gap-3 text-base-content/80"
-                         >
-                           <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
-                           <span className="leading-relaxed">{lesson}</span>
-                         </motion.li>
-                       ))}
-                     </ul>
-                   </motion.div>
-                 )}
+                     <ul className="space-y-3 text-base md:text-lg">
+                        {project.modalDetails.lessonsLearned.map((lesson, index) => (
+                          <motion.li
+                            key={index}
+                            custom={index}
+                            variants={featureVariants}
+                            initial="hidden"
+                            animate="visible"
+                            className="flex items-start gap-3 text-base-content/80"
+                          >
+                            <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
+                            <span className="leading-relaxed">{lesson}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
 
                  {/* Technical Details */}
                  {(project.modalDetails.architecture || project.modalDetails.performance || project.modalDetails.security || project.modalDetails.testing || project.modalDetails.deployment) && (

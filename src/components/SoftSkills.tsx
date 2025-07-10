@@ -84,7 +84,7 @@ const cardVariants = {
 const SoftSkills = () => {
   const { fontClass, heading, body } = useLanguageFont();
   return (
-    <section id="soft-skills" className={`w-full max-w-7xl mx-auto py-16 px-4 ${fontClass}`}>
+    <section id="soft-skills" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
       <h2 className={heading}>
         Soft Skills
       </h2>
