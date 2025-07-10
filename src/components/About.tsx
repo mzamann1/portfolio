@@ -45,7 +45,7 @@ const About = () => {
             {t('about_description', 'I am a passionate frontend developer with expertise in creating stunning, responsive, and user-friendly web applications. With a strong foundation in modern web technologies, I bring ideas to life through clean code and beautiful design.')}
           </p>
           <div className="flex gap-8 mb-8">
-            {[{ label: t('years_experience', 'Years Experience'), value: 3, suffix: '+' }, { label: t('projects_completed', 'Projects'), value: 50, suffix: '+' }, { label: t('client_satisfaction', 'Satisfaction'), value: 100, suffix: '%' }].map(stat => (
+            {[{ label: t('years_experience', 'Years Experience'), value: 5, suffix: '+' }, { label: t('projects_completed', 'Projects'), value: 50, suffix: '+' }, { label: t('client_satisfaction', 'Satisfaction'), value: 100, suffix: '%' }].map(stat => (
               <div key={stat.label} className="text-center">
                 <div className={`text-3xl font-bold text-primary ${heading}`}>{stat.value}{stat.suffix}</div>
                 <div className={`text-sm text-base-content/60 ${body}`}>{stat.label}</div>

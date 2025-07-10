@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import type { WorkExperienceItem } from '../types/WorkExperienceItem';
 import { useLanguageFont } from '../hooks/useLanguageFont';
+import { useWorkExperienceData } from '../hooks/usePortfolioData';
 import { FaRegCircle } from "react-icons/fa";
 
 const cardVariants = {
@@ -76,108 +75,116 @@ function renderAchievements(achievements: (string | { text: string; sub?: string
 }
 
 const WorkExperience = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const { fontClass, heading, body } = useLanguageFont();
-  const [experiences, setExperiences] = useState<WorkExperienceItem[] | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { data: workExperienceData, loading, error } = useWorkExperienceData();
 
-  useEffect(() => {
-    setLoading(true);
-    const lang = i18n.language.split('-')[0];
-    const url = `/data/${lang}/work-experience.json`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setExperiences(data.experiences);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [i18n.language]);
+  if (loading) {
+    return (
+      <section id="experience" className={`w-full container mx-auto py-16 px-4 ${fontClass}`}>
+        <h2 className={heading}>
+          {t('work_experience', 'Work Experience')}
+        </h2>
+        <div className={body + ' text-lg text-base-content/60 py-12'}>{t('loading', 'Loading...')}</div>
+      </section>
+    );
+  }
+
+  if (error || !workExperienceData?.experiences) {
+    return (
+      <section id="experience" className={`w-full container mx-auto py-16 px-4 ${fontClass}`}>
+        <h2 className={heading}>
+          {t('work_experience', 'Work Experience')}
+        </h2>
+        <div className={body + ' text-center text-lg text-base-content/60 py-12'}>
+          {error || t('no_work_experience_data', 'No work experience data available')}
+        </div>
+      </section>
+    );
+  }
+
+  const experiences = workExperienceData.experiences;
 
   return (
     <section id="experience" className={`w-full container mx-auto py-16 px-4 ${fontClass}`}>
       <h2 className={heading}>
         {t('work_experience', 'Work Experience')}
       </h2>
-      {loading ? (
-        <div className={body + ' text-lg text-base-content/60 py-12'}>{t('loading', 'Loading...')}</div>
-      ) : (
-        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-          {experiences && experiences.map((exp, idx) => {
-            const isLeft = idx % 2 === 0;
-            return (
-              <li key={exp.title + exp.company}>
-                {/* Left-aligned card */}
-                {isLeft && (
-                  <div className="timeline-start">
-                    <motion.div
-                      className="bg-base-200 dark:bg-base-400 rounded-xl p-6 shadow-lg border border-base-300/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/60"
-                      initial="hiddenLeft"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.5 }}
-                      variants={cardVariants}
-                      whileHover="hover"
-                    >
-                      <time className="font-mono italic text-base-content/60 block mb-1">{exp.from} – {exp.to}</time>
-                      <div className="text-lg font-black font-inter text-base-content mb-1 text-center w-full">
-                        {exp.title}
-                      </div>
-                      <div className="text-base font-medium text-base-content/70 italic mb-4 text-center w-full">
-                        {exp.company}
-                      </div>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        {exp.skills.map((skill) => (
-                          <span key={skill} className="badge badge-accent badge-md text-md font-sans">{skill}</span>
-                        ))}
-                      </div>
-                      {/* Achievements */}
-                      <div className="mt-4">
-                        {renderAchievements(exp.achievements)}
-                      </div>
-                    </motion.div>
-                  </div>
-                )}
-                {/* Timeline marker */}
-                <div className="timeline-middle z-20">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-6 w-6 text-primary">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                  </svg>
+      <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+        {experiences && experiences.map((exp, idx) => {
+          const isLeft = idx % 2 === 0;
+          return (
+            <li key={exp.title + exp.company}>
+              {/* Left-aligned card */}
+              {isLeft && (
+                <div className="timeline-start">
+                  <motion.div
+                    className="bg-base-200 dark:bg-base-400 rounded-xl p-6 shadow-lg border border-base-300/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/60"
+                    initial="hiddenLeft"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    variants={cardVariants}
+                    whileHover="hover"
+                  >
+                    <time className="font-mono italic text-base-content/60 block mb-1">{exp.from} – {exp.to}</time>
+                    <div className="text-lg font-black font-inter text-base-content mb-1 text-center w-full">
+                      {exp.title}
+                    </div>
+                    <div className="text-base font-medium text-base-content/70 italic mb-4 text-center w-full">
+                      {exp.company}
+                    </div>
+                    <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                      {exp.skills.map((skill) => (
+                        <span key={skill} className="badge badge-accent badge-md text-md font-sans">{skill}</span>
+                      ))}
+                    </div>
+                    {/* Achievements */}
+                    <div className="mt-4">
+                      {renderAchievements(exp.achievements)}
+                    </div>
+                  </motion.div>
                 </div>
-                {/* Right-aligned card */}
-                {!isLeft && (
-                  <div className="timeline-end">
-                    <motion.div
-                      className="bg-base-200 dark:bg-base-400 rounded-xl p-6 shadow-lg border border-base-300/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/60"
-                      initial="hiddenRight"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.5 }}
-                      variants={cardVariants}
-                      whileHover="hover"
-                    >
-                      <time className="font-mono italic text-base-content/60 block mb-1">{exp.from} – {exp.to}</time>
-                      <div className="text-lg font-black font-inter text-base-content mb-1 text-center w-full">
-                        {exp.title}
-                      </div>
-                      <div className="text-base font-medium text-base-content/70 italic mb-4 text-center w-full">
-                        {exp.company}
-                      </div>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        {exp.skills.map((skill) => (
-                          <span key={skill} className="badge badge-accent badge-md text-md font-sans">{skill}</span>
-                        ))}
-                      </div>
-                      {/* Achievements */}
-                      <div className="mt-4">
-                        {renderAchievements(exp.achievements)}
-                      </div>
-                    </motion.div>
-                  </div>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+              )}
+              {/* Timeline marker */}
+              <div className="timeline-middle z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-6 w-6 text-primary">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                </svg>
+              </div>
+              {/* Right-aligned card */}
+              {!isLeft && (
+                <div className="timeline-end">
+                  <motion.div
+                    className="bg-base-200 dark:bg-base-400 rounded-xl p-6 shadow-lg border border-base-300/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/60"
+                    initial="hiddenRight"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    variants={cardVariants}
+                    whileHover="hover"
+                  >
+                    <time className="font-mono italic text-base-content/60 block mb-1">{exp.from} – {exp.to}</time>
+                    <div className="text-lg font-black font-inter text-base-content mb-1 text-center w-full">
+                      {exp.title}
+                    </div>
+                    <div className="text-base font-medium text-base-content/70 italic mb-4 text-center w-full">
+                      {exp.company}
+                    </div>
+                    <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                      {exp.skills.map((skill) => (
+                        <span key={skill} className="badge badge-accent badge-md text-md font-sans">{skill}</span>
+                      ))}
+                    </div>
+                    {/* Achievements */}
+                    <div className="mt-4">
+                      {renderAchievements(exp.achievements)}
+                    </div>
+                  </motion.div>
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 };
