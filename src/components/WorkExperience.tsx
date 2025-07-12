@@ -2,7 +2,19 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useLanguageFont } from '../hooks/useLanguageFont';
 import { useWorkExperienceData } from '../hooks/usePortfolioData';
-import { FaRegCircle } from "react-icons/fa";
+import { 
+  FaRegCircle, 
+  FaBriefcase, 
+  FaStar, 
+  FaCircle
+} from "react-icons/fa";
+
+// Type definition for achievement items
+type AchievementItem = {
+  text: string | (string | { bold: string | string[] })[];
+  sub?: AchievementItem[];
+  icon?: string;
+};
 
 const cardVariants = {
   hiddenLeft: { opacity: 0, x: -80, scale: 0.80 },
@@ -34,8 +46,15 @@ function renderAchievementText(textArr: (string | { bold: string | string[] })[]
   });
 }
 
-// Helper to render achievements (supports multi-level lists)
-function renderAchievements(achievements: (string | { text: string; sub?: string[] })[], level = 0) {
+// Level-based icon mapping with professional icons
+const levelIcons = [
+  <FaBriefcase className="w-4 h-4" />,    // Level 1 - Main sections (Professional work)
+  <FaStar className="w-4 h-4" />,         // Level 2 - Subsections (Key achievements)
+  <FaCircle className="w-4 h-4" />        // Level 3 - Details (Specific points)
+];
+
+// Helper to render achievements (supports multi-level lists with level-based icons)
+function renderAchievements(achievements: (string | AchievementItem)[], level = 0) {
   // Calculate indentation: 0 for top, 5 for level 1, 8 for level 2+
   const ml = level === 0 ? 'ml-0' : level === 1 ? 'ml-5' : 'ml-8';
   return (
@@ -49,9 +68,17 @@ function renderAchievements(achievements: (string | { text: string; sub?: string
             </li>
           );
         } else {
+          // Use level-based icon (level 1 = index 0, level 2 = index 1, level 3 = index 2)
+          const iconIndex = Math.min(level - 1, levelIcons.length - 1);
+          const IconComponent = level >= 1 ? levelIcons[iconIndex] : null;
+          
           return (
             <li key={idx} className={level === 0 ? "mt-4" : ""}>
-              {level >= 1 && <FaRegCircle className="inline-block mr-4 text-primary align-middle" size={14} />}
+              {level >= 1 && (
+                <span className="inline-block mr-2 text-primary align-middle">
+                  {IconComponent || <FaRegCircle size={14} />}
+                </span>
+              )}
               <span className={
                 level === 0
                   ? "font-extrabold not-italic text-base md:text-lg text-primary mb-2 inline-block"

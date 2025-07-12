@@ -20,7 +20,7 @@ import {
   FaAws,
   FaReact
 } from 'react-icons/fa';
-import { SiTypescript } from 'react-icons/si';
+import { SiTypescript, SiDatacamp, SiUdemy, SiHackerrank, SiLinkedin, SiCoursera } from 'react-icons/si';
 import { useLanguageFont } from '../hooks/useLanguageFont';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -39,13 +39,20 @@ const iconMap: Record<string, React.ReactNode> = {
   FaAws: <FaAws className="w-6 h-6" />,
   FaReact: <FaReact className="w-6 h-6" />,
   SiTypescript: <SiTypescript className="w-6 h-6" />,
+  SiDatacamp: <SiDatacamp className="w-6 h-6 text-green-600" />,
+  SiUdemy: <SiUdemy className="w-6 h-6 text-[#A435F0]" />,
+  SiHackerrank: <SiHackerrank className="w-6 h-6 text-[#2EC866]" />,
+  SiLinkedin: <SiLinkedin className="w-6 h-6 text-[#0077B5]" />,
+  SiCoursera: <SiCoursera className="w-6 h-6 text-[#0056D2]" />,
 };
 
 const AwardsCertifications = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { data: awardsData, loading, error } = useAwardsData();
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'award' | 'achievement' | 'certification'>('all');
   const { fontClass, heading, body } = useLanguageFont();
+  const isRTL = i18n.dir() === 'rtl';
+  const isArabic = i18n.language.startsWith('ar');
 
   if (loading) {
     return (
@@ -143,7 +150,7 @@ const AwardsCertifications = () => {
             onClick={() => setSelectedCategory(button.key as 'all' | 'award' | 'achievement' | 'certification')}
             className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
               selectedCategory === button.key
-                ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
                 : 'bg-base-200 text-base-content/70 hover:bg-base-300 hover:text-base-content'
             }`}
             whileHover={{ scale: 1.05 }}
@@ -172,40 +179,63 @@ const AwardsCertifications = () => {
               initial="hidden"
               animate="visible"
               whileHover="hover"
-              className="group relative bg-gradient-to-br from-base-100 to-base-200/50 backdrop-blur-sm border border-base-300/20 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
+              className="group relative bg-gradient-to-br from-base-100 to-base-200/50 backdrop-blur-sm border-2 border-base-300/30 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:border-primary/50"
             >
               {/* Background Pattern */}
               <div className={`absolute inset-0 bg-gradient-to-br ${award.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
               
               {/* Badge */}
               {award.badge && (
-                <div className="absolute top-4 right-4 text-2xl animate-bounce">
+                <div className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'} text-2xl animate-bounce`}>
                   {award.badge}
                 </div>
               )}
 
               {/* Icon */}
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${award.color} flex items-center justify-center mb-4 shadow-lg`}>
-                {iconMap[award.icon] || <FaAward className="w-8 h-8 text-white" />}
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-lg ${award.icon === 'SiDatacamp' ? 'bg-emerald-500' : award.icon === 'SiUdemy' ? 'bg-white' : award.icon === 'SiHackerrank' ? 'bg-white' : award.icon === 'SiLinkedin' ? 'bg-white' : award.icon === 'SiCoursera' ? 'bg-white' : 'bg-gradient-to-r ' + award.color}`}> 
+                {award.icon === 'SiDatacamp'
+                  ? <SiDatacamp className="w-10 h-10 text-black" />
+                  : award.icon === 'SiUdemy'
+                    ? <SiUdemy className="w-10 h-10 text-[#A435F0]" />
+                    : award.icon === 'SiHackerrank'
+                      ? <SiHackerrank className="w-10 h-10 text-[#2EC866]" />
+                      : award.icon === 'SiLinkedin'
+                        ? <SiLinkedin className="w-10 h-10 text-[#0077B5]" />
+                        : award.icon === 'SiCoursera'
+                          ? <SiCoursera className="w-10 h-10 text-[#0056D2]" />
+                          : (iconMap[award.icon] || <FaAward className="w-8 h-8 text-white" />)
+                }
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-base-content mb-2 group-hover:text-primary transition-colors duration-300">
+              <h3 className={`text-xl font-bold text-base-content mb-2 group-hover:text-primary transition-colors duration-300 ${isArabic ? 'text-2xl' : ''}`}>
                 {award.title}
               </h3>
-              <p className="text-base-content/70 text-sm mb-3">
+              <p className={`text-base-content/70 ${isArabic ? 'text-base' : 'text-sm'} mb-3`}>
                 {award.issuer}
               </p>
-              <p className="text-base-content/80 text-sm mb-4 leading-relaxed">
+              <p className={`text-base-content/80 ${isArabic ? 'text-lg' : 'text-sm'} mb-4 leading-relaxed`}>
                 {award.description}
               </p>
+              {/* Verification Link */}
+              {award.url && (
+                <a
+                  href={award.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 px-4 py-2 mb-3 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-200 text-xs font-semibold shadow-sm z-20 relative ${isArabic ? 'text-base' : ''}`}
+                  style={{ position: 'relative', zIndex: 20 }}
+                >
+                  {t('show_credential', 'Show credential')}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M14 3h7m0 0v7m0-7L10 14m-7 7h7a2 2 0 002-2v-7" /></svg>
+                </a>
+              )}
               
               {/* Date */}
-              <div className="text-xs text-base-content/60 mb-4">
-                {new Date(award.date).toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long' 
-                })}
+              <div className={`mb-4 text-base-content/60 ${isArabic ? 'text-base' : 'text-xs'}`}>
+                {isArabic
+                  ? new Date(award.date).toLocaleDateString('ar', { year: 'numeric', month: 'long', numberingSystem: 'arab' })
+                  : new Date(award.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
               </div>
 
               {/* Skills */}

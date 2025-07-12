@@ -223,10 +223,11 @@
 }
 
 /* Arabic font settings */
-[lang="ar"], [lang="ar-SA"], [lang="ar-EG"] {
+[lang="ar"], [lang="ar-SA"], [lang="ar-EG"], [dir="rtl"] {
   font-family: 'Segoe UI', 'Tahoma', 'Arial Unicode MS', 'GumelaArabic', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.8;
   letter-spacing: 0.02em;
+  font-size: 1.18em;
 }
 
 /* RTL specific font adjustments */

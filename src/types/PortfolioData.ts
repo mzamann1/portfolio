@@ -144,6 +144,7 @@ export interface Award {
   color: string; // Tailwind color classes
   badge?: string; // Emoji badge
   skills?: string[]; // Related skill IDs
+  url?: string; // Optional credential/verification link
 }
 
 // About Section Types

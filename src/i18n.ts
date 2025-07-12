@@ -148,6 +148,7 @@ const resources = {
       achievements_count: "Achievements",
       certifications_count: "Certifications",
       total_recognition: "Total Recognition",
+      show_credential: "Show Credential",
       
       // Common
       welcome: "Welcome to my Portfolio",
@@ -299,6 +300,7 @@ const resources = {
       achievements_count: "الإنجازات",
       certifications_count: "الشهادات",
       total_recognition: "إجمالي الاعتراف",
+      show_credential: "عرض الشهادة",
       
       // Common
       welcome: "مرحبًا بكم في ملفي الشخصي",

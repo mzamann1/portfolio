@@ -117,24 +117,98 @@
       "skills": [
         "csharp",
         "dotnet",
+        "blazor",
+        "aspnet",
+        "entity-framework",
+        "identity-server",
+        "oauth",
+        "openid-connect",
+        "telerik",
+        "jquery",
+        "bootstrap",
         "sql",
         "git",
         "azure",
         "clean-architecture",
-        "mediator-pattern",
         "repository-pattern",
-        "microservices",
-        "j-query"
+        "unit-of-work",
+        "async-programming"
       ],
       "achievements": [
         {
-          "text": "Developed 8+ client projects with 95% client satisfaction rate",
+          "text": "Blazor WebAssembly Projects (Agent Portal & Life Insurance):",
           "sub": [
             {
-              "text": "Built real-time collaboration tools used by 50+ teams"
+              "text": [
+                "Developed modular front-end features using ",
+                { "bold": "Blazor WebAssembly" },
+                " and ",
+                { "bold": "Kendo UI" },
+                ". Applied ",
+                { "bold": "Clean Architecture" },
+                " principles with clearly separated layers (API, Application, Domain, Infrastructure)."
+              ]
             },
             {
-              "text": "Implemented responsive designs for mobile-first applications"
+              "text": [
+                "Implemented ",
+                { "bold": "OpenID Connect" },
+                " and ",
+                { "bold": "OAuth 2.0" },
+                " authentication flows using ",
+                { "bold": "IdentityServer" },
+                "."
+              ]
+            }
+          ]
+        },
+        {
+          "text": "VFW Accounting System (QuickBooks Replica):",
+          "sub": [
+            {
+              "text": [
+                "Built secure authentication/authorization features with ",
+                { "bold": "ASP.NET Identity" },
+                ", ",
+                { "bold": "Duo" },
+                ", and ",
+                { "bold": "Microsoft Authenticator" },
+                "."
+              ]
+            },
+            {
+              "text": [
+                "Enhanced performance with ",
+                { "bold": "async repository methods" },
+                ". Utilized ",
+                { "bold": "Entity Framework Core" },
+                " with ",
+                { "bold": "Repository & Unit of Work patterns" },
+                "."
+              ]
+            },
+            {
+              "text": [
+                "Used ",
+                { "bold": "jQuery" },
+                " and ",
+                { "bold": "Bootstrap" },
+                " for rich, responsive UI. Delivered accounting features like journal entries, ledgers, and invoices."
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Reporting & Optimization:",
+          "sub": [
+            {
+              "text": [
+                "Created dynamic reports with ",
+                { "bold": "Telerik Reporting" },
+                ". Improved scalability through caching and optimized database access using ",
+                { "bold": "async LINQ queries" },
+                "."
+              ]
             }
           ]
         }
@@ -143,55 +217,203 @@
       "type": "full-time"
     },
     {
-      "id": "frontend-developer-2022",
-      "title": "Frontend Developer",
-      "company": "WebCraft Studios",
-      "from": "2022-06",
-      "to": "2023-02",
-      "skills": ["react", "javascript", "html5", "css3", "tailwind", "figma"],
-      "achievements": [
-        "Created 15+ responsive websites and web applications",
-        "Collaborated with design team to implement pixel-perfect UI/UX",
-        "Improved website accessibility scores by 85%",
-        "Optimized bundle sizes reducing load times by 50%",
-        "Implemented modern CSS animations and transitions"
-      ],
-      "location": "Lahore, Pakistan",
+      "id": "senior-developer-techlogix-2020",
+      "title": "Senior Software Engineer",
+      "company": "Techlogix",
+      "from": "2020-11",
+      "to": "2022-09",
+      "skills": ["react", "javascript", "html5", "css3", "tailwind", "figma", "dotnet", "microservices", "micro-frontends", "enterprise-solutions", "webpack", "module-federation", "storybook", "cqrs", "mediatr", "clean-architecture", "postgresql", "mongodb", "keycloak", "openid-connect", "oauth", "jwt", "mfa", "aspnet", "oracle", "jquery", "azure"],
+              "achievements": [
+          {
+            "text": "Led the development of both monolithic and microservice-based applications—including micro-frontends.",
+            "sub": [
+              {
+                "text": [
+                  "Delivering secure, scalable, and high-performance enterprise solutions for international clients."
+                ]
+              },
+              {
+                "text": [
+                  "Recognized as a ",
+                  { "bold": "multi-time Achiever of the Month" },
+                  " for driving architectural innovation and team leadership."
+                ]
+              },
+              {
+                "text": "Micro-Frontend Architecture:",
+                "sub": [
+                  {
+                    "text": [
+                      "Proposed and implemented a micro-frontend strategy using ",
+                      { "bold": "Webpack Module Federation" },
+                      ", enabling independent deployments across 10+ teams. Led frontend architecture and integration into a unified container application."
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "Frontend Development:",
+                "sub": [
+                  {
+                    "text": [
+                      "Headed the UI team, converting ",
+                      { "bold": "Figma" },
+                      " designs into reusable, responsive ",
+                      { "bold": "React" },
+                      " components using ",
+                      { "bold": "TailwindCSS" },
+                      ". Built and maintained a shared UI library using ",
+                      { "bold": "Storybook" },
+                      ", published via ",
+                      { "bold": "Azure Private NPM Registry" },
+                      "."
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "Backend with .NET 6, CQRS, and Clean Architecture:",
+                "sub": [
+                  {
+                    "text": [
+                      "Developed scalable backend APIs using ",
+                      { "bold": "CQRS" },
+                      ", ",
+                      { "bold": "MediatR" },
+                      ", and ",
+                      { "bold": "Clean Architecture" },
+                      " principles. Utilized ",
+                      { "bold": "PostgreSQL" },
+                      " and ",
+                      { "bold": "MongoDB" },
+                      " for structured and unstructured data handling."
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "Authentication & Security:",
+                "sub": [
+                  {
+                    "text": [
+                      "Centralized identity with ",
+                      { "bold": "Keycloak" },
+                      ", integrating ",
+                      { "bold": "OpenID Connect" },
+                      ", ",
+                      { "bold": "OAuth 2.0" },
+                      ", ",
+                      { "bold": "JWT" },
+                      ", and ",
+                      { "bold": "Multi-Factor Authentication (MFA)" },
+                      ". Architected identity services independently from core systems for modular security."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "text": "Banking Software (ASP.NET & Oracle DB):",
+            "sub": [
+              {
+                "text": [
+                  "Led development of a banking platform using ",
+                  { "bold": "ASP.NET" },
+                  " with ",
+                  { "bold": "Razor syntax" },
+                  ", ",
+                  { "bold": "jQuery" },
+                  ", and ",
+                  { "bold": "Oracle Database" },
+                  ". Built secure, responsive modules with strong focus on transactional integrity and performance optimization."
+                ]
+              },
+              {
+                "text": "Performance Optimization & Database:",
+                "sub": [
+                  {
+                    "text": [
+                      "Integrated ",
+                      { "bold": "Oracle" },
+                      ", ",
+                      { "bold": "PostgreSQL" },
+                      ", and ",
+                      { "bold": "MongoDB" },
+                      ". Optimized backend queries, indexing, and data access strategies to improve responsiveness and reduce load."
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+      "location": "Karachi, Pakistan",
       "type": "full-time"
     },
     {
-      "id": "freelance-developer-2021",
-      "title": "Freelance Web Developer",
-      "company": "Self-Employed",
-      "from": "2021-01",
-      "to": "2022-05",
-      "skills": ["javascript", "html5", "css3", "python", "django", "git"],
+      "id": "aspnet-mvc-developer-leaptech-2019",
+      "title": "ASP.NET MVC Developer",
+      "company": "Leaptech Solutions",
+      "from": "2019-12",
+      "to": "2020-11",
+      "skills": ["csharp", "dotnet", "entity-framework", "jquery", "rdlc", "admin-lte", "sql", "logging", "error-handling"],
       "achievements": [
-        "Completed 25+ projects for various clients worldwide",
-        "Specialized in e-commerce and content management systems",
-        "Built custom WordPress themes and plugins",
-        "Provided ongoing maintenance and support services",
-        "Achieved 100% project completion rate on time"
+        {
+          "text": "Designed and applied backend logic and accounting ledgers using ",
+          "sub": [
+            {
+              "text": [
+                "C#",
+                ", ensuring efficient and accurate financial operations."
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Developed comprehensive reporting systems:",
+          "sub": [
+            {
+              "text": [
+                "Utilized ",
+                { "bold": "RDLC" },
+                " for dynamic reports and ",
+                { "bold": "jQuery data tables" },
+                " for interactive data management."
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Improved system reliability:",
+          "sub": [
+            {
+              "text": [
+                "Integrated detailed logging and robust error-handling mechanisms to ensure smooth operations and quick issue resolution."
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Frontend Integration:",
+          "sub": [
+            {
+              "text": [
+                "Utilized the ",
+                { "bold": "Admin LTE Admin Panel" },
+                " for the front-end, with extensive use of ",
+                { "bold": "jQuery" },
+                " for dynamic elements and ",
+                { "bold": "Entity Framework (EF) Core" },
+                " for data access, enhancing performance and maintainability."
+              ]
+            }
+          ]
+        }
       ],
-      "location": "Remote",
-      "type": "freelance"
-    },
-    {
-      "id": "intern-developer-2020",
-      "title": "Software Development Intern",
-      "company": "StartupHub Inc",
-      "from": "2020-06",
-      "to": "2020-12",
-      "skills": ["javascript", "html5", "css3", "git", "vscode"],
-      "achievements": [
-        "Assisted in development of company's main product",
-        "Fixed 50+ bugs and implemented 20+ new features",
-        "Learned modern development practices and tools",
-        "Participated in agile development processes",
-        "Received excellent performance review and recommendation"
-      ],
-      "location": "Islamabad, Pakistan",
-      "type": "contract"
+      "location": "Karachi, Pakistan",
+      "type": "full-time"
     }
+  
   ]
 }

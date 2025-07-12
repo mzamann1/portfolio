@@ -4,6 +4,7 @@ import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { useContactData } from '../hooks/usePortfolioData';
 import { useLanguageFont } from '../hooks/useLanguageFont';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaGlobe } from 'react-icons/fa';
 
 interface FormData {
   firstName: string;
@@ -20,6 +21,16 @@ interface FormErrors {
   subject?: string;
   message?: string;
 }
+
+const iconMap: Record<string, JSX.Element> = {
+  FaEnvelope: <FaEnvelope className="w-6 h-6" />,
+  FaPhone: <FaPhone className="w-6 h-6" />,
+  FaMapMarkerAlt: <FaMapMarkerAlt className="w-6 h-6" />,
+  FaLinkedin: <FaLinkedin className="w-6 h-6" />,
+  FaGithub: <FaGithub className="w-6 h-6" />,
+  FaTwitter: <FaTwitter className="w-6 h-6" />,
+  FaGlobe: <FaGlobe className="w-6 h-6" />,
+};
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -308,7 +319,7 @@ const Contact = () => {
               {contactData.contactInfo.map((info) => (
                 <div key={info.id} className="flex items-center space-x-4 p-4 bg-base-200/80 backdrop-blur border border-base-300/40 rounded-xl hover:bg-base-300/60 transition-colors duration-300">
                   <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                    <div className="w-6 h-6 bg-primary rounded"></div>
+                    {iconMap[info.icon] || <div className="w-6 h-6 bg-primary rounded"></div>}
                   </div>
                   <div>
                     <h4 className="font-medium">{info.title}</h4>
@@ -330,7 +341,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-base-200/80 backdrop-blur border border-base-300/40 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
                   >
-                    <div className="w-6 h-6 bg-current rounded"></div>
+                    {iconMap[social.icon] || <div className="w-6 h-6 bg-current rounded"></div>}
                   </a>
                 ))}
               </div>
