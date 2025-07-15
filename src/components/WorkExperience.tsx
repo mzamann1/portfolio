@@ -27,7 +27,6 @@ import {
   FaRocket
 } from "react-icons/fa";
 import { useState, useRef, useEffect, useMemo } from 'react';
-import React from 'react';
 
 // Type definition for achievement items
 type AchievementItem = {
