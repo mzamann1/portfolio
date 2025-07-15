@@ -406,7 +406,7 @@ const WorkExperience = () => {
 
   if (loading) {
     return (
-      <section id="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
+      <section id="experience" data-section="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
         <h2 className={heading}>
           {t('work_experience', 'Work Experience')}
         </h2>
@@ -417,7 +417,7 @@ const WorkExperience = () => {
 
   if (error || !workExperienceData?.experiences) {
     return (
-      <section id="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
+      <section id="experience" data-section="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
         <h2 className={heading}>
           {t('work_experience', 'Work Experience')}
         </h2>
@@ -431,7 +431,7 @@ const WorkExperience = () => {
   const experiences = filteredExperiences;
 
   return (
-    <section id="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
+    <section id="experience" data-section="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
       <motion.h2 
         className={heading}
         initial={{ opacity: 0, y: -20 }}
@@ -671,7 +671,7 @@ const WorkExperience = () => {
 
                 {/* Experience Card */}
                 <motion.div
-                  className={`w-full max-w-md ${isLeft ? 'mr-auto pr-8' : 'ml-auto pl-8'} ${isRTL ? (isLeft ? 'ml-auto pl-8' : 'mr-auto pr-8') : ''}`}
+                  className={`w-full max-w-lg ${isLeft ? 'mr-auto pr-8' : 'ml-auto pl-8'} ${isRTL ? (isLeft ? 'ml-auto pl-8' : 'mr-auto pr-8') : ''}`}
                   variants={cardVariants}
                   whileHover="hover"
                   onClick={() => setSelectedExperience(isSelected ? null : exp.id)}

@@ -165,6 +165,31 @@ const resources = {
       of: "of",
       experiences: "experiences",
       use_navigation: "Use navigation controls",
+      
+      // Keyboard Shortcuts
+      keyboard_shortcuts: "Keyboard Shortcuts",
+      shortcut_home: "Go to Home",
+      shortcut_about: "Go to About",
+      shortcut_projects: "Go to Projects",
+      shortcut_experience: "Go to Experience",
+      shortcut_skills: "Go to Skills",
+      shortcut_contact: "Go to Contact",
+      shortcut_toggle_theme: "Toggle Theme",
+      shortcut_toggle_language: "Toggle Language",
+      shortcut_search: "Open Search",
+      shortcut_close: "Close Modal/Dialog",
+      shortcut_scroll_top: "Scroll to Top",
+      shortcut_scroll_bottom: "Scroll to Bottom",
+      shortcut_help: "Show Help",
+      
+      // Social Sharing
+      share_portfolio: "Share Portfolio",
+      share_preview: "Share Preview",
+      share: "Share",
+      copy_link: "Copy Link",
+      copied: "Copied!",
+      qr_code: "QR Code",
+      scan_to_visit: "Scan to visit this page",
     },
   },
   ar: {
@@ -329,6 +354,31 @@ const resources = {
       of: "من",
       experiences: "الخبرات",
       use_navigation: "استخدم أدوات التنقل",
+      
+      // Keyboard Shortcuts
+      keyboard_shortcuts: "اختصارات لوحة المفاتيح",
+      shortcut_home: "الذهاب إلى الصفحة الرئيسية",
+      shortcut_about: "الذهاب إلى عنّي",
+      shortcut_projects: "الذهاب إلى المشاريع",
+      shortcut_experience: "الذهاب إلى الخبرة",
+      shortcut_skills: "الذهاب إلى المهارات",
+      shortcut_contact: "الذهاب إلى تواصل",
+      shortcut_toggle_theme: "تبديل الوضع الليلي",
+      shortcut_toggle_language: "تبديل اللغة",
+      shortcut_search: "فتح البحث",
+      shortcut_close: "إغلاق النموذج/الحوار",
+      shortcut_scroll_top: "التمرير إلى الأعلى",
+      shortcut_scroll_bottom: "التمرير إلى الأسفل",
+      shortcut_help: "عرض المساعدة",
+      
+      // Social Sharing
+      share_portfolio: "مشاركة الملف الشخصي",
+      share_preview: "مشاركة عرض للتوقع",
+      share: "مشاركة",
+      copy_link: "نسخ الرابط",
+      copied: "تم النسخ!",
+      qr_code: "رمز QR",
+      scan_to_visit: "استقر على هذه الصفحة لزيارتها",
     },
   },
 };

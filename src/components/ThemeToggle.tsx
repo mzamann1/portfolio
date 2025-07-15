@@ -10,6 +10,7 @@ const ThemeToggle = () => {
 
   return (
     <button
+      data-theme-toggle
       onClick={toggleDarkMode}
       className={`relative w-12 h-7 md:w-16 md:h-9 rounded-full flex items-center px-1 transition-colors duration-300 focus:outline-none border-2 border-primary/40 shadow-md bg-base-100 dark:bg-base-200`}
       aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}

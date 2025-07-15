@@ -1,159 +1,212 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import LanguageToggle from './LanguageToggle.tsx';
-import ThemeToggle from './ThemeToggle.tsx';
-import { FaHome, FaUser, FaBriefcase, FaAward, FaProjectDiagram, FaEnvelope, FaGraduationCap, FaStar, FaLightbulb } from 'react-icons/fa';
 import { useLanguageFont } from '../hooks/useLanguageFont';
+import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
+import { FaBars, FaTimes, FaHome, FaUser, FaBriefcase, FaCode, FaGraduationCap, FaFolder, FaTrophy, FaEnvelope } from 'react-icons/fa';
 
 const Navigation = () => {
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === 'rtl';
-  const [activeSection, setActiveSection] = useState('hero');
-  const { fontClass } = useLanguageFont();
+  const { t } = useTranslation();
+  const { heading } = useLanguageFont();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // All main sections
-  const navItems = [
-    {
-      name: t('hero', 'Home'),
-      href: '#hero',
-      id: 'hero',
-      icon: <FaHome className="w-5 h-5" />,
-    },
-    {
-      name: t('about', 'About'),
-      href: '#about',
-      id: 'about',
-      icon: <FaUser className="w-5 h-5" />,
-    },
-    {
-      name: t('experience', 'Work Experience'),
-      href: '#experience',
-      id: 'experience',
-      icon: <FaBriefcase className="w-5 h-5" />,
-    },
-    {
-      name: t('core_skills', 'Core Skills'),
-      href: '#core-skills',
-      id: 'core-skills',
-      icon: <FaStar className="w-5 h-5" />,
-    },
-    {
-      name: t('soft_skills', 'Soft Skills'),
-      href: '#soft-skills',
-      id: 'soft-skills',
-      icon: <FaLightbulb className="w-5 h-5" />,
-    },
-    {
-      name: t('education', 'Education'),
-      href: '#education',
-      id: 'education',
-      icon: <FaGraduationCap className="w-5 h-5" />,
-    },
-    {
-      name: t('awards_certifications', 'Awards & Certifications'),
-      href: '#awards',
-      id: 'awards',
-      icon: <FaAward className="w-5 h-5" />,
-    },
-    {
-      name: t('projects', 'Projects'),
-      href: '#projects',
-      id: 'projects',
-      icon: <FaProjectDiagram className="w-5 h-5" />,
-    },
-    {
-      name: t('contact', 'Contact'),
-      href: '#contact',
-      id: 'contact',
-      icon: <FaEnvelope className="w-5 h-5" />,
-    },
-  ];
-
-  // Scrollspy effect
   useEffect(() => {
     const handleScroll = () => {
-      const offsets = navItems.map(item => {
-        const el = document.getElementById(item.id);
-        if (!el) return { id: item.id, top: Infinity };
-        const rect = el.getBoundingClientRect();
-        return { id: item.id, top: Math.abs(rect.top) };
-      });
-      const visible = offsets.reduce((prev, curr) => (curr.top < prev.top ? curr : prev), { id: '', top: Infinity });
-      if (visible.id && visible.id !== activeSection) setActiveSection(visible.id);
+      setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [navItems, activeSection]);
 
-  const scrollToSection = (href: string, id: string) => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { id: 'home', label: t('home'), icon: FaHome, href: '#home' },
+    { id: 'about', label: t('about'), icon: FaUser, href: '#about' },
+    { id: 'experience', label: t('experience'), icon: FaBriefcase, href: '#experience' },
+    { id: 'skills', label: t('skills'), icon: FaCode, href: '#skills' },
+    { id: 'education', label: t('education'), icon: FaGraduationCap, href: '#education' },
+    { id: 'projects', label: t('projects'), icon: FaFolder, href: '#projects' },
+    { id: 'awards', label: t('awards_nav'), icon: FaTrophy, href: '#awards' },
+    { id: 'contact', label: t('contact'), icon: FaEnvelope, href: '#contact' },
+  ];
+
+  const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
     }
+    setIsOpen(false);
   };
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = !isOpen ? 'hidden' : 'auto';
+  };
+
+  useEffect(() => {
+    // Reset body overflow when component unmounts
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   return (
     <>
-      {/* Vertical Navigation Sidebar - Hidden on mobile */}
-      <nav className={`fixed top-1/2 -translate-y-1/2 z-50 ${isRTL ? 'left-3' : 'right-3'} ${fontClass} hidden lg:block`}>
-        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-3 pt-5 pb-5 shadow-2xl border border-base-300/20 custom-scrollbar flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center justify-center space-y-4 max-h-[calc(85vh-16px)] custom-scrollbar">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.href, item.id)}
-                className={`w-10 h-10 p-2.5 rounded-full flex items-center justify-center transition-all duration-300 relative group text-lg ${
-                  activeSection === item.id 
-                    ? 'bg-primary text-primary-content shadow-lg' 
-                    : 'text-base-content/60 hover:text-primary hover:bg-primary/10 hover:scale-105'
-                }`}
-                title={item.name}
-                style={{ margin: 0, overflow: 'visible' }}
-              >
-                {React.cloneElement(item.icon, { className: 'w-5 h-5 m-0.5' })}
-                {/* Tooltip */}
-                <div className="absolute left-full ml-2 px-2 py-1 bg-base-100 text-base-content text-xs rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-base-300/20">
-                  {item.name}
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-base-100 rotate-45 border-l border-b border-base-300/20"></div>
-                </div>
-              </button>
-            ))}
+      {/* Desktop Navigation */}
+      <motion.nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? 'bg-base-100/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="container mx-auto px-4 md:px-12">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <motion.div
+              className={`text-2xl md:text-3xl font-bold ${heading}`}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                ZAMAN
+              </span>
+            </motion.div>
+
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`text-sm font-medium transition-colors duration-300 hover:text-primary ${
+                    isScrolled ? 'text-base-content' : 'text-base-content/90'
+                  }`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </div>
+
+            {/* Desktop Controls */}
+            <div className="hidden lg:flex items-center space-x-4">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              className="lg:hidden p-2 rounded-lg bg-base-200/50 backdrop-blur-sm border border-base-300"
+              onClick={toggleMenu}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaTimes className="w-5 h-5" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaBars className="w-5 h-5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Language and Theme Toggles - Responsive positioning and sizing */}
-      <div className={`fixed z-50 flex gap-2 md:gap-3 ${
-        isRTL 
-          ? 'bottom-4 md:bottom-6 left-4 md:left-6' 
-          : 'bottom-4 md:bottom-6 right-4 md:right-6'
-      }`}>
-        {/* Theme Toggle */}
-        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-2 md:p-3 shadow-xl border border-base-300/20">
-          <ThemeToggle />
-        </div>
-        {/* Language Toggle */}
-        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-2 md:p-3 shadow-xl border border-base-300/20">
-          <LanguageToggle />
-        </div>
-      </div>
+      {/* Mobile Slide-out Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMenu}
+            />
+
+            {/* Menu Panel */}
+            <motion.div
+              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-base-100 shadow-2xl z-50 lg:hidden"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            >
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="flex items-center justify-between p-6 border-b border-base-300">
+                  <h2 className={`text-xl font-bold ${heading}`}>
+                    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      ZAMAN
+                    </span>
+                  </h2>
+                  <button
+                    onClick={toggleMenu}
+                    className="p-2 rounded-lg hover:bg-base-200 transition-colors"
+                  >
+                    <FaTimes className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Navigation Items */}
+                <div className="flex-1 overflow-y-auto py-6">
+                  <div className="space-y-2 px-6">
+                    {navItems.map((item, index) => (
+                      <motion.button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.href)}
+                        className="flex items-center space-x-4 w-full p-4 rounded-xl hover:bg-base-200 transition-all duration-300 text-left"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ x: 8 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <item.icon className="w-5 h-5 text-primary" />
+                        <span className="font-medium">{item.label}</span>
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mobile Controls */}
+                <div className="p-6 border-t border-base-300">
+                  <div className="flex items-center justify-between">
+                    <LanguageToggle />
+                    <ThemeToggle />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };
 
-export default Navigation;
-// Add this to your global CSS (e.g., index.css or App.css):
-// .custom-scrollbar::-webkit-scrollbar {
-//   width: 8px;
-//   background: transparent;
-// }
-// .custom-scrollbar::-webkit-scrollbar-thumb {
-//   background: linear-gradient(135deg, var(--tw-gradient-from, #a855f7), var(--tw-gradient-to, #06b6d4));
-//   border-radius: 8px;
-// }
-// .custom-scrollbar {
-//   scrollbar-width: thin;
-//   scrollbar-color: #a855f7 #18181b;
-// } 
+export default Navigation; 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguageStore } from '../stores/languageStore';
 import { useUIStore } from '../stores/uiStore';
@@ -7,6 +7,8 @@ export const useAppInitialization = () => {
   const { i18n } = useTranslation();
   const { currentLanguage, setLanguage } = useLanguageStore();
   const { setTheme } = useUIStore();
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Initialize language from store or i18n
@@ -40,8 +42,24 @@ export const useAppInitialization = () => {
       setTheme(savedTheme || 'auto');
     };
 
-    initLanguage();
-    initTheme();
+    const initializeApp = async () => {
+      try {
+        setLoading(true);
+        initLanguage();
+        initTheme();
+        
+        // Simulate loading time for better UX
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        setIsInitialized(true);
+      } catch (error) {
+        console.error('App initialization error:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeApp();
   }, []); // Only run once on mount
 
   // Sync language changes between i18n and store
@@ -59,4 +77,6 @@ export const useAppInitialization = () => {
       i18n.off('languageChanged', handleLanguageChange);
     };
   }, [i18n, currentLanguage, setLanguage]);
+
+  return { isInitialized, loading };
 }; 

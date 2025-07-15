@@ -42,7 +42,7 @@ const LanguageToggle = () => {
     : 'linear-gradient(to left, var(--tw-gradient-from, #a855f7), var(--tw-gradient-to, #06b6d4))';
 
   return (
-    <div className="relative flex items-center w-20 h-8 md:w-28 md:h-10 bg-base-100 border-2 border-primary/40 rounded-full shadow-md px-1">
+    <div data-language-toggle className="relative flex items-center w-20 h-8 md:w-28 md:h-10 bg-base-100 border-2 border-primary/40 rounded-full shadow-md px-1">
       {/* Animated background for active language */}
       <motion.div
         layout
