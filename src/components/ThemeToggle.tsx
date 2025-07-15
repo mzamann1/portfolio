@@ -26,9 +26,12 @@ const ThemeToggle = () => {
           boxShadow: isDarkMode
             ? '0 0 12px 2px var(--tw-shadow-color, theme(colors.primary.DEFAULT))'
             : '0 0 12px 2px #facc15',
+          // Use left/right + translateY(-50%) for perfect centering
           left: isRTL 
-            ? (isDarkMode ? '0' : 'calc(100% - 1.25rem)')
-            : (isDarkMode ? 'calc(100% - 1.25rem)' : '0'),
+            ? (isDarkMode ? '4px' : 'calc(100% - 28px)')
+            : (isDarkMode ? 'calc(100% - 28px)' : '4px'),
+          top: '50%',
+          transform: 'translateY(-50%)',
           position: 'absolute',
         }}
       >

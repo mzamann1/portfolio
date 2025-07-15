@@ -297,18 +297,18 @@ const CoreSkills = () => {
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-4">
                   <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${currentCategory.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    {iconMap[skill.icon] || <FallbackIcon />}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-base-content group-hover:text-primary transition-colors duration-300">
-                      {skill.name}
-                    </h3>
-                    <SkillLevel proficiency={skill.proficiency} />
-                  </div>
+                  {iconMap[skill.icon] || <FallbackIcon />}
                 </div>
-                
+                  <div>
+                  <h3 className="text-xl font-bold text-base-content group-hover:text-primary transition-colors duration-300">
+                    {skill.name}
+                  </h3>
+                    <SkillLevel proficiency={skill.proficiency} />
+                </div>
+              </div>
+
                 {/* Expand/Collapse Icon */}
-                <motion.div
+                  <motion.div
                   animate={{ rotate: expandedSkill === skill.id ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                   className="text-base-content/50 group-hover:text-base-content/70"

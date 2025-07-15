@@ -110,6 +110,9 @@ export interface WorkExperience {
   achievements: string[];
   location?: string;
   type?: 'full-time' | 'contract' | 'freelance';
+  logo?: string;
+  demo?: string;
+  screenshots?: string[];
 }
 
 // Education Section Types

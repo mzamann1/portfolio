@@ -5,4 +5,7 @@ export type WorkExperienceItem = {
   company: string;
   skills: string[];
   achievements: string[];
+  logo?: string;
+  demo?: string;
+  screenshots?: string[];
 };

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom cursor styles */
+* {
+  cursor: none !important;
+}
+
+/* Ensure custom cursor works on all interactive elements */
+a, button, [role="button"], .btn, .cursor-pointer {
+  cursor: none !important;
+}
 
 /* Custom animations */
 @keyframes fade-in {
@@ -202,98 +211,81 @@
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: gradient-shine 1.2s linear infinite;
+  animation: gradient-shine 3s ease infinite;
   display: inline-block;
 }
 
-/* Global font settings */
+/* Theme variables */
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --primary-color: #10b981;
+  --secondary-color: #3b82f6;
+  --accent-color: #f59e0b;
+  --background-color: #ffffff;
+  --text-color: #1f2937;
 }
 
-/* English font settings */
+/* Language-specific font settings */
 [lang="en"], [lang="en-US"], [lang="en-GB"] {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Satoshi', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Arabic font settings */
 [lang="ar"], [lang="ar-SA"], [lang="ar-EG"], [dir="rtl"] {
-  font-family: 'Segoe UI', 'Tahoma', 'Arial Unicode MS', 'GumelaArabic', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.8;
-  letter-spacing: 0.02em;
-  font-size: 1.18em;
+  font-family: 'GumelaArabic', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* RTL specific font adjustments */
+/* RTL/LTR specific styles */
 [dir="rtl"] {
-  font-family: 'Segoe UI', 'Tahoma', 'Arial Unicode MS', 'GumelaArabic', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.8;
-  letter-spacing: 0.02em;
+  text-align: right;
 }
 
-/* LTR specific font adjustments */
 [dir="ltr"] {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  letter-spacing: normal;
+  text-align: left;
 }
 
+/* Base styles */
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 0;
+  font-family: inherit;
+  line-height: 1.6;
+  color: inherit;
+  background-color: inherit;
 }
 
-/* Font classes for manual control */
+/* Font classes */
 .font-english {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  letter-spacing: normal;
+  font-family: 'Satoshi', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .font-arabic {
-  font-family: 'Segoe UI', 'Tahoma', 'Arial Unicode MS', 'GumelaArabic', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.8;
-  letter-spacing: 0.02em;
+  font-family: 'GumelaArabic', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Test class to verify font loading */
-.font-test {
-  font-family: 'GumelaArabic', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 24px;
-  color: red;
-}
-
-/* Ensure all elements inherit the appropriate font */
+/* Global styles */
 * {
-  font-family: inherit;
+  box-sizing: border-box;
 }
 
+/* Custom scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
-  background: transparent;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #a855f7, #06b6d4);
-  border-radius: 8px;
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
 }
+
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #a855f7 #18181b;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
 }
 
 @keyframes bounce-slow-short {
   0%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-0.5rem); }
-  60% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
+
 .animate-bounce-slow-short {
-  animation: bounce-slow-short 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: bounce-slow-short 2s ease-in-out infinite;
 }

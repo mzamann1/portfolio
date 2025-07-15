@@ -15,6 +15,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
+import CustomCursor from './components/CustomCursor';
 import { useUIStore } from './stores/uiStore';
 
 function App() {
@@ -52,7 +53,8 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-base-100 text-base-content">
+    <div className="min-h-screen bg-base-100 text-base-content cursor-none">
+      <CustomCursor />
       <AnimatePresence mode="wait">
         {(isLoading || languageLoading) ? (
           <Loading key="loading" />

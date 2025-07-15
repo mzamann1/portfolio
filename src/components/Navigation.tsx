@@ -97,23 +97,24 @@ const Navigation = () => {
   return (
     <>
       {/* Vertical Navigation Sidebar - Hidden on mobile */}
-      <nav className={`fixed top-1/2 -translate-y-1/2 z-50 ${isRTL ? 'left-6' : 'right-6'} ${fontClass} hidden lg:block`}>
-        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-3 shadow-2xl border border-base-300/20 custom-scrollbar">
-          <div className="flex flex-col space-y-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
+      <nav className={`fixed top-1/2 -translate-y-1/2 z-50 ${isRTL ? 'left-3' : 'right-3'} ${fontClass} hidden lg:block`}>
+        <div className="bg-base-200/80 backdrop-blur-md rounded-full p-3 pt-5 pb-5 shadow-2xl border border-base-300/20 custom-scrollbar flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center space-y-4 max-h-[calc(85vh-16px)] custom-scrollbar">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.href, item.id)}
-                className={`w-12 h-12 p-1 rounded-full flex items-center justify-center transition-all duration-300 relative group text-lg ${
+                className={`w-10 h-10 p-2.5 rounded-full flex items-center justify-center transition-all duration-300 relative group text-lg ${
                   activeSection === item.id 
-                    ? 'bg-primary text-primary-content shadow-xl scale-110' 
+                    ? 'bg-primary text-primary-content shadow-lg' 
                     : 'text-base-content/60 hover:text-primary hover:bg-primary/10 hover:scale-105'
                 }`}
                 title={item.name}
+                style={{ margin: 0, overflow: 'visible' }}
               >
-                {React.cloneElement(item.icon, { className: 'w-4 h-4' })}
+                {React.cloneElement(item.icon, { className: 'w-5 h-5 m-0.5' })}
                 {/* Tooltip */}
-                <div className="absolute left-full ml-4 px-3 py-2 bg-base-100 text-base-content text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-base-300/20">
+                <div className="absolute left-full ml-2 px-2 py-1 bg-base-100 text-base-content text-xs rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-base-300/20">
                   {item.name}
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-base-100 rotate-45 border-l border-b border-base-300/20"></div>
                 </div>

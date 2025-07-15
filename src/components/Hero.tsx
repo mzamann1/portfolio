@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
-import ProfileCard3D from './ProfileCard3D';
 import { useHeroData } from '../hooks/usePortfolioData';
 import { useLanguageFont } from '../hooks/useLanguageFont';
 import { 
@@ -83,7 +82,7 @@ if (typeof window !== 'undefined' && !document.getElementById('typewriter-cursor
 const Hero = () => {
   const { t } = useTranslation();
   const { data: heroData, loading } = useHeroData();
-  const { fontClass, body, getFontClass, isArabic } = useLanguageFont();
+  const { fontClass, body, getFontClass } = useLanguageFont();
   
   // Helper to replace the space between first and last name with a non-breaking space
   function getHeroTitleWithNoBreak(title: string) {
@@ -143,11 +142,10 @@ const Hero = () => {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              transform: 'rotate(0deg)',
             }}
             animate={{
-              y: [0, -20, 0],
-              x: [0, Math.random() * 10 - 5, 0],
-              rotate: [0, 360],
+              y: [0, -30, 0],
             }}
             transition={{
               duration: item.duration,
@@ -170,113 +168,92 @@ const Hero = () => {
       <div className="absolute bottom-8 right-8 md:bottom-16 md:right-16 w-28 h-28 md:w-56 md:h-56 bg-secondary/20 rounded-full blur-2xl opacity-60" />
       
       <motion.div
-        className="container mx-auto px-4 md:px-12 z-10 flex-1 flex items-center"
+        className="container mx-auto px-4 md:px-12 z-10 flex-1 flex items-center justify-center"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Responsive grid layout */}
-        <div className="grid grid-cols-1 xl:grid-cols-[2.5fr,1fr] gap-8 lg:gap-12 items-center w-full max-w-7xl mx-auto">
-          {/* Left Column - Hero Content */}
-          <div className="flex flex-col justify-center text-center xl:text-left order-2 xl:order-1">
-            <div className="relative mb-6 md:mb-10">
-              <motion.h1
-                initial={{ opacity: 0, x: -80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                className={
-                  getFontClass({ weight: 'bold', size: '4xl' }) + ' md:text-5xl lg:text-6xl ' +
-                  'tracking-tight transition-all duration-100 relative overflow-hidden ' +
-                  (isArabic ? 'text-right' : 'text-left')
-                }
-                dir={isArabic ? 'rtl' : 'ltr'}
-              >
-                <span
-                  className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-bold"
-                  style={{ WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
-                  dir={isArabic ? 'rtl' : 'ltr'}
-                >
-                  <Typewriter
-                    words={[heroTitle]}
-                    loop={1}
-                    cursor={true}
-                    cursorStyle="|"
-                    typeSpeed={80}
-                    deleteSpeed={50}
-                    delaySpeed={1000}
-                  />
-                </span>
-              </motion.h1>
-            </div>
-            <motion.p
-              initial={{ opacity: 0, x: -60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+        {/* Centered Hero Content */}
+        <div className="text-center max-w-6xl mx-auto w-full">
+          <div className="relative mb-6 md:mb-10">
+            <motion.h1
+              initial={{ opacity: 0, y: -40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
               className={
-                body +
-                ' text-base md:text-lg lg:text-xl xl:text-2xl text-base-content/80 mb-6 md:mb-8 max-w-2xl mx-auto xl:mx-0 font-light ' +
-                (isArabic ? 'text-right' : 'text-left')
+                getFontClass({ weight: 'bold', size: '4xl' }) + ' md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl ' +
+                'tracking-tight transition-all duration-100 relative overflow-hidden text-center'
               }
-              dir={isArabic ? 'rtl' : 'ltr'}
             >
-              {t('hero_subtitle')}
-            </motion.p>
-            
-            {/* Statistics with Count-Up Animation - responsive grid */}
-            <motion.div 
-              className={
-                'grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12 max-w-4xl mx-auto xl:mx-0 ' +
-                (isArabic ? 'text-right' : 'text-left')
-              }
-              dir={isArabic ? 'rtl' : 'ltr'}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              {heroData.stats.map((stat, index) => (
-                <div key={index} className={isArabic ? 'text-right' : 'text-left'}>
-                  <div className={`${fontClass} text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-1 md:mb-2`}>
-                    <CountUpNumber end={stat.value} duration={2} />
-                    {stat.suffix || '+'}
-                  </div>
-                  <div className={`${fontClass} text-xs md:text-sm text-base-content/70`}>{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
-            
-            {/* Responsive button layout */}
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center xl:justify-start items-center">
-              <motion.button 
-                onClick={() => scrollToSection('#contact')}
-                className="relative btn btn-primary btn-md lg:btn-lg px-8 md:px-10 rounded-full shadow-md overflow-visible border-0 w-full sm:w-auto"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                whileTap={{ scale: 0.95 }}
+              <span
+                className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-bold"
+                style={{ WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
               >
-                {t('contact')}
-              </motion.button>
-              <motion.button 
-                onClick={() => scrollToSection('#projects')}
-                className="btn btn-outline btn-md lg:btn-lg px-8 md:px-10 rounded-full shadow-md w-full sm:w-auto"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                {t('projects')}
-              </motion.button>
-            </div>
+                <Typewriter
+                  words={[heroTitle]}
+                  loop={1}
+                  cursor={true}
+                  cursorStyle="|"
+                  typeSpeed={80}
+                  deleteSpeed={50}
+                  delaySpeed={1000}
+                />
+              </span>
+            </motion.h1>
           </div>
           
-          {/* Right Column - Profile Card - responsive sizing */}
-          <motion.div
-            initial={{ opacity: 0, x: 80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="max-w-[280px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] w-full mx-auto order-1 xl:order-2 mb-8 xl:mb-0"
+          <motion.p
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className={
+              body +
+              ' text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-base-content/80 mb-6 md:mb-8 max-w-5xl mx-auto font-light text-center'
+            }
           >
-            <ProfileCard3D />
+            {t('hero_subtitle')}
+          </motion.p>
+          
+          {/* Statistics with Count-Up Animation - centered grid */}
+          <motion.div 
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12 mb-8 md:mb-12 max-w-6xl mx-auto justify-items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            {heroData.stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className={`${fontClass} text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-1 md:mb-2`}>
+                  <CountUpNumber end={stat.value} duration={2} />
+                  {stat.suffix || '+'}
+                </div>
+                <div className={`${fontClass} text-xs md:text-sm lg:text-base text-base-content/70`}>{stat.label}</div>
+              </div>
+            ))}
           </motion.div>
+          
+          {/* Centered button layout */}
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+            <motion.button 
+              onClick={() => scrollToSection('#contact')}
+              className="relative btn btn-primary btn-lg lg:btn-xl px-10 md:px-12 rounded-full shadow-md overflow-visible border-0 w-full sm:w-auto"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {t('contact')}
+            </motion.button>
+            <motion.button 
+              onClick={() => scrollToSection('#projects')}
+              className="btn btn-outline btn-lg lg:btn-xl px-10 md:px-12 rounded-full shadow-md w-full sm:w-auto"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              {t('projects')}
+            </motion.button>
+          </div>
         </div>
       </motion.div>
       

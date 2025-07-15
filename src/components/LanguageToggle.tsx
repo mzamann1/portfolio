@@ -37,7 +37,6 @@ const LanguageToggle = () => {
     highlightIndex = 1;
   }
 
-  const highlightTransform = highlightIndex === 0 ? 'translateX(0)' : 'translateX(100%)';
   const highlightGradient = highlightIndex === 0
     ? 'linear-gradient(to right, var(--tw-gradient-from, #a855f7), var(--tw-gradient-to, #06b6d4))'
     : 'linear-gradient(to left, var(--tw-gradient-from, #a855f7), var(--tw-gradient-to, #06b6d4))';
@@ -48,11 +47,12 @@ const LanguageToggle = () => {
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-        className="absolute top-1 left-1 w-1/2 h-6 md:h-8 rounded-full z-0"
+        className="absolute top-1 left-1 w-[calc(50%-4px)] h-6 md:h-8 rounded-full z-0"
         style={{
           background: 'linear-gradient(90deg, var(--tw-gradient-stops))',
           backgroundImage: highlightGradient,
-          transform: highlightTransform,
+          // Use translateX equal to button width for perfect alignment
+          transform: highlightIndex === 0 ? 'translateX(0)' : 'translateX(calc(100% + 4px))',
         }}
       />
       <div className={`relative flex w-full z-10 ${isRTL ? 'flex-row-reverse' : ''}`}>
@@ -66,6 +66,7 @@ const LanguageToggle = () => {
             }`}
             aria-pressed={currentLanguage === lang.code}
             aria-label={`Switch to ${lang.label}`}
+            style={{ minWidth: 0 }}
           >
             {lang.label}
           </button>
