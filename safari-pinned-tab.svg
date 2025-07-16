@@ -1,0 +1,9 @@
+<!-- Placeholder for safari-pinned-tab.svg -->
+<!-- Replace this with your actual SVG icon for Safari pinned tabs -->
+<!-- This should be a monochrome SVG that works well in Safari's pinned tab style -->
+<!-- Generate using: https://realfavicongenerator.net/ -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- Replace this with your actual SVG content -->
+  <rect width="16" height="16" fill="none"/>
+  <text x="8" y="12" text-anchor="middle" font-size="12" fill="currentColor">P</text>
+</svg> 

@@ -9,18 +9,17 @@ const urlsToCache = [
   '/src/App.css'
 ];
 
-// Install event - cache resources
+// Cache the app shell
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-// Fetch event - serve from cache if available
+// Serve cached content when offline
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
@@ -31,14 +30,13 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
-// Activate event - clean up old caches
+// Clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -47,18 +45,14 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Background sync for offline actions
+// Background sync for offline functionality
 self.addEventListener('sync', (event) => {
   if (event.tag === 'background-sync') {
-    event.waitUntil(doBackgroundSync());
+    event.waitUntil(
+      // Handle background sync
+    );
   }
 });
-
-function doBackgroundSync() {
-  // Handle offline actions when connection is restored
-  console.log('Background sync triggered');
-  return Promise.resolve();
-}
 
 // Push notification handling
 self.addEventListener('push', (event) => {
