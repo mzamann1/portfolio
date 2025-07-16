@@ -4,6 +4,7 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -15,7 +16,7 @@ module.exports = {
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
-      "emerald",
+      "light",
       "sunset",
     ],
     darkTheme: 'sunset',
@@ -25,6 +26,5 @@ module.exports = {
     logs: false,
     rtl: false,
     prefix: '',
-    themesOrder: ['emerald', 'sunset'],
   },
 } 

@@ -1,10 +1,17 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
-import { useContactData } from '../hooks/usePortfolioData';
-import { useLanguageFont } from '../hooks/useLanguageFont';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaGlobe } from 'react-icons/fa';
+import { useContactData } from '@hooks/usePortfolioData';
+import { useLanguageFont } from '@hooks/useLanguageFont';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaGlobe, FaShieldAlt, FaExclamationTriangle } from 'react-icons/fa';
+import { analyticsService } from '@services/analyticsService';
+import { 
+  validateFormInput,
+  sanitizeText,
+  containsDangerousContent,
+  RateLimiter
+} from '@utils/securityUtils';
 
 interface FormData {
   firstName: string;
@@ -20,17 +27,21 @@ interface FormErrors {
   email?: string;
   subject?: string;
   message?: string;
+  general?: string;
 }
 
 const iconMap: Record<string, JSX.Element> = {
-  FaEnvelope: <FaEnvelope className="w-6 h-6" />,
-  FaPhone: <FaPhone className="w-6 h-6" />,
-  FaMapMarkerAlt: <FaMapMarkerAlt className="w-6 h-6" />,
-  FaLinkedin: <FaLinkedin className="w-6 h-6" />,
-  FaGithub: <FaGithub className="w-6 h-6" />,
-  FaTwitter: <FaTwitter className="w-6 h-6" />,
-  FaGlobe: <FaGlobe className="w-6 h-6" />,
+  FaEnvelope: <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6" />,
+  FaPhone: <FaPhone className="w-5 h-5 sm:w-6 sm:h-6" />,
+  FaMapMarkerAlt: <FaMapMarkerAlt className="w-5 h-5 sm:w-6 sm:h-6" />,
+  FaLinkedin: <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />,
+  FaGithub: <FaGithub className="w-5 h-5 sm:w-6 sm:h-6" />,
+  FaTwitter: <FaTwitter className="w-5 h-5 sm:w-6 sm:h-6" />,
+  FaGlobe: <FaGlobe className="w-5 h-5 sm:w-6 sm:h-6" />,
 };
+
+// Create rate limiter instance
+const contactRateLimiter = new RateLimiter(5, 15 * 60 * 1000); // 5 attempts per 15 minutes
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -42,38 +53,68 @@ const Contact = () => {
     lastName: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [rateLimitInfo, setRateLimitInfo] = useState<{
+    remaining: number;
+    resetTime: number;
+  } | null>(null);
+
+  // Check rate limiting on component mount
+  useEffect(() => {
+    const identifier = 'contact-form';
+    const isAllowed = contactRateLimiter.isAllowed(identifier);
+    
+    if (!isAllowed) {
+      const remaining = contactRateLimiter.getRemainingAttempts(identifier);
+      setRateLimitInfo({ remaining, resetTime: Date.now() + 15 * 60 * 1000 });
+    }
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = t('first_name_required', 'First name is required');
+    
+    // Validate each field
+    const firstNameValidation = validateFormInput(formData.firstName, 'text', { required: true, minLength: 2, maxLength: 50 });
+    if (!firstNameValidation.isValid) {
+      newErrors.firstName = firstNameValidation.errors[0];
     }
 
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = t('last_name_required', 'Last name is required');
+    const lastNameValidation = validateFormInput(formData.lastName, 'text', { required: true, minLength: 2, maxLength: 50 });
+    if (!lastNameValidation.isValid) {
+      newErrors.lastName = lastNameValidation.errors[0];
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = t('email_required', 'Email is required');
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = t('email_invalid', 'Please enter a valid email');
+    const emailValidation = validateFormInput(formData.email, 'email', { required: true });
+    if (!emailValidation.isValid) {
+      newErrors.email = emailValidation.errors[0];
     }
 
-    if (!formData.subject.trim()) {
-      newErrors.subject = t('subject_required', 'Subject is required');
+    const subjectValidation = validateFormInput(formData.subject, 'text', { required: true, minLength: 5, maxLength: 100 });
+    if (!subjectValidation.isValid) {
+      newErrors.subject = subjectValidation.errors[0];
     }
 
-    if (!formData.message.trim()) {
-      newErrors.message = t('message_required', 'Message is required');
-    } else if (formData.message.length < 10) {
-      newErrors.message = t('message_too_short', 'Message must be at least 10 characters');
+    const messageValidation = validateFormInput(formData.message, 'textarea', { required: true, minLength: 10, maxLength: 1000 });
+    if (!messageValidation.isValid) {
+      newErrors.message = messageValidation.errors[0];
+    }
+
+    // Check for dangerous content
+    if (containsDangerousContent(formData.message)) {
+      newErrors.message = 'Message contains potentially dangerous content';
+    }
+
+    // Check rate limiting
+    const identifier = 'contact-form';
+    if (!contactRateLimiter.isAllowed(identifier)) {
+      const remaining = contactRateLimiter.getRemainingAttempts(identifier);
+      setRateLimitInfo({ remaining, resetTime: Date.now() + 15 * 60 * 1000 });
+      newErrors.general = `Too many attempts. Please try again in 15 minutes.`;
     }
 
     setErrors(newErrors);
@@ -107,32 +148,67 @@ const Contact = () => {
     setSubmitStatus('idle');
 
     try {
-      // EmailJS configuration - you'll need to replace these with your actual values
-      const serviceId = 'YOUR_EMAILJS_SERVICE_ID';
-      const templateId = 'YOUR_EMAILJS_TEMPLATE_ID';
-      const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+      // Track form submission attempt
+      analyticsService.trackContactFormSubmission();
+
+      // EmailJS configuration
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_EMAILJS_SERVICE_ID';
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_EMAILJS_TEMPLATE_ID';
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_EMAILJS_PUBLIC_KEY';
+
+      // Sanitize form data
+      const sanitizedData = {
+        firstName: sanitizeText(formData.firstName),
+        lastName: sanitizeText(formData.lastName),
+        email: formData.email.trim(),
+        subject: sanitizeText(formData.subject),
+        message: sanitizeText(formData.message),
+      };
 
       const templateParams = {
-        from_name: `${formData.firstName} ${formData.lastName}`,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_name: 'Portfolio Owner' // Your name
+        from_name: `${sanitizedData.firstName} ${sanitizedData.lastName}`,
+        from_email: sanitizedData.email,
+        subject: sanitizedData.subject,
+        message: sanitizedData.message,
+        to_name: 'Portfolio Owner',
+        timestamp: new Date().toISOString(),
+        user_agent: navigator.userAgent,
+        referrer: document.referrer,
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
       
       setSubmitStatus('success');
+      
+      // Track successful submission
+      analyticsService.trackEvent({
+        action: 'contact_form_success',
+        category: 'engagement',
+        label: 'contact_form'
+      });
+      
+      // Reset form
       setFormData({
         firstName: '',
         lastName: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
       });
+
+      // Clear rate limit info
+      setRateLimitInfo(null);
+      
     } catch (error) {
       console.error('Email sending failed:', error);
       setSubmitStatus('error');
+      
+      // Track failed submission
+      analyticsService.trackEvent({
+        action: 'contact_form_error',
+        category: 'error',
+        label: error instanceof Error ? error.message : 'Unknown error'
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -149,222 +225,266 @@ const Contact = () => {
   }
 
   return (
-          <section id="contact" data-section="contact" className={`w-full max-w-7xl mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
-      <motion.div
-        className="container mx-auto px-4"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="text-center mb-16">
-          <h2 className={heading}>
-            {t('contact')}
+    <section id="contact" className={`py-12 sm:py-16 md:py-20 bg-base-100/80 backdrop-blur ${fontClass}`}>
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8 sm:mb-12 md:mb-16"
+        >
+          <h2 className={`${heading} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-base-content mb-4 sm:mb-6`}>
+            {t('contact.title', 'Get In Touch')}
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-4"></div>
-          <p className={body + ' text-xl max-w-2xl mx-auto'}>
-            {contactData.description}
+          <p className={`${body} text-sm sm:text-base md:text-lg text-base-content/70 max-w-2xl mx-auto px-2 sm:px-4`}>
+            {t('contact.description', 'Ready to start a project or have a question? I\'d love to hear from you.')}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="card bg-base-200/80 backdrop-blur border border-base-300/40 shadow-xl rounded-2xl">
-            <div className="card-body">
-              <h3 className="card-title text-2xl font-bold mb-6">{t('send_message', 'Send Message')}</h3>
-              
-              {/* Success/Error Messages */}
-              {submitStatus === 'success' && (
-                <div className="alert alert-success mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>{t('message_sent_success', 'Message sent successfully! I\'ll get back to you soon.')}</span>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="alert alert-error mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>{t('message_sent_error', 'Failed to send message. Please try again or contact me directly.')}</span>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text font-medium">{t('first_name', 'First Name')}</span>
-                    </label>
-                    <input 
-                      type="text" 
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      className={`input input-bordered focus:input-primary transition-colors duration-300 rounded-lg ${errors.firstName ? 'input-error' : ''}`}
-                      placeholder={t('first_name_placeholder', 'John')}
-                    />
-                    {errors.firstName && (
-                      <label className="label">
-                        <span className="label-text-alt text-error">{errors.firstName}</span>
-                      </label>
-                    )}
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text font-medium">{t('last_name', 'Last Name')}</span>
-                    </label>
-                    <input 
-                      type="text" 
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      className={`input input-bordered focus:input-primary transition-colors duration-300 rounded-lg ${errors.lastName ? 'input-error' : ''}`}
-                      placeholder={t('last_name_placeholder', 'Doe')}
-                    />
-                    {errors.lastName && (
-                      <label className="label">
-                        <span className="label-text-alt text-error">{errors.lastName}</span>
-                      </label>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-medium">{t('email', 'Email')}</span>
-                  </label>
-                  <input 
-                    type="email" 
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className={`input input-bordered focus:input-primary transition-colors duration-300 rounded-lg ${errors.email ? 'input-error' : ''}`}
-                    placeholder={t('email_placeholder', 'john@example.com')}
-                  />
-                  {errors.email && (
-                    <label className="label">
-                      <span className="label-text-alt text-error">{errors.email}</span>
-                    </label>
-                  )}
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-medium">{t('subject', 'Subject')}</span>
-                  </label>
-                  <input 
-                    type="text" 
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className={`input input-bordered focus:input-primary transition-colors duration-300 rounded-lg ${errors.subject ? 'input-error' : ''}`}
-                    placeholder={t('subject_placeholder', 'Project Inquiry')}
-                  />
-                  {errors.subject && (
-                    <label className="label">
-                      <span className="label-text-alt text-error">{errors.subject}</span>
-                    </label>
-                  )}
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-medium">{t('message', 'Message')}</span>
-                  </label>
-                  <textarea 
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className={`textarea textarea-bordered focus:textarea-primary transition-colors duration-300 h-32 rounded-lg ${errors.message ? 'textarea-error' : ''}`}
-                    placeholder={t('message_placeholder', 'Tell me about your project...')}
-                  ></textarea>
-                  {errors.message && (
-                    <label className="label">
-                      <span className="label-text-alt text-error">{errors.message}</span>
-                    </label>
-                  )}
-                </div>
-
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="btn btn-primary btn-wide rounded-xl shadow-md"
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className={`${heading} text-xl sm:text-2xl font-bold text-base-content mb-6 sm:mb-8`}>
+              {t('contact.info.title', 'Contact Information')}
+            </h3>
+            
+            <div className="space-y-4 sm:space-y-6">
+              {contactData.contactInfo.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                  className="flex items-start space-x-3 sm:space-x-4"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <span className="loading loading-spinner loading-sm"></span>
-                      {t('sending', 'Sending...')}
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                      {t('send_message', 'Send Message')}
-                    </>
-                  )}
-                </button>
-              </form>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className={`space-y-8 ${fontClass}`}>
-            {/* Contact Details */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold mb-6">{t('get_in_touch', 'Get In Touch')}</h3>
-              {contactData.contactInfo.map((info) => (
-                <div key={info.id} className="flex items-center space-x-4 p-4 bg-base-200/80 backdrop-blur border border-base-300/40 rounded-xl hover:bg-base-300/60 transition-colors duration-300">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                    {iconMap[info.icon] || <div className="w-6 h-6 bg-primary rounded"></div>}
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    {iconMap[item.icon] || <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6" />}
                   </div>
                   <div>
-                    <h4 className="font-medium">{info.title}</h4>
-                    <p className="text-base-content/70">{info.value}</p>
+                    <h4 className={`${heading} font-semibold text-base-content mb-1 text-sm sm:text-base`}>
+                      {item.title}
+                    </h4>
+                    <p className={`${body} text-base-content/70 text-sm sm:text-base`}>
+                      {item.value}
+                    </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Social Links */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6">{t('follow_me', 'Follow Me')}</h3>
-              <div className="flex space-x-4">
-                {contactData.socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-base-200/80 backdrop-blur border border-base-300/40 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
-                  >
-                    {iconMap[social.icon] || <div className="w-6 h-6 bg-current rounded"></div>}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Availability Status */}
-            <div className="card bg-base-200/80 backdrop-blur border border-base-300/40 shadow-xl rounded-2xl">
-              <div className="card-body">
-                <h3 className="card-title text-xl font-bold mb-4">{t('availability', 'Availability')}</h3>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-3 h-3 rounded-full ${contactData.availability.status === 'available' ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                  <span className="font-medium">{contactData.availability.message}</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {contactData.availability.availableFor.map((item, index) => (
-                    <span key={index} className="badge badge-primary badge-outline">{item}</span>
+            {contactData.socialLinks && contactData.socialLinks.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="mt-8"
+              >
+                <h4 className={`${heading} text-base sm:text-lg font-semibold text-base-content mb-3 sm:mb-4`}>
+                  {t('contact.social.title', 'Follow Me')}
+                </h4>
+                <div className="flex space-x-3 sm:space-x-4">
+                  {contactData.socialLinks.map((social) => (
+                    <motion.a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors"
+                    >
+                      {iconMap[social.icon] || <FaGlobe className="w-4 h-4 sm:w-5 sm:h-5" />}
+                    </motion.a>
                   ))}
                 </div>
-              </div>
+              </motion.div>
+            )}
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-base-200/50 backdrop-blur rounded-2xl p-4 sm:p-6 md:p-8 border border-base-300"
+          >
+            <div className="flex items-center mb-4 sm:mb-6">
+              <FaShieldAlt className="w-4 h-4 sm:w-5 sm:h-5 text-success mr-2" />
+              <span className="text-xs sm:text-sm text-success">
+                {t('contact.form.secure', 'Secure Form')}
+              </span>
             </div>
-          </div>
+
+            {rateLimitInfo && (
+              <div className="mb-4 p-3 bg-warning/20 border border-warning/30 rounded-lg">
+                <div className="flex items-center">
+                  <FaExclamationTriangle className="w-4 h-4 text-warning mr-2" />
+                  <span className="text-sm text-warning">
+                    Rate limit exceeded. Please try again later.
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label htmlFor="firstName" className={`${body} block text-xs sm:text-sm font-medium text-base-content mb-1 sm:mb-2`}>
+                    {t('contact.form.firstName', 'First Name')} *
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border text-sm sm:text-base ${
+                      errors.firstName ? 'border-error' : 'border-base-300'
+                    } bg-base-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors`}
+                    placeholder={t('contact.form.firstNamePlaceholder', 'Your first name')}
+                  />
+                  {errors.firstName && (
+                    <p className="text-error text-xs sm:text-sm mt-1">{errors.firstName}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="lastName" className={`${body} block text-xs sm:text-sm font-medium text-base-content mb-1 sm:mb-2`}>
+                    {t('contact.form.lastName', 'Last Name')} *
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border text-sm sm:text-base ${
+                      errors.lastName ? 'border-error' : 'border-base-300'
+                    } bg-base-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors`}
+                    placeholder={t('contact.form.lastNamePlaceholder', 'Your last name')}
+                  />
+                  {errors.lastName && (
+                    <p className="text-error text-xs sm:text-sm mt-1">{errors.lastName}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="email" className={`${body} block text-xs sm:text-sm font-medium text-base-content mb-1 sm:mb-2`}>
+                  {t('contact.form.email', 'Email')} *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border text-sm sm:text-base ${
+                    errors.email ? 'border-error' : 'border-base-300'
+                  } bg-base-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors`}
+                  placeholder={t('contact.form.emailPlaceholder', 'your.email@example.com')}
+                />
+                {errors.email && (
+                  <p className="text-error text-xs sm:text-sm mt-1">{errors.email}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="subject" className={`${body} block text-xs sm:text-sm font-medium text-base-content mb-1 sm:mb-2`}>
+                  {t('contact.form.subject', 'Subject')} *
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border text-sm sm:text-base ${
+                    errors.subject ? 'border-error' : 'border-base-300'
+                  } bg-base-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors`}
+                  placeholder={t('contact.form.subjectPlaceholder', 'What is this about?')}
+                />
+                {errors.subject && (
+                  <p className="text-error text-xs sm:text-sm mt-1">{errors.subject}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="message" className={`${body} block text-xs sm:text-sm font-medium text-base-content mb-1 sm:mb-2`}>
+                  {t('contact.form.message', 'Message')} *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border text-sm sm:text-base ${
+                    errors.message ? 'border-error' : 'border-base-300'
+                  } bg-base-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors resize-none`}
+                  placeholder={t('contact.form.messagePlaceholder', 'Tell me about your project or question...')}
+                />
+                {errors.message && (
+                  <p className="text-error text-xs sm:text-sm mt-1">{errors.message}</p>
+                )}
+              </div>
+
+              {errors.general && (
+                <div className="p-3 bg-error/10 border border-error/30 rounded-lg">
+                  <p className="text-error text-sm">{errors.general}</p>
+                </div>
+              )}
+
+              {submitStatus === 'success' && (
+                <div className="p-3 bg-success/10 border border-success/30 rounded-lg">
+                  <p className="text-success text-sm">
+                    {t('contact.form.success', 'Thank you! Your message has been sent successfully.')}
+                  </p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="p-3 bg-error/10 border border-error/30 rounded-lg">
+                  <p className="text-error text-sm">
+                    {t('contact.form.error', 'Sorry, there was an error sending your message. Please try again.')}
+                  </p>
+                </div>
+              )}
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting || !!rateLimitInfo}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base transition-all ${
+                  isSubmitting || rateLimitInfo
+                    ? 'bg-base-300 text-base-content/50 cursor-not-allowed'
+                    : 'bg-primary text-primary-content hover:bg-primary-focus'
+                }`}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center">
+                    <div className="loading loading-spinner loading-sm mr-2"></div>
+                    {t('contact.form.sending', 'Sending...')}
+                  </span>
+                ) : (
+                  t('contact.form.send', 'Send Message')
+                )}
+              </motion.button>
+            </form>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

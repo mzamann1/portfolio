@@ -54,15 +54,18 @@ export const useUIStore = create<UIState>()(
       searchQuery: '',
       
       // Theme actions
-      setTheme: (newTheme) => {
-        set({ theme: newTheme });
+      setTheme: (newTheme: 'light' | 'dark' | 'auto') => {
         const isDark = newTheme === 'dark' || (newTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        set({ isDarkMode: isDark });
+        
+        // Update localStorage
+        localStorage.setItem('theme', newTheme);
         
         // Update document classes
-        if (typeof document !== 'undefined') {
-          document.documentElement.classList.toggle('dark', isDark);
-        }
+        document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        
+        // Update state
+        set({ isDarkMode: isDark, theme: newTheme });
       },
       
       toggleDarkMode: () => {

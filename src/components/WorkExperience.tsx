@@ -303,7 +303,7 @@ const WorkExperience = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<'timeline' | 'compact'>('timeline');
   const timelineRef = useRef<HTMLDivElement>(null);
-  const autoPlayRef = useRef<number | null>(null);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState<string | null>(null);
 
@@ -431,9 +431,9 @@ const WorkExperience = () => {
   const experiences = filteredExperiences;
 
   return (
-    <section id="experience" data-section="experience" className={`w-full container mx-auto py-16 px-4 md:px-12 ${fontClass}`}>
+    <section id="experience" data-section="experience" className={`w-full container mx-auto py-12 sm:py-16 px-4 sm:px-6 md:px-8 lg:px-12 ${fontClass}`}>
       <motion.h2 
-        className={heading}
+        className={`${heading} text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-6 sm:mb-8`}
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -444,30 +444,30 @@ const WorkExperience = () => {
 
       {/* Enhanced Controls */}
       <motion.div 
-        className="flex flex-wrap items-center justify-between gap-4 mt-8 mb-12"
+        className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-between gap-3 sm:gap-4 mt-6 sm:mt-8 mb-8 sm:mb-12"
         variants={controlVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         {/* Search and Filter Controls */}
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full sm:w-auto">
           {/* Search */}
-          <div className="relative">
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-base-content/40 w-4 h-4" />
+          <div className="relative flex-1 sm:flex-none">
+            <FaSearch className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-base-content/40 w-3 h-3 sm:w-4 sm:h-4" />
             <input
               type="text"
               placeholder={t('search_experience', 'Search experience...')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 bg-base-200 dark:bg-base-400 rounded-lg border border-base-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              className="pl-8 sm:pl-10 pr-4 py-1.5 sm:py-2 bg-base-200 dark:bg-base-400 rounded-lg border border-base-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-sm sm:text-base w-full"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-base-content/40 hover:text-base-content transition-colors"
+                className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-base-content/40 hover:text-base-content transition-colors"
               >
-                <FaTimes className="w-4 h-4" />
+                <FaTimes className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
             )}
           </div>
@@ -475,55 +475,55 @@ const WorkExperience = () => {
           {/* Filter Toggle */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-300 ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border transition-all duration-300 text-xs sm:text-sm ${
               showFilters 
                 ? 'bg-primary text-primary-content border-primary' 
                 : 'bg-base-200 dark:bg-base-400 border-base-300 hover:border-primary'
             }`}
           >
-            <FaFilter className="w-4 h-4" />
-            <span className="text-sm font-medium">{t('filter', 'Filter')}</span>
+            <FaFilter className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="font-medium">{t('filter', 'Filter')}</span>
           </button>
 
           {/* View Mode Toggle */}
           <button
             onClick={() => setViewMode(viewMode === 'timeline' ? 'compact' : 'timeline')}
-            className="flex items-center gap-2 px-4 py-2 bg-base-200 dark:bg-base-400 rounded-lg border border-base-300 hover:border-primary transition-all duration-300"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-base-200 dark:bg-base-400 rounded-lg border border-base-300 hover:border-primary transition-all duration-300 text-xs sm:text-sm"
           >
-            {viewMode === 'timeline' ? <FaCompress className="w-4 h-4" /> : <FaExpand className="w-4 h-4" />}
-            <span className="text-sm font-medium">
+            {viewMode === 'timeline' ? <FaCompress className="w-3 h-3 sm:w-4 sm:h-4" /> : <FaExpand className="w-3 h-3 sm:w-4 sm:h-4" />}
+            <span className="font-medium">
               {viewMode === 'timeline' ? t('compact_view', 'Compact') : t('timeline_view', 'Timeline')}
             </span>
           </button>
         </div>
 
         {/* Navigation Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 w-full sm:w-auto justify-center sm:justify-end">
           <button
             onClick={goToPrevious}
             disabled={experiences.length <= 1}
-            className="p-2 rounded-lg bg-base-200 dark:bg-base-400 border border-base-300 hover:border-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+            className="p-1.5 sm:p-2 rounded-lg bg-base-200 dark:bg-base-400 border border-base-300 hover:border-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
           >
-            <FaStepBackward className="w-4 h-4" />
+            <FaStepBackward className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
           
           <button
             onClick={toggleAutoPlay}
-            className={`p-2 rounded-lg border transition-all duration-300 ${
+            className={`p-1.5 sm:p-2 rounded-lg border transition-all duration-300 ${
               isAutoPlaying 
                 ? 'bg-secondary text-secondary-content border-secondary' 
                 : 'bg-base-200 dark:bg-base-400 border-base-300 hover:border-secondary'
             }`}
           >
-            {isAutoPlaying ? <FaPause className="w-4 h-4" /> : <FaPlay className="w-4 h-4" />}
+            {isAutoPlaying ? <FaPause className="w-3 h-3 sm:w-4 sm:h-4" /> : <FaPlay className="w-3 h-3 sm:w-4 sm:h-4" />}
           </button>
           
           <button
             onClick={goToNext}
             disabled={experiences.length <= 1}
-            className="p-2 rounded-lg bg-base-200 dark:bg-base-400 border border-base-300 hover:border-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+            className="p-1.5 sm:p-2 rounded-lg bg-base-200 dark:bg-base-400 border border-base-300 hover:border-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
           >
-            <FaStepForward className="w-4 h-4" />
+            <FaStepForward className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
       </motion.div>
@@ -536,20 +536,20 @@ const WorkExperience = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="mb-8 overflow-hidden"
+            className="mb-6 sm:mb-8 overflow-hidden"
           >
-            <div className="bg-base-200 dark:bg-base-400 rounded-xl p-6 border border-base-300">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-base-content">{t('filter_by_skills', 'Filter by Skills')}</h3>
+            <div className="bg-base-200 dark:bg-base-400 rounded-xl p-4 sm:p-6 border border-base-300">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-semibold text-base-content">{t('filter_by_skills', 'Filter by Skills')}</h3>
                 <button
                   onClick={clearFilters}
-                  className="text-sm text-primary hover:text-primary-focus transition-colors"
+                  className="text-xs sm:text-sm text-primary hover:text-primary-focus transition-colors"
                 >
                   {t('clear_all', 'Clear All')}
                 </button>
               </div>
               
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {allSkills.map((skill) => (
                   <button
                     key={skill}
@@ -560,7 +560,7 @@ const WorkExperience = () => {
                           : [...prev, skill]
                       );
                     }}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${
+                    className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                       filterSkills.includes(skill)
                         ? 'bg-primary text-primary-content'
                         : 'bg-base-300 dark:bg-base-500 text-base-content hover:bg-base-400'
@@ -572,7 +572,7 @@ const WorkExperience = () => {
               </div>
               
               {filterSkills.length > 0 && (
-                <div className="mt-4 text-sm text-base-content/70">
+                <div className="mt-3 sm:mt-4 text-xs sm:text-sm text-base-content/70">
                   {t('showing_experiences_with', 'Showing experiences with')}: {filterSkills.join(', ')}
                 </div>
               )}
@@ -584,18 +584,18 @@ const WorkExperience = () => {
       {/* Progress Indicator */}
       {experiences.length > 0 && (
         <motion.div 
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-6 sm:mb-8"
           variants={controlVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <div className="flex items-center gap-2 bg-base-200 dark:bg-base-400 rounded-full p-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-base-200 dark:bg-base-400 rounded-full p-1.5 sm:p-2">
             {experiences.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'bg-primary scale-125'
                     : 'bg-base-300 hover:bg-base-400'
@@ -609,7 +609,7 @@ const WorkExperience = () => {
       {/* Results Count */}
       {experiences.length !== workExperienceData.experiences.length && (
         <motion.div 
-          className="text-center mb-8 text-base-content/70"
+          className="text-center mb-6 sm:mb-8 text-base-content/70 text-xs sm:text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
@@ -619,10 +619,10 @@ const WorkExperience = () => {
       )}
 
       {/* Interactive Timeline */}
-      <div className="relative mt-8">
+      <div className="relative mt-6 sm:mt-8">
         {/* Timeline Line */}
         <motion.div
-          className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary via-secondary to-accent h-full rounded-full"
+          className="absolute left-1/2 transform -translate-x-1/2 w-0.5 sm:w-1 bg-gradient-to-b from-primary via-secondary to-accent h-full rounded-full"
           variants={lineVariants}
           initial="hidden"
           whileInView="visible"
@@ -646,23 +646,23 @@ const WorkExperience = () => {
             return (
               <motion.div
                 key={exp.id}
-                className={`relative mb-16 ${isLeft ? 'left-timeline' : 'right-timeline'}`}
+                className={`relative mb-12 sm:mb-16 ${isLeft ? 'left-timeline' : 'right-timeline'}`}
                 variants={cardVariants}
               >
                 {/* Timeline Node */}
                 <motion.div
-                  className={`absolute top-8 ${isLeft ? 'right-0' : 'left-0'} transform ${isLeft ? 'translate-x-1/2' : '-translate-x-1/2'} z-30`}
+                  className={`absolute top-6 sm:top-8 ${isLeft ? 'right-0' : 'left-0'} transform ${isLeft ? 'translate-x-1/2' : '-translate-x-1/2'} z-30`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <div className="relative">
-                    <div className={`w-6 h-6 rounded-full border-4 border-base-100 shadow-lg transition-all duration-300 ${
+                    <div className={`w-4 h-4 sm:w-6 sm:h-6 rounded-full border-2 sm:border-4 border-base-100 shadow-lg transition-all duration-300 ${
                       isCurrent 
                         ? 'bg-gradient-to-r from-primary to-secondary scale-125' 
                         : 'bg-gradient-to-r from-base-300 to-base-400'
                     }`}></div>
                     <motion.div
-                      className="absolute inset-0 w-6 h-6 bg-primary rounded-full opacity-0"
+                      className="absolute inset-0 w-4 h-4 sm:w-6 sm:h-6 bg-primary rounded-full opacity-0"
                       animate={isSelected ? { opacity: [0, 0.3, 0], scale: [1, 1.5, 1] } : {}}
                       transition={{ duration: 1.5, repeat: isSelected ? Infinity : 0 }}
                     />
@@ -671,13 +671,13 @@ const WorkExperience = () => {
 
                 {/* Experience Card */}
                 <motion.div
-                  className={`w-full max-w-lg ${isLeft ? 'mr-auto pr-8' : 'ml-auto pl-8'} ${isRTL ? (isLeft ? 'ml-auto pl-8' : 'mr-auto pr-8') : ''}`}
+                  className={`w-full max-w-sm sm:max-w-lg ${isLeft ? 'mr-auto pr-6 sm:pr-8' : 'ml-auto pl-6 sm:pl-8'} ${isRTL ? (isLeft ? 'ml-auto pl-6 sm:pl-8' : 'mr-auto pr-6 sm:pr-8') : ''}`}
                   variants={cardVariants}
                   whileHover="hover"
                   onClick={() => setSelectedExperience(isSelected ? null : exp.id)}
                 >
                   <motion.div
-                    className={`relative bg-base-200 dark:bg-base-400 rounded-2xl p-6 shadow-xl border transition-all duration-500 cursor-pointer group ${
+                    className={`relative bg-base-200 dark:bg-base-400 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-xl border transition-all duration-500 cursor-pointer group ${
                       isSelected 
                         ? 'shadow-2xl border-primary/60 bg-gradient-to-br from-base-200 to-base-300 dark:from-base-400 dark:to-base-500' 
                         : isCurrent
@@ -687,19 +687,19 @@ const WorkExperience = () => {
                     layout
                   >
                     {/* Card Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
                     {/* Current Indicator */}
                     {isCurrent && (
-                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-secondary rounded-full border-2 border-base-100 animate-pulse" />
+                      <div className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 w-3 h-3 sm:w-4 sm:h-4 bg-secondary rounded-full border-2 border-base-100 animate-pulse" />
                     )}
                     
                     {/* Header */}
                     <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center space-x-2 text-base-content/60">
-                          <FaCalendarAlt className="w-4 h-4" />
-                          <time className="font-mono text-sm">
+                      <div className="flex items-center justify-between mb-2 sm:mb-3">
+                        <div className="flex items-center space-x-1.5 sm:space-x-2 text-base-content/60">
+                          <FaCalendarAlt className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <time className="font-mono text-xs sm:text-sm">
                             {exp.from} – {exp.to}
                           </time>
                         </div>
@@ -708,21 +708,21 @@ const WorkExperience = () => {
                           animate={isSelected ? { rotate: 180 } : { rotate: 0 }}
                           transition={{ duration: 0.3 }}
                         >
-                          {isRTL ? <FaChevronLeft /> : <FaChevronRight />}
+                          {isRTL ? <FaChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" /> : <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />}
                         </motion.div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-base-content mb-2 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-base-content mb-1.5 sm:mb-2 group-hover:text-primary transition-colors duration-300">
                         {exp.title}
                       </h3>
                       
-                      <div className="flex items-center space-x-2 mb-4">
-                        <FaMapMarkerAlt className="w-4 h-4 text-secondary" />
+                      <div className="flex items-center space-x-1.5 sm:space-x-2 mb-3 sm:mb-4">
+                        <FaMapMarkerAlt className="w-3 h-3 sm:w-4 sm:h-4 text-secondary" />
                         {exp.logo ? (
                           <img
                             src={exp.logo}
                             alt={exp.company + ' logo'}
-                            className="w-8 h-8 rounded-full object-cover border-2 border-base-300 bg-base-100 shadow-sm"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover border-2 border-base-300 bg-base-100 shadow-sm"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.onerror = null;
@@ -735,21 +735,21 @@ const WorkExperience = () => {
                                                  {/* Fallback avatar if logo missing or failed */}
                          {(!exp.logo || (typeof window !== 'undefined' && document.querySelector(`img[src='${exp.logo}']`)?.getAttribute('style')?.includes('display: none'))) && (
                           <div
-                            className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-base-content border-2 border-base-300 shadow-sm"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-base-content border-2 border-base-300 shadow-sm text-xs sm:text-sm"
                             style={{ background: stringToColor(exp.company) }}
                           >
                             {getInitials(exp.company)}
                           </div>
                         )}
-                        <span className="text-base-content/70 font-medium">{exp.company}</span>
+                        <span className="text-base-content/70 font-medium text-sm sm:text-base">{exp.company}</span>
                       </div>
 
                       {/* Skills Tags */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {exp.skills.slice(0, 6).map((skill) => (
+                      <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
+                        {exp.skills.slice(0, 4).map((skill) => (
                           <span 
                             key={skill} 
-                            className={`badge badge-sm text-xs font-medium px-2 py-1 transition-all duration-300 ${
+                            className={`badge badge-xs sm:badge-sm text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 transition-all duration-300 ${
                               filterSkills.includes(skill) 
                                 ? 'badge-primary' 
                                 : 'badge-accent'
@@ -758,9 +758,9 @@ const WorkExperience = () => {
                             {skill}
                           </span>
                         ))}
-                        {exp.skills.length > 6 && (
-                          <span className="badge badge-outline badge-sm text-xs">
-                            +{exp.skills.length - 6}
+                        {exp.skills.length > 4 && (
+                          <span className="badge badge-outline badge-xs sm:badge-sm text-xs">
+                            +{exp.skills.length - 4}
                           </span>
                         )}
                       </div>

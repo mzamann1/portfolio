@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLanguageFont } from '../hooks/useLanguageFont';
-import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import { FaBars, FaTimes, FaHome, FaUser, FaBriefcase, FaCode, FaGraduationCap, FaFolder, FaTrophy, FaEnvelope } from 'react-icons/fa';
 
@@ -64,11 +63,11 @@ const Navigation = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="container mx-auto px-4 md:px-12">
-          <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
             {/* Logo */}
             <motion.div
-              className={`text-2xl md:text-3xl font-bold ${heading}`}
+              className={`text-xl sm:text-2xl md:text-3xl font-bold ${heading}`}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
@@ -97,12 +96,11 @@ const Navigation = () => {
             {/* Desktop Controls */}
             <div className="hidden lg:flex items-center space-x-4">
               <LanguageToggle />
-              <ThemeToggle />
             </div>
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="lg:hidden p-2 rounded-lg bg-base-200/50 backdrop-blur-sm border border-base-300"
+              className="lg:hidden p-1.5 sm:p-2 rounded-lg bg-base-200/50 backdrop-blur-sm border border-base-300"
               onClick={toggleMenu}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -116,7 +114,7 @@ const Navigation = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <FaTimes className="w-5 h-5" />
+                    <FaTimes className="w-4 h-4 sm:w-5 sm:h-5" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -126,7 +124,7 @@ const Navigation = () => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <FaBars className="w-5 h-5" />
+                    <FaBars className="w-4 h-4 sm:w-5 sm:h-5" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -150,7 +148,7 @@ const Navigation = () => {
 
             {/* Menu Panel */}
             <motion.div
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-base-100 shadow-2xl z-50 lg:hidden"
+              className="fixed top-0 right-0 h-full w-72 sm:w-80 max-w-[90vw] sm:max-w-[85vw] bg-base-100 shadow-2xl z-50 lg:hidden"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -158,46 +156,45 @@ const Navigation = () => {
             >
               <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-base-300">
-                  <h2 className={`text-xl font-bold ${heading}`}>
+                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-base-300">
+                  <h2 className={`text-lg sm:text-xl font-bold ${heading}`}>
                     <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                       ZAMAN
                     </span>
                   </h2>
                   <button
                     onClick={toggleMenu}
-                    className="p-2 rounded-lg hover:bg-base-200 transition-colors"
+                    className="p-1.5 sm:p-2 rounded-lg hover:bg-base-200 transition-colors"
                   >
-                    <FaTimes className="w-5 h-5" />
+                    <FaTimes className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                 </div>
 
                 {/* Navigation Items */}
-                <div className="flex-1 overflow-y-auto py-6">
-                  <div className="space-y-2 px-6">
+                <div className="flex-1 overflow-y-auto py-4 sm:py-6">
+                  <div className="space-y-1 sm:space-y-2 px-4 sm:px-6">
                     {navItems.map((item, index) => (
                       <motion.button
                         key={item.id}
                         onClick={() => scrollToSection(item.href)}
-                        className="flex items-center space-x-4 w-full p-4 rounded-xl hover:bg-base-200 transition-all duration-300 text-left"
+                        className="flex items-center space-x-3 sm:space-x-4 w-full p-3 sm:p-4 rounded-xl hover:bg-base-200 transition-all duration-300 text-left"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
                         whileHover={{ x: 8 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <item.icon className="w-5 h-5 text-primary" />
-                        <span className="font-medium">{item.label}</span>
+                        <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                        <span className="font-medium text-sm sm:text-base">{item.label}</span>
                       </motion.button>
                     ))}
                   </div>
                 </div>
 
                 {/* Mobile Controls */}
-                <div className="p-6 border-t border-base-300">
+                <div className="p-4 sm:p-6 border-t border-base-300">
                   <div className="flex items-center justify-between">
                     <LanguageToggle />
-                    <ThemeToggle />
                   </div>
                 </div>
               </div>

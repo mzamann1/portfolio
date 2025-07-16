@@ -1,166 +1,188 @@
-import { useEffect, useState, Suspense, lazy } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLanguageStore } from './stores/languageStore';
-import { useUIStore } from './stores/uiStore';
-import { useAppInitialization } from './hooks/useAppInitialization';
-import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
-import AppLoading from './components/AppLoading';
-import CustomCursor from './components/CustomCursor';
-import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import BackToTop from './components/BackToTop';
-import ErrorBoundary from './components/ErrorBoundary';
+import { motion, AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
+import { useAppInitialization } from '@hooks/useAppInitialization';
+import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts';
+import { useLanguageFont } from '@hooks/useLanguageFont';
+import { useThemeInitialization } from '@hooks/useThemeInitialization';
+import { useLanguageStore } from '@stores/languageStore';
+import { useAllPortfolioData } from '@hooks/usePortfolioData';
+import { useScrollTracking } from '@hooks/useScrollTracking';
+import { analyticsService, performanceMonitor } from '@services/analyticsService';
+import ErrorBoundary from '@components/ErrorBoundary';
+import SEOHead from '@components/SEOHead';
+import AppLoading from '@components/AppLoading';
+import Navigation from '@components/Navigation';
+import Hero from '@components/Hero';
+import About from '@components/About';
+import Skills from '@components/CoreSkills';
+import WorkExperience from '@components/WorkExperience';
+import Education from '@components/Education';
+import Projects from '@components/Projects';
+import AwardsCertifications from '@components/AwardsCertifications';
+import Contact from '@components/Contact';
+import Footer from '@components/Footer';
+import BackToTop from '@components/BackToTop';
+import CustomCursor from '@components/CustomCursor';
+import SocialSharing from '@components/SocialSharing';
+import ThemeToggle from '@components/ThemeToggle';
+import Loading from '@components/Loading';
 import './App.css';
 
-// Lazy load components for better performance
-const About = lazy(() => import('./components/About'));
-const CoreSkills = lazy(() => import('./components/CoreSkills'));
-const SoftSkills = lazy(() => import('./components/SoftSkills'));
-const WorkExperience = lazy(() => import('./components/WorkExperience'));
-const Education = lazy(() => import('./components/Education'));
-const Projects = lazy(() => import('./components/Projects'));
-const AwardsCertifications = lazy(() => import('./components/AwardsCertifications'));
-const Contact = lazy(() => import('./components/Contact'));
-const Footer = lazy(() => import('./components/Footer'));
-const SocialSharing = lazy(() => import('./components/SocialSharing'));
-
-// Loading component for lazy-loaded sections
-const SectionLoading = () => (
-  <div className="py-16 flex items-center justify-center">
-    <div className="loading loading-spinner loading-lg text-primary"></div>
-  </div>
-);
-
-function App() {
+const App = () => {
   const { t } = useTranslation();
+  const { fontClass } = useLanguageFont();
   const { currentLanguage } = useLanguageStore();
-  const { theme } = useUIStore();
-  const { isInitialized, loading } = useAppInitialization();
-  const { showShortcutsHelp } = useKeyboardShortcuts();
-  const [showSocialSharing, setShowSocialSharing] = useState(false);
+  const { loading: dataLoading, error } = useAllPortfolioData();
 
-  // Set theme on mount and theme change
+  // Initialize app
+  useAppInitialization();
+  
+  // Setup keyboard shortcuts
+  useKeyboardShortcuts();
+  
+  // Initialize theme
+  useThemeInitialization();
+
+  // Initialize analytics and performance monitoring
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    analyticsService.initialize();
+    performanceMonitor.startMonitoring();
+  }, []);
 
-  // Set language direction
+  // Setup scroll tracking
+  useScrollTracking({
+    trackDepth: true,
+    trackDirection: false,
+    trackSpeed: false,
+    throttleMs: 100
+  });
+
+  // Set document title and meta
   useEffect(() => {
-    document.documentElement.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
-  }, [currentLanguage]);
+    document.title = t('site_title', 'Portfolio - Full Stack Developer');
+    document.documentElement.lang = currentLanguage;
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', t('site_description', 'Professional portfolio showcasing web development projects and skills'));
+    }
+  }, [t, currentLanguage]);
 
-  if (!isInitialized || loading) {
+  // Show loading screen
+  if (dataLoading) {
     return <AppLoading />;
   }
 
-  return (
-    <ErrorBoundary>
-      <CustomCursor />
-      <div className="min-h-screen bg-base-100 text-base-content relative">
-        <Navigation />
-        
-        <main>
-          <Hero />
-          <Suspense fallback={<SectionLoading />}>
-            <About />
-          </Suspense>
-          <Suspense fallback={<SectionLoading />}>
-            <CoreSkills />
-          </Suspense>
-          <Suspense fallback={<SectionLoading />}>
-            <SoftSkills />
-          </Suspense>
-          <Suspense fallback={<SectionLoading />}>
-            <WorkExperience />
-          </Suspense>
-          <Suspense fallback={<SectionLoading />}>
-            <Education />
-          </Suspense>
-          <Suspense fallback={<SectionLoading />}>
-            <Projects />
-          </Suspense>
-          <Suspense fallback={<SectionLoading />}>
-            <AwardsCertifications />
-          </Suspense>
-          <Suspense fallback={<SectionLoading />}>
-            <Contact />
-          </Suspense>
-        </main>
-
-        <Suspense fallback={<div className="h-32 bg-base-200"></div>}>
-          <Footer />
-        </Suspense>
-
-        {/* Back to Top Button */}
-        <BackToTop />
-
-        {/* Social Sharing Button */}
-        <motion.button
-          className="fixed bottom-6 right-6 w-14 h-14 bg-primary text-primary-content rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 flex items-center justify-center"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setShowSocialSharing(true)}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.5 }}
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-          </svg>
-        </motion.button>
-
-        {/* Social Sharing Modal */}
-        <AnimatePresence>
-          {showSocialSharing && (
-            <motion.div
-              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowSocialSharing(false)}
+  // Show error screen
+  if (error) {
+    return (
+      <ErrorBoundary>
+        <div className="min-h-screen flex items-center justify-center bg-base-100">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-error mb-4">
+              {t('error_title', 'Something went wrong')}
+            </h1>
+            <p className="text-base-content/70 mb-6">
+              {t('error_message', 'We encountered an error loading the application. Please refresh the page.')}
+            </p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="btn btn-primary"
             >
-              <motion.div
-                className="bg-base-100 rounded-xl p-6 max-w-md w-full mx-4 shadow-2xl"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold">{t('share_portfolio', 'Share Portfolio')}</h3>
-                  <button
-                    className="text-base-content/60 hover:text-primary text-xl"
-                    onClick={() => setShowSocialSharing(false)}
-                  >
-                    ×
-                  </button>
-                </div>
-                <Suspense fallback={<div className="h-32 bg-base-200 rounded"></div>}>
-                  <SocialSharing />
-                </Suspense>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              {t('refresh_page', 'Refresh Page')}
+            </button>
+          </div>
+        </div>
+      </ErrorBoundary>
+    );
+  }
 
-        {/* Keyboard Shortcuts Help Button */}
-        <motion.button
-          className="fixed bottom-6 left-6 w-14 h-14 bg-secondary text-secondary-content rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 flex items-center justify-center"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={showShortcutsHelp}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5, duration: 0.5 }}
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-          </svg>
-        </motion.button>
-      </div>
-    </ErrorBoundary>
+  return (
+    <HelmetProvider>
+      <ErrorBoundary>
+        <div className={`min-h-screen ${fontClass} bg-base-100 transition-colors duration-300`}>
+          {/* SEO Head */}
+          <SEOHead 
+            title={t('site_title', 'Portfolio - Full Stack Developer')}
+            description={t('site_description', 'Professional portfolio showcasing web development projects and skills')}
+            keywords={['portfolio', 'web development', 'react', 'typescript', 'frontend', 'full stack']}
+          />
+          
+          {/* Custom Cursor */}
+          <CustomCursor />
+          
+          {/* Navigation */}
+          <Navigation />
+          
+          {/* Main Content */}
+          <main className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentLanguage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Hero Section */}
+                <Hero />
+                
+                {/* About Section */}
+                <About />
+                
+                {/* Skills Section */}
+                <Skills />
+                
+                {/* Work Experience Section */}
+                <WorkExperience />
+                
+                {/* Education Section */}
+                <Education />
+                
+                {/* Projects Section */}
+                <Projects />
+                
+                {/* Awards & Certifications Section */}
+                <AwardsCertifications />
+                
+                {/* Contact Section */}
+                <Contact />
+              </motion.div>
+            </AnimatePresence>
+          </main>
+          
+          {/* Footer */}
+          <Footer />
+          
+          {/* Back to Top Button */}
+          <BackToTop />
+          
+          {/* Social Sharing */}
+          <SocialSharing />
+          
+          {/* Theme Toggle */}
+          <ThemeToggle />
+          
+          {/* Loading Overlay */}
+          <AnimatePresence>
+            {dataLoading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-base-100/80 backdrop-blur-sm z-50 flex items-center justify-center"
+              >
+                <Loading />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
-}
+};
 
 export default App;

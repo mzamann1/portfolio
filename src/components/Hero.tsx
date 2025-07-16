@@ -99,28 +99,28 @@ const Hero = () => {
     }
   };
 
-  // Background icons data with responsive sizing
+  // Background icons data with responsive sizing - optimized for mobile
   const backgroundIcons = [
-    { icon: <DiReact className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 0, duration: 6 },
-    { icon: <DiJavascript1 className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 1, duration: 8 },
-    { icon: <SiTypescript className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 2, duration: 7 },
-    { icon: <DiCss3 className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 0.5, duration: 9 },
-    { icon: <DiHtml5 className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 1.5, duration: 8.5 },
-    { icon: <DiNodejs className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 3, duration: 6.5 },
-    { icon: <DiGit className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 0.8, duration: 7.8 },
-    { icon: <DiDocker className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 2.2, duration: 8.2 },
-    { icon: <DiVisualstudio className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 1.2, duration: 7.2 },
-    { icon: <DiGithub className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 0.3, duration: 9.3 },
-    { icon: <DiDotnet className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 2.8, duration: 6.8 },
-    { icon: <DiFsharp className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 1.8, duration: 8.8 },
-    { icon: <DiMysql className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 0.7, duration: 7.7 },
-    { icon: <DiPostgresql className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 2.5, duration: 8.5 },
-    { icon: <DiMongodb className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 1.1, duration: 7.1 },
-    { icon: <DiAngularSimple className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 3.2, duration: 6.2 },
-    { icon: <SiVuedotjs className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 0.9, duration: 8.9 },
-    { icon: <DiPython className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 2.1, duration: 7.1 },
-    { icon: <DiJava className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 1.4, duration: 8.4 },
-    { icon: <DiPhp className="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" />, delay: 0.6, duration: 9.6 }
+    { icon: <DiReact className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 0, duration: 6 },
+    { icon: <DiJavascript1 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 1, duration: 8 },
+    { icon: <SiTypescript className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 2, duration: 7 },
+    { icon: <DiCss3 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 0.5, duration: 9 },
+    { icon: <DiHtml5 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 1.5, duration: 8.5 },
+    { icon: <DiNodejs className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 3, duration: 6.5 },
+    { icon: <DiGit className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 0.8, duration: 7.8 },
+    { icon: <DiDocker className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 2.2, duration: 8.2 },
+    { icon: <DiVisualstudio className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 1.2, duration: 7.2 },
+    { icon: <DiGithub className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 0.3, duration: 9.3 },
+    { icon: <DiDotnet className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 2.8, duration: 6.8 },
+    { icon: <DiFsharp className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 1.8, duration: 8.8 },
+    { icon: <DiMysql className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 0.7, duration: 7.7 },
+    { icon: <DiPostgresql className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 2.5, duration: 8.5 },
+    { icon: <DiMongodb className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 1.1, duration: 7.1 },
+    { icon: <DiAngularSimple className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 3.2, duration: 6.2 },
+    { icon: <SiVuedotjs className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 0.9, duration: 8.9 },
+    { icon: <DiPython className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 2.1, duration: 7.1 },
+    { icon: <DiJava className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 1.4, duration: 8.4 },
+    { icon: <DiPhp className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20" />, delay: 0.6, duration: 9.6 }
   ];
 
   if (loading || !heroData) {
@@ -132,7 +132,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 ${fontClass}`}>
+    <section id="home" className={`min-h-screen flex items-start justify-center pt-20 sm:pt-24 md:pt-28 lg:pt-32 relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 ${fontClass}`}>
       {/* Animated Floating Programming Icons */}
       <div className="pointer-events-none absolute inset-0 w-full h-full z-0">
         {backgroundIcons.map((item, index) => (
@@ -164,25 +164,25 @@ const Hero = () => {
       </div>
       
       {/* Glassy background elements - responsive positioning */}
-      <div className="absolute top-8 left-8 md:top-16 md:left-16 w-20 h-20 md:w-40 md:h-40 bg-primary/20 rounded-full blur-2xl opacity-60" />
-      <div className="absolute bottom-8 right-8 md:bottom-16 md:right-16 w-28 h-28 md:w-56 md:h-56 bg-secondary/20 rounded-full blur-2xl opacity-60" />
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 md:top-16 md:left-16 w-16 h-16 sm:w-20 sm:h-20 md:w-40 md:h-40 bg-primary/20 rounded-full blur-2xl opacity-60" />
+      <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 md:bottom-16 md:right-16 w-20 h-20 sm:w-28 sm:h-28 md:w-56 md:h-56 bg-secondary/20 rounded-full blur-2xl opacity-60" />
       
       <motion.div
-        className="container mx-auto px-4 md:px-12 z-10 flex-1 flex items-center justify-center"
+        className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 z-10 flex-1 flex items-center justify-center"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         {/* Centered Hero Content */}
-        <div className="text-center max-w-6xl mx-auto w-full">
-          <div className="relative mb-6 md:mb-10">
+        <div className="text-center max-w-4xl sm:max-w-5xl lg:max-w-6xl mx-auto w-full px-2 sm:px-4">
+          <div className="relative mb-4 sm:mb-6 md:mb-8 lg:mb-10">
             <motion.h1
               initial={{ opacity: 0, y: -40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className={
-                getFontClass({ weight: 'bold', size: '4xl' }) + ' md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl ' +
-                'tracking-tight transition-all duration-100 relative overflow-hidden text-center'
+                getFontClass({ weight: 'bold', size: '3xl' }) + ' sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl ' +
+                'tracking-tight transition-all duration-100 relative overflow-hidden text-center leading-tight'
               }
             >
               <span
@@ -208,36 +208,36 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className={
               body +
-              ' text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-base-content/80 mb-6 md:mb-8 max-w-5xl mx-auto font-light text-center'
+              ' text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-base-content/80 mb-4 sm:mb-6 md:mb-8 max-w-4xl sm:max-w-5xl mx-auto font-light text-center leading-relaxed'
             }
           >
             {t('hero_subtitle')}
           </motion.p>
           
-          {/* Statistics with Count-Up Animation - centered grid */}
+          {/* Statistics with Count-Up Animation - responsive layout */}
           <motion.div 
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12 mb-8 md:mb-12 max-w-6xl mx-auto justify-items-center"
+            className="grid grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 mb-6 sm:mb-8 md:mb-12 max-w-4xl sm:max-w-5xl lg:max-w-6xl mx-auto lg:justify-items-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             {heroData.stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className={`${fontClass} text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-1 md:mb-2`}>
+              <div key={index} className="text-center lg:flex-shrink-0">
+                <div className={`${fontClass} text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-1 md:mb-2`}>
                   <CountUpNumber end={stat.value} duration={2} />
                   {stat.suffix || '+'}
                 </div>
-                <div className={`${fontClass} text-xs md:text-sm lg:text-base text-base-content/70`}>{stat.label}</div>
+                <div className={`${fontClass} text-xs sm:text-sm md:text-base text-base-content/70 leading-tight`}>{stat.label}</div>
               </div>
             ))}
           </motion.div>
           
           {/* Centered button layout */}
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center">
             <motion.button 
               onClick={() => scrollToSection('#contact')}
-              className="relative btn btn-primary btn-lg lg:btn-xl px-10 md:px-12 rounded-full shadow-md overflow-visible border-0 w-full sm:w-auto"
+              className="relative btn btn-sm sm:btn-md md:btn-lg lg:btn-xl px-4 sm:px-6 md:px-8 lg:px-10 rounded-full shadow-md overflow-visible border-0 w-full sm:w-auto text-xs sm:text-sm md:text-base"
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               whileTap={{ scale: 0.95 }}
@@ -246,7 +246,7 @@ const Hero = () => {
             </motion.button>
             <motion.button 
               onClick={() => scrollToSection('#projects')}
-              className="btn btn-outline btn-lg lg:btn-xl px-10 md:px-12 rounded-full shadow-md w-full sm:w-auto"
+              className="btn btn-outline btn-sm sm:btn-md md:btn-lg lg:btn-xl px-4 sm:px-6 md:px-8 lg:px-10 rounded-full shadow-md w-full sm:w-auto text-xs sm:text-sm md:text-base"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
@@ -259,16 +259,16 @@ const Hero = () => {
       
       {/* Scroll Down Button - responsive positioning */}
       <motion.div 
-        className="absolute left-1/2 -translate-x-1/2 bottom-4 md:bottom-8 z-20"
+        className="absolute left-1/2 -translate-x-1/2 bottom-2 sm:bottom-4 md:bottom-8 z-20"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
         <button 
           onClick={() => scrollToSection('#about')}
-          className="w-6 h-10 border-2 border-base-content/30 rounded-full mx-auto relative hover:scale-110 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
+          className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-base-content/30 rounded-full mx-auto relative hover:scale-110 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
           title={t('scroll_down', 'Scroll down')}
         >
-          <div className="w-1 h-3 bg-base-content/60 rounded-full mx-auto mt-2 animate-pulse" />
+          <div className="w-1 h-2 sm:h-3 bg-base-content/60 rounded-full mx-auto mt-1 sm:mt-2 animate-pulse" />
         </button>
       </motion.div>
     </section>

@@ -34,12 +34,17 @@ export const useAppInitialization = () => {
 
     // Initialize theme
     const initTheme = () => {
-      // Check for saved theme preference or default to 'auto'
-      const savedTheme = localStorage.getItem('portfolio-ui') 
-        ? JSON.parse(localStorage.getItem('portfolio-ui') || '{}').state?.theme 
-        : 'auto';
-      
-      setTheme(savedTheme || 'auto');
+      try {
+        // Check for saved theme preference or default to 'auto'
+        const savedTheme = localStorage.getItem('portfolio-ui') 
+          ? JSON.parse(localStorage.getItem('portfolio-ui') || '{}').state?.theme 
+          : 'auto';
+        
+        setTheme(savedTheme || 'auto');
+      } catch (error) {
+        console.error('Error initializing theme:', error);
+        setTheme('auto');
+      }
     };
 
     const initializeApp = async () => {

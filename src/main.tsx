@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
@@ -5,15 +6,16 @@ import './fonts.css'
 import './index.css'
 import './i18n.ts'
 
-// Register service worker for PWA functionality
+// Register service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
+      .then((_registration) => {
+        // Service worker registered successfully
       })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      .catch((_registrationError) => {
+        // Service worker registration failed
       });
   });
 }
