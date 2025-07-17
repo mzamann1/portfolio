@@ -26,9 +26,9 @@ import Footer from '@components/Footer';
 import BackToTop from '@components/BackToTop';
 import CustomCursor from '@components/CustomCursor';
 import SocialSharing from '@components/SocialSharing';
-import ThemeToggle from '@components/ThemeToggle';
 import Loading from '@components/Loading';
 import './App.css';
+import FloatingThemeToggle from './components/FloatingThemeToggle';
 
 const App = () => {
   const { t } = useTranslation();
@@ -164,7 +164,7 @@ const App = () => {
           <SocialSharing />
           
           {/* Theme Toggle */}
-          <ThemeToggle />
+          <FloatingThemeToggle />
           
           {/* Loading Overlay */}
           <AnimatePresence>

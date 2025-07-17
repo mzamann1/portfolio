@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguageFont } from '../hooks/useLanguageFont';
-import { useWorkExperienceData } from '../hooks/usePortfolioData';
+import { useLanguageFont } from '@hooks/useLanguageFont';
+import { useWorkExperienceData } from '@hooks/usePortfolioData';
 import { 
   FaRegCircle, 
   FaBriefcase, 

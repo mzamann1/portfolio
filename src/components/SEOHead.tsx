@@ -38,9 +38,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     name: author,
     url: url,
     sameAs: [
-      'https://github.com/yourusername',
-      'https://linkedin.com/in/yourusername',
-      'https://twitter.com/yourusername'
+      'https://github.com/mzamaann-dev',
+      'https://linkedin.com/in/mzamaann'
     ],
     jobTitle: 'Full Stack Developer',
     worksFor: {
